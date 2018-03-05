@@ -1,0 +1,24 @@
+{
+  "name": "financetracker",
+  "version": "1.0.0",
+  "description": "a web application to track financial transactions.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keith3895/financeTracker.git"
+  },
+  "author": "Keith Franklin Jathanna (keith30895@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Keith3895/financeTracker/issues"
+  },
+  "homepage": "https://github.com/Keith3895/financeTracker#readme"
+}
