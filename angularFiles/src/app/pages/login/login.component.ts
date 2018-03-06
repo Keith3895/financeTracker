@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(fVal){
-    console.log(fVal);
+    if(fVal.valid){
+      console.log(fVal.value);
+    }
   }
 }

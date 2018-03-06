@@ -15,7 +15,9 @@ import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { CardComponent } from './component/card/card.component';
-
+import { InputComponent } from './component/input/input.component';
+// service import
+import {LoginService} from './service/login.service';
 const appRoutes: Routes = [
   { path: '',
     redirectTo: '/home',
@@ -37,7 +39,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     SidenavComponent,
     LoginComponent,
     SignupComponent,
-    CardComponent
+    CardComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
   providers: [{ 
     provide: HAMMER_GESTURE_CONFIG, 
     useClass: MyHammerConfig 
-}],
+},
+LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

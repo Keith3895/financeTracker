@@ -8,14 +8,16 @@
   <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayout='column' fxLayoutAlign='center center'>
     <div>
       <label for="userName">User Name:</label>
-      <input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" pattern="[0-9]{1}">
+      <input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" required>
+      <div class="errorMessage"> Enter a valid user name</div>
     </div>
     <div>
-      <label for="password">User Name:</label>
-      <input type="password" name="password" id="password" ngModel placeholder="Password" pattern="[0-9]{1}">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" ngModel placeholder="Password" required>
+      <div class="errorMessage"> Enter a valid password</div>
     </div>
     <div class='custom-checkbox'>
-      <input type='checkbox' />
+      <input type='checkbox' name="remember" ngModel />
       <label>
         <span></span>
         Remember Me
@@ -25,7 +27,7 @@
       <a routerLink="/signup">Forgot Password</a>
     </div>
     <div class="loginButton">
-      <button type="submit">Log in</button>
+      <button type="submit" [disabled]="!loginForm.valid">Log in</button>
     </div>
     <div class="loginButton">
         <button routerLink="/signup">Sign Up</button>
