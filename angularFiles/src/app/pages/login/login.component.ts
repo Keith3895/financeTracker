@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
-
+import {LoginService} from '../../service/login.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,11 +9,20 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService,
+  private router:Router) { }
 
   ngOnInit() {
   }
   onSubmit(fVal){
-    console.log(fVal);
+    if(fVal.valid){
+      this.loginService.authenticateUser(fVal.value).subscribe(res => {
+        this.loginService.storeUserData(res['token'],res['user']);
+        this.router.navigate(['/dashboard']);
+      },err=>{
+        console.log(err);
+      });
+      
+    }
   }
 }

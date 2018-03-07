@@ -1,9 +1,16 @@
 <div class="swipe-area" (panleft)="triggerClose($event)" (panright)="triggerOpen($event)"></div>
-  <ul>
-    <li>Menu Item</li>
-    <li>Menu Item</li>
-    <li>Menu Item</li>
-    <li>Menu Item</li>
-    <li>Menu Item</li>
-    <li>Menu Item</li>
+  
+  <ul (click)='triggerClose($event)'>
+    <li routerLink="/dashboard" routerLinkActive="active" *ngIf='loginService.loggedIn()'>
+      <span>Dashboard</span>  
+    </li>
+    <li routerLink="/login" *ngIf='!loginService.loggedIn()' routerLinkActive="active">
+      <span>Log In</span>
+    </li>
+    <li routerLink="/signup" *ngIf='!loginService.loggedIn()' routerLinkActive="active">
+      <span>Sign up</span>
+    </li>
+    <li (click)="loginService.logout()" routerLink="/login" *ngIf='loginService.loggedIn()'>
+      <span>logout</span>
+    </li>
   </ul>

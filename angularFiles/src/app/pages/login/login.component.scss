@@ -70,12 +70,12 @@ label span { /* <-- style the artificial checkbox */
     padding: 15px 25px;
 }
 
-.loginButton {
+.Button {
     margin: 5px;
     width: 100%;
 }
 
-.loginButton button {
+.Button button {
     padding: 15px;
     border: 1px solid;
     border-radius: 25px;
@@ -86,18 +86,24 @@ label span { /* <-- style the artificial checkbox */
     outline: none;
 }
 
-.loginButton button:hover {
+.Button button:hover {
     background: white;
     color: #9c4dcd;
     cursor: pointer;
 }
 
-.loginButton button:focus {
+.Button button:focus {
     outline: none;
 }
 
-.loginButton button:active {
+.Button button:active {
     box-shadow: inset 0px -3px #453446;
+}
+.Button button:disabled,
+.Button button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 .custom-checkbox {
     position: relative;
@@ -135,4 +141,15 @@ label span { /* <-- style the artificial checkbox */
 .custom-checkbox input:checked+label span{ /* change span box color when checked */
     background-color: green;
     border: 1px solid green;
+}
+
+input:not([type='checkbox']).ng-valid + .errorMessage,
+input:not([type='checkbox']).ng-untouched + .errorMessage{
+    display: none;
+}
+.errorMessage{
+    color: red;
+    margin-left: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
 }
