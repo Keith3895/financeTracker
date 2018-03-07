@@ -20,13 +20,18 @@ exports.register = (req, res) => {
 
 exports.sign_in = (req, res) => {
   User.findOne({
-    email: req.body.email
+    userName:req.body.userName
   }, (err, user) => {
     if (err) throw err;
     if (!user || !user.comparePassword(req.body.password)) {
       return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
     }
-    return res.json({ token: jwt.sign({ userName: user.userName, _id: user._id }, process.env.salt) });
+    let options = {};
+    if(!req.body.remember)
+    options ={
+      expiresIn: '1h'
+    };
+    return res.json({ token: jwt.sign({ userName: user.userName, _id: user._id }, process.env.salt,options),user:user.userName });
   });
 };
 

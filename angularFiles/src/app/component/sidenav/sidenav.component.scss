@@ -16,10 +16,24 @@ ul {
     font-size: 18px;
     line-height: 3;
     font-weight: 400;
+    padding: 0px;
     padding-top: 50px;
     list-style: none;
 }
-
+ul li{
+    text-align: center;
+}
+ul li.active{
+    background: #2d377d;
+}
+ul li:hover{
+    background: #2d377d;
+    cursor: pointer;
+}
+li a{
+    color: inherit;
+    text-decoration: inherit;
+}
 .swipe-area {
     position: absolute;
     width: 50px;

@@ -70,12 +70,12 @@ label span { /* <-- style the artificial checkbox */
     padding: 15px 25px;
 }
 
-.loginButton {
+.Button {
     margin: 5px;
     width: 100%;
 }
 
-.loginButton button {
+.Button button {
     padding: 15px;
     border: 1px solid;
     border-radius: 25px;
@@ -86,21 +86,21 @@ label span { /* <-- style the artificial checkbox */
     outline: none;
 }
 
-.loginButton button:hover {
+.Button button:hover {
     background: white;
     color: #9c4dcd;
     cursor: pointer;
 }
 
-.loginButton button:focus {
+.Button button:focus {
     outline: none;
 }
 
-.loginButton button:active {
+.Button button:active {
     box-shadow: inset 0px -3px #453446;
 }
-.loginButton button:disabled,
-.loginButton button[disabled]{
+.Button button:disabled,
+.Button button[disabled]{
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
