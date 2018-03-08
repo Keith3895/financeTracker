@@ -10,9 +10,9 @@ export class CordovaService {
    }
   // cordova.plugins.backgroundMode.setEnabled(true);
    runBackground(){
-    console.log('here');
     cordova.plugins.backgroundMode.enable();
-    console.log(cordova.plugins.backgroundMode.isActive());
+   }
+   openApp(){
     
    }
 }
