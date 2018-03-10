@@ -1,8 +1,6 @@
 <app-nav-bar (open)="onOpen($event)"></app-nav-bar>
-<div style="margin-top:5px;min-height:100%;">
+<div style="margin:5px;min-height:100%;">
     <router-outlet></router-outlet>
 </div>
 <app-sidenav [@slideInOut]="menuState" (open)="onOpen($event)" (close)="onClose($event)"></app-sidenav>
 <div *ngIf="menuState=='out'" class="overlay" (click)='onClose($event)'></div>
-<a routerLink="/login" routerLinkActive="active">Crisis Center</a>
-<a routerLink="/signup" routerLinkActive="active">Heroes</a>

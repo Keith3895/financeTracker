@@ -11,15 +11,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
+import { CardComponent } from './component/card/card.component';
+import { InputComponent } from './component/input/input.component';
 //page imports
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { CardComponent } from './component/card/card.component';
-import { InputComponent } from './component/input/input.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 // service import
 import { LoginService } from './service/login.service';
 import { SystemService } from './service/system.service';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CordovaService } from './service/cordova/cordova.service';
 import { BasicGuard } from './gaurd/basic.guard';
 const appRoutes: Routes = [
   {
@@ -30,7 +31,7 @@ const appRoutes: Routes = [
   // { path: '**', component: PageNotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate:[BasicGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [BasicGuard] }
 ];
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -65,7 +66,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   },
     LoginService,
     SystemService,
-    BasicGuard],
+    BasicGuard,
+    CordovaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
