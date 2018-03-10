@@ -4,5 +4,3 @@
 </div>
 <app-sidenav [@slideInOut]="menuState" (open)="onOpen($event)" (close)="onClose($event)"></app-sidenav>
 <div *ngIf="menuState=='out'" class="overlay" (click)='onClose($event)'></div>
-<a routerLink="/login" routerLinkActive="active">Crisis Center</a>
-<a routerLink="/signup" routerLinkActive="active">Heroes</a>
