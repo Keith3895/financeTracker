@@ -29,6 +29,12 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     document.addEventListener("deviceready", ()=>{
+      this.cordovaService.requestPermision((status)=>{
+        console.log("in call back");
+        // if( !status.hasPermission ) 
+        console.log(status);
+        this.cordovaService.readMessages();
+      });
       this.cordovaService.runBackground();
     } , false);
   }

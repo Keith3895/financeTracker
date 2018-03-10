@@ -22,7 +22,8 @@
             "cordova-plugin-device": {},
             "cordova-plugin-whitelist": {},
             "cordova-plugin-background-mode": {},
-            "cordova-plugin-sms": {}
+            "cordova-plugin-sms": {},
+            "cordova-plugin-android-permissions": {}
         },
         "platforms": [
             "android"
