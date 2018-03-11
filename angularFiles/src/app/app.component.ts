@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   menuState: string = 'in';
 
   constructor(private router: ActivatedRoute,
-  private cordovaService: CordovaService) {
+  public cordovaService: CordovaService) {
   }
   ngOnInit() {
     document.addEventListener("deviceready", ()=>{

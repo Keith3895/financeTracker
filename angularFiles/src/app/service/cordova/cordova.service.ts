@@ -11,39 +11,42 @@ export class CordovaService {
   smsList = [];
   constructor() {
     this.systemService = new SystemService();
+    console.log(this.smsList);
     document.addEventListener('onSMSArrive', (e) => {
       var sms = e['data'];
 
       this.smsList.push(sms);
+      console.log(this.smsList);
+      navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
     });
   }
-  // cordova.plugins.backgroundMode.setEnabled(true);
+  onSuccess(position) {
+    alert('Latitude: ' + position.coords.latitude + '\n' +
+      'Longitude: ' + position.coords.longitude + '\n' +
+      'Altitude: ' + position.coords.altitude + '\n' +
+      'Accuracy: ' + position.coords.accuracy + '\n' +
+      'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+      'Heading: ' + position.coords.heading + '\n' +
+      'Speed: ' + position.coords.speed + '\n' +
+      'Timestamp: ' + position.timestamp + '\n');
+  }
+  onError(error) {
+    alert('code: ' + error.code + '\n' +
+      'message: ' + error.message + '\n');
+  }
   runBackground() {
     cordova.plugins.backgroundMode.enable();
   }
   readMessages() {
-    // SMS.count({}, (st) => {
-      // console.log('st');
-      // console.log(st);
-      const filter = {
-        box: 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
-
-        // following 4 filters should NOT be used together, they are OR relationship
-        // read : 0, // 0 for unread SMS, 1 for SMS already read
-        // _id : 1234, // specify the msg id
-        // address : '+8613601234567', // sender's phone number
-        // body : 'This is a test SMS', // content to match
-
-        // following 2 filters can be used to list page up/down
-        indexFrom: 0, // start from index 0
-        maxCount: 40, // count of SMS to return each time
-      };
-      SMS.listSMS(filter, (data) => {
-        console.log(data);
-      }, (err) => {
-        console.log('error list sms: ' + err);
-      });
-    // }, null);
+    const filter = {
+      box: 'inbox',
+    };
+    SMS.listSMS(filter, (data) => {
+      // console.log(data);
+      this.smsList= data;
+    }, (err) => {
+      console.log('error list sms: ' + err);
+    });
   }
   requestPermision(callback) {
     // READ_SMS
@@ -53,10 +56,16 @@ export class CordovaService {
       , (status) => {
         console.log('inside first permission call' + status);
       }, null);
+    permissions.requestPermission(permissions.ACCESS_FINE_LOCATION
+        , (status) => {
+          console.log('inside first permission call' + status);
+        }, null);
     permissions.requestPermission(permissions.READ_SMS, (status) => {
-      SMS.startWatch(null, null);
+      SMS.startWatch((status) => {
+        console.log(status);
+      }, null);
       callback(status);
     }, null);
   }
-
+  
 }
