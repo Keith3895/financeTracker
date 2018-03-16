@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     document.addEventListener("deviceready", ()=>{
       this.cordovaService.requestPermision((status)=>{
         console.log(status);
-        // this.cordovaService.runBackground();
+        this.cordovaService.runBackground();
       });
     } , false);
   }

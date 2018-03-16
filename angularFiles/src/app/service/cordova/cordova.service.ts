@@ -16,17 +16,14 @@ export class CordovaService {
       
       var sms = e['data'];
       this.smsList.push(sms);
-      console.log(sms);
       let transactions = [];
       let transactionObject = this.smsService.Transaction(sms);
-      console.log(typeof transactionObject);
       if (typeof transactionObject == 'object') {
-        console.log('test');
-        navigator.geolocation.getCurrentPosition((position) => {
-          console.log(position.coords);
-          // transactions.push(Object.assign(transactionObject, { geoLocation: position.coords }));
-          // console.log(transactions);
-        }, this.onError);
+        cordova.plugins.backgroundMode.disableWebViewOptimizations();
+        cordova.plugins.locationServices.geolocation.getCurrentPosition((position) => {
+          transactions.push(Object.assign(transactionObject, { geoLocation: position.coords }));
+          console.log(transactions);
+        }, this.onError,{ enableHighAccuracy: true });
       }
     });
   }
@@ -47,6 +44,12 @@ export class CordovaService {
   runBackground() {
     cordova.plugins.backgroundMode.enable();
     cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+    cordova.plugins.backgroundMode.on('activate', function() {
+      cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+   });
+   cordova.plugins.backgroundMode.on('enable', function() {
+    cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+ });
   }
   readMessages() {
     const filter = {
@@ -66,11 +69,8 @@ export class CordovaService {
     const permissions = cordova.plugins.permissions;
     permissions.requestPermission(permissions.RECEIVE_SMS
       , (status) => {
-        console.log(status);
         permissions.requestPermission(permissions.ACCESS_FINE_LOCATION
           , (status) => {
-            console.log('loca');
-            console.log(status);
             permissions.requestPermission(permissions.READ_SMS, (status) => {
               callback(status);
             }, null);
@@ -80,9 +80,9 @@ export class CordovaService {
   test() {
     this.requestPermision((st) => {
       SMS.startWatch((status) => {
-        console.log(status);
       }, null);
-      navigator.geolocation.getCurrentPosition(this.onSuccess,this.onError,{ maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+      cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+      // cordova.plugins.locationServices.geolocation.getCurrentPosition(this.onSuccess,this.onError,{ enableHighAccuracy: true });
     });
   }
 }

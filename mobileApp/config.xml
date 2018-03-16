@@ -27,6 +27,6 @@
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
     <plugin name="cordova-plugin-android-permissions" spec="~1.0.0" />
     <plugin name="cordova-plugin-sms" spec="./customPlugins/cordova-plugin-sms" />
-    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-locationservices" spec="^2.1.0" />
     <engine name="android" spec="^7.0.0" />
 </widget>
