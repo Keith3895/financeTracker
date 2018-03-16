@@ -11,6 +11,8 @@ export class DashboardComponent implements OnInit {
   constructor(public cordovaService:CordovaService) { }
 
   ngOnInit() {
+    console.log('in dash');
+    this.cordovaService.test();
   }
   
 }

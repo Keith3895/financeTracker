@@ -7,13 +7,13 @@ export class SmsService {
   Transaction(obj){
     const str = obj.body;
     const debit = /(debited)|(deducted)|(charged)|(reduced)/i;
-    const credit =/(credited)|(added)|(given)/i;
+    const credit =/(credited)|(credit)|(added)|(given)/i;
     if(debit.test(str)){
       return Object.assign(this.tokenizer(str),{type:'debit',date:obj.date});
     }else if (credit.test(str)){
       return Object.assign(this.tokenizer(str),{type:'credit',date:obj.date});
     }else{
-      return 'pointless';
+      return false;
     }
   }
   tokenizer(str: string) {

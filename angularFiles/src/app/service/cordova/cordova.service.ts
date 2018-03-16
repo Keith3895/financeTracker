@@ -12,13 +12,21 @@ export class CordovaService {
   smsList = [];
   constructor(public smsService: SmsService) {
     this.systemService = new SystemService();
-    console.log(this.smsList);
     document.addEventListener('onSMSArrive', (e) => {
       var sms = e['data'];
-
       this.smsList.push(sms);
-      console.log(this.smsList);
-      navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
+      console.log(sms);
+      let transactions = [];
+      let transactionObject = this.smsService.Transaction(sms);
+      console.log(typeof transactionObject);
+      if (typeof transactionObject == 'object') {
+        console.log('test');
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position.coords);
+          transactions.push(Object.assign(transactionObject, { geoLocation: position.coords }));
+          console.log(transactions);
+        }, this.onError);
+      }
     });
   }
   onSuccess(position) {
@@ -43,10 +51,10 @@ export class CordovaService {
       box: 'inbox',
     };
     SMS.listSMS(filter, (data) => {
-      // console.log(data);
+      console.log(data);
       this.smsList = data;
       this.smsList.forEach(el => {
-        console.log(this.smsService.Transaction(el.body));
+        console.log(this.smsService.Transaction(el));
       });
     }, (err) => {
       console.log('error list sms: ' + err);
@@ -56,15 +64,21 @@ export class CordovaService {
     const permissions = cordova.plugins.permissions;
     permissions.requestPermission(permissions.RECEIVE_SMS
       , (status) => {
-        console.log('permissions.RECEIVE_SMS' + status);
+        console.log(status);
       }, null);
     permissions.requestPermission(permissions.ACCESS_FINE_LOCATION
       , (status) => {
-        console.log('permissions.ACCESS_FINE_LOCATION' + status);
+        console.log(status);
       }, null);
     permissions.requestPermission(permissions.READ_SMS, (status) => {
       callback(status);
     }, null);
   }
-
+  test(){
+    this.requestPermision((st)=>{
+      SMS.startWatch((status) => {
+        console.log(status);
+      }, null);
+    });
+  }
 }
