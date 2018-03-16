@@ -2,7 +2,7 @@
 <div style="margin:5px;min-height:100%;">
     <router-outlet></router-outlet>
 </div>
-<app-sidenav [@slideInOut]="menuState" (open)="onOpen($event)" (close)="onClose($event)"></app-sidenav>
+<app-sidenav [@slideInOut]="menuState" (open)="onOpen($event)" (close)="onClose($event)" (scan)="scanMsgs()"></app-sidenav>
 <div *ngIf="menuState=='out'" class="overlay" (click)='onClose($event)'></div>
 <span *ngFor="let tester of cordovaService.smsList">
     {{tester.body}}

@@ -8,6 +8,7 @@ import {LoginService} from '../../service/login.service';
 export class SidenavComponent implements OnInit {
   @Output() open: EventEmitter<any> = new EventEmitter();
   @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() scan: EventEmitter<any> = new EventEmitter();
   constructor(public loginService: LoginService) { }
 
   ngOnInit() {
@@ -17,5 +18,8 @@ export class SidenavComponent implements OnInit {
   }
   triggerClose(ve) {
     this.close.emit(null);
+  }
+  scanMsg(){
+    this.scan.emit(null);
   }
 }

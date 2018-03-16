@@ -21,6 +21,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginService } from './service/login.service';
 import { SystemService } from './service/system.service';
 import { CordovaService } from './service/cordova/cordova.service';
+import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
 const appRoutes: Routes = [
   {
@@ -67,7 +68,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     LoginService,
     SystemService,
     BasicGuard,
-    CordovaService],
+    CordovaService,
+    SmsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

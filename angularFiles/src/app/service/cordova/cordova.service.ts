@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SystemService } from '../system.service';
+import { SmsService } from '../smsfunctions/sms.service';
 
 // declare const window: any;
 declare const cordova: any;
@@ -9,7 +10,7 @@ declare const SMS: any;
 export class CordovaService {
   systemService;
   smsList = [];
-  constructor() {
+  constructor(public smsService: SmsService) {
     this.systemService = new SystemService();
     console.log(this.smsList);
     document.addEventListener('onSMSArrive', (e) => {
@@ -43,29 +44,27 @@ export class CordovaService {
     };
     SMS.listSMS(filter, (data) => {
       // console.log(data);
-      this.smsList= data;
+      this.smsList = data;
+      this.smsList.forEach(el => {
+        console.log(this.smsService.Transaction(el.body));
+      });
     }, (err) => {
       console.log('error list sms: ' + err);
     });
   }
   requestPermision(callback) {
-    // READ_SMS
-    // RECEIVE_SMS
     const permissions = cordova.plugins.permissions;
     permissions.requestPermission(permissions.RECEIVE_SMS
       , (status) => {
-        console.log('inside first permission call' + status);
+        console.log('permissions.RECEIVE_SMS' + status);
       }, null);
     permissions.requestPermission(permissions.ACCESS_FINE_LOCATION
-        , (status) => {
-          console.log('inside first permission call' + status);
-        }, null);
-    permissions.requestPermission(permissions.READ_SMS, (status) => {
-      SMS.startWatch((status) => {
-        console.log(status);
+      , (status) => {
+        console.log('permissions.ACCESS_FINE_LOCATION' + status);
       }, null);
+    permissions.requestPermission(permissions.READ_SMS, (status) => {
       callback(status);
     }, null);
   }
-  
+
 }
