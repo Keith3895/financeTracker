@@ -22,7 +22,7 @@ export class CordovaService {
         cordova.plugins.backgroundMode.disableWebViewOptimizations();
         cordova.plugins.locationServices.geolocation.getCurrentPosition((position) => {
           transactions.push(Object.assign(transactionObject, { geoLocation: position.coords }));
-          console.log(transactions);
+          // http
         }, this.onError,{ enableHighAccuracy: true });
       }
     });
