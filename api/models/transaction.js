@@ -8,12 +8,12 @@ const TransactionSchema = new Schema({
         required: true
     },
     transaction: {
-        type: String,
+        type: Number,
         required: true,
         index: true,
     },
     balance: {
-        type: String,
+        type: Number,
         required: true
     },
     type: {
