@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   properties:{
-    baseUrl:'http://103184fa.ngrok.io'
+    baseUrl:'http://cb3cd3ec.ngrok.io'
   }
   
 };

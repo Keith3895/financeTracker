@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SystemService } from '../system.service';
 import { SmsService } from '../smsfunctions/sms.service';
+import { HttpClient } from '@angular/common/http';
 
 // declare const window: any;
 declare const cordova: any;
@@ -10,7 +11,8 @@ declare const SMS: any;
 export class CordovaService {
   systemService;
   smsList = [];
-  constructor(public smsService: SmsService) {
+  constructor(public smsService: SmsService,
+    public http:HttpClient) {
     this.systemService = new SystemService();
     document.addEventListener('onSMSArrive', (e) => {
       
@@ -55,12 +57,15 @@ export class CordovaService {
     const filter = {
       box: 'inbox',
     };
-    SMS.listSMS(filter, (data) => {
-      console.log(data);
+    SMS.listSMS(filter,async (data) => {
+      let templist=[];
       this.smsList = data;
-      this.smsList.forEach(el => {
-        console.log(this.smsService.Transaction(el));
+      await this.smsList.forEach(el => {
+        let condi = this.smsService.Transaction(el)
+        if(condi)
+        templist.push(condi);
       });
+      
     }, (err) => {
       console.log('error list sms: ' + err);
     });

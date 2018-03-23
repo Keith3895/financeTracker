@@ -30,12 +30,15 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(morgan('tiny'));
-
+app.use(middleware.jwtCheck);
 app.use('/auth',authRoutes);
 app.use('/transaction',transactionRoutes);
 app.use('/account',accountRoutes);
 app.get('/', (req, res) => {
-  res.send('Invalid Endpoint');
+  res.redirect('/angular/');
+});
+app.get('/docs', (req, res) => {
+  res.redirect('/api-docs/');
 });
 // Start Server
 app.listen(process.env.PORT, () => {

@@ -19,7 +19,7 @@ export class SmsService {
   tokenizer(str: string) {
     return {
       transaction: this.getTransactions(str),
-      balance: this.getBallance(str),
+      balance: this.getBalance(str),
       account: this.getAccount(str)
     };
   }
@@ -27,19 +27,20 @@ export class SmsService {
     const regex = /(rs.)([0-9]*.[0-9]*)/gi
     const tokens = regex.exec(str);
     if(tokens)
-    if (tokens[2] != this.getBallance(str)) {
-      return tokens[2];
+    if (parseFloat(tokens[2]) != this.getBalance(str)) {
+      return parseFloat(tokens[2]);
     }
   }
-  getBallance(str: string) {
+  getBalance(str: string) {
     const regex = [/(bal)/i,
-    /(ballance is)/i];
+    /(ballance is)/i,
+    /(balance is)/i];
      const val = /(rs.)([0-9]*.[0-9]*)/gi
     for(let i=0;i<regex.length;i++){
       let tokens = regex[i].exec(str);
       if(tokens){
         let subStr = str.substr(tokens.index, str.length);
-        return val.exec(subStr)[2];
+        return parseFloat(val.exec(subStr)[2]);
       }
     
     }

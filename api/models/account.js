@@ -7,7 +7,7 @@ const AccountSchema = new Schema({
         required:true,
         unique: true
     },
-    ballance:{
+    balance:{
         type: Number,
         required:true,
     },

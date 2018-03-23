@@ -29,10 +29,11 @@ exports.addMultiTransactions = async (req, res) => {
         return a.date - b.date;
     });
     transactionArray.forEach(element => {
-        addTransaction(req.body).then((response) => {
+        addTransaction(element).then((response) => {
             return response;
-        }).error((err) => {
+        }).catch((err) => {
             return err;
+            console.log(err);
         });
     });
 };
@@ -45,52 +46,36 @@ exports.deleteTransaction = (req, res) => {
 
 /**
  * This function is to add individual transacton objects.
- * @param {*} obj : this is the transaction object
+ * @param obj : this is the transaction object
  *  returns a promise.
  */
 function addTransaction(obj) {
     return new Promise((resolve, reject) => {
         try {
             let newTransaction = new Transaction(obj); // creates a transaction object which matches the data model(validation included).
-            Account.find({ accountNumber: newTransaction.account }).exec((err, acc) => {
-                // compare new balance with current.
-                condition = acc.ballance? newTransaction.ballance == (acc.ballance - newTransaction.transaction):true;
-                    if (condition) {
-                        acc.ballance = newTransaction.ballance;
-                        acc.save((err, savedAcc) => {
-                            newTransaction.save((err, transaction) => {
-                                if (err) {
-                                    return reject({
-                                        status: 400,
-                                        send: {
-                                            message: err
-                                        }
-                                    });
-                                } else {
-                                    return resolve({
-                                        status: 200,
-                                        json: transaction
-                                    });
-                                }
-                            });
-                        });
-                    } else {
-                        return reject({
-                            status: 409,
-                            send: {
-                                message: 'error in adding data'
+            Account.findOne({ accountNumber: newTransaction.account }).exec((err, acc) => {
+                condition = false;
+                if (acc && newTransaction.balance)// compare new balance with current.
+                    condition = acc.balance > 0 ? newTransaction.balance == (acc.balance - newTransaction.transaction) : true;
+                if (condition) {
+                    acc.balance = newTransaction.balance;
+                    acc.save( (err, data) => {
+                        if (err)
+                            return reject(err);
+                        newTransaction.save((err, transaction) => {
+                            if (err) {
+                                return reject({status: 400,send: {message: err}});
+                            } else {
+                                return resolve({status: 200,json: transaction});
                             }
                         });
-                    }
+                    });
+                } else {
+                    return reject({status: 409,send: {message: 'error in adding data'}});
                 }
             });
         } catch (e) {
-            return reject({
-                status: 400,
-                send: {
-                    message: err
-                }
-            });
+            return reject({status: 400,send: {message: err}});
         }
     });
 }
