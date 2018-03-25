@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CordovaService } from '../../service/cordova/cordova.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public cordovaService:CordovaService) { }
 
   ngOnInit() {
+    this.cordovaService.test();
   }
-
+  
 }

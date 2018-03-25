@@ -1,7 +1,10 @@
 # Finance Tracker WebApplication
-[![Node](https://img.shields.io/badge/node-9.6.1-green.svg)](https://nodejs.org/en/) [![npm](https://img.shields.io/badge/npm-5.6.1-red.svg)](https://www.npmjs.com/) [![MongoDb](https://img.shields.io/badge/mongo_DB-3.6.3-green.svg)](https://www.mongodb.org) [![angular-cli](https://img.shields.io/badge/angular_cli-5.6.1-ff0000.svg)](https://angular.io/) [![Cordova](https://img.shields.io/badge/Cordova-8.0.0-ff69b4.svg)](https://cordova.apache.org/)
+![Build](https://img.shields.io/badge/Build-building-red.svg)
 
-The web application is divided into two section.
+[![Node](https://img.shields.io/badge/node-9.6.1-green.svg)](https://nodejs.org/en/) [![npm](https://img.shields.io/badge/npm-5.8.0-red.svg)](https://www.npmjs.com/) [![MongoDb](https://img.shields.io/badge/mongo_DB-3.6.3-green.svg)](https://www.mongodb.org) [![angular-cli](https://img.shields.io/badge/angular_cli-5.6.1-ff0000.svg)](https://angular.io/) [![Cordova](https://img.shields.io/badge/Cordova-8.0.0-ff69b4.svg)](https://cordova.apache.org/)
+
+
+The web application is divided into three section.
 
 1. **NodeJS**(backend rest service). the root directory has all the node code.
 2. **Angular Application**(frontend application). all the source for this application is in the [angular Files](./angularFiles) folder.

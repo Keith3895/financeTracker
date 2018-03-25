@@ -4,6 +4,9 @@
     <li routerLink="/dashboard" routerLinkActive="active" *ngIf='loginService.loggedIn()'>
       <span>Dashboard</span>  
     </li>
+    <li routerLink="/dashboard" routerLinkActive="active" *ngIf='loginService.loggedIn()' (click)="scanMsg()">
+      <span>Scan SMS</span>  
+    </li>
     <li routerLink="/login" *ngIf='!loginService.loggedIn()' routerLinkActive="active">
       <span>Log In</span>
     </li>

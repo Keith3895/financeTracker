@@ -1,5 +1,5 @@
 .npmignore
-/plugins
-/platforms
+plugins/**/*
+platforms/**/*
 /node_modules
-/www
+www/**/*

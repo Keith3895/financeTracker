@@ -32,6 +32,7 @@ export class LoginService {
     const token = localStorage.getItem('token');
     this.authToken = token;
     this.user = JSON.parse(localStorage.getItem('user'));
+    return token;
   }
   loggedIn(){
     return tokenNotExpired();    

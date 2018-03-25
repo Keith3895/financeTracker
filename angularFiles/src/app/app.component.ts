@@ -25,20 +25,22 @@ export class AppComponent implements OnInit {
   menuState: string = 'in';
 
   constructor(private router: ActivatedRoute,
-  private cordovaService: CordovaService) {
+  public cordovaService: CordovaService) {
   }
   ngOnInit() {
     document.addEventListener("deviceready", ()=>{
-      this.cordovaService.runBackground();
+      this.cordovaService.requestPermision((status)=>{
+        this.cordovaService.runBackground();
+      });
     } , false);
-  }
-  test(){
-    this.menuState='out';
   }
   onOpen(event){
     this.menuState='out';
   }
   onClose(event){
     this.menuState='in';
+  }
+  scanMsgs(){
+    this.cordovaService.readMessages();
   }
 }
