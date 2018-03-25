@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(morgan('tiny'));
-app.use(middleware.jwtCheck);
+// app.use(middleware.jwtCheck);
 app.use('/auth',authRoutes);
 app.use('/transaction',transactionRoutes);
 app.use('/account',accountRoutes);

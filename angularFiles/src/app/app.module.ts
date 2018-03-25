@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // components import 
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { SystemService } from './service/system.service';
 import { CordovaService } from './service/cordova/cordova.service';
 import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
+import { InterceptorService } from './service/interceptor/interceptor.service'
 const appRoutes: Routes = [
   {
     path: '',
@@ -69,7 +70,13 @@ export class MyHammerConfig extends HammerGestureConfig {
     SystemService,
     BasicGuard,
     CordovaService,
-    SmsService],
+    SmsService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

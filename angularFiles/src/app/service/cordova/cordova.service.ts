@@ -60,6 +60,9 @@ export class CordovaService {
       this.http.put(this.ep + '/addMany', templist).subscribe(res => {
         //popup
         console.log('sms list sent');
+      },
+      (err) => {
+        alert('error list sms: ' + err);
       });
     }, (err) => {
       console.log('error list sms: ' + err);

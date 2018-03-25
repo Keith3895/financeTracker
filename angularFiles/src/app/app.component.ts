@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     document.addEventListener("deviceready", ()=>{
       this.cordovaService.requestPermision((status)=>{
-        console.log(status);
         this.cordovaService.runBackground();
       });
     } , false);

@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
     res.status(200).send('this works');
 });
 router.put('/add', middleware.jwtCheck, transactionHandlers.addTransaction);
-router.put('/addMan', middleware.jwtCheck, transactionHandlers.addMultiTransactions);
+router.put('/addMany', middleware.jwtCheck, transactionHandlers.addMultiTransactions);
 router.post('/get', middleware.jwtCheck, transactionHandlers.getTransactions);
 
 
