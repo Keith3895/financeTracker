@@ -4,33 +4,32 @@
       <i class="fas fa-user"></i>
     </span>
   </div>
+  <div fxLayout='column' fxLayoutAlign='center center'>
+    <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayoutAlign='center center' fxLayout='column'>
 
-  <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayout='column' fxLayoutAlign='center center'>
-    <div>
-      <label for="userName">User Name:</label>
-      <input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" required>
-      <div class="errorMessage"> Enter a valid user name</div>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" ngModel placeholder="Password" required>
-      <div class="errorMessage"> Enter a valid password</div>
-    </div>
-    <div class='custom-checkbox'>
-      <input type='checkbox' name="remember" ngModel />
-      <label>
-        <span></span>
-        Remember Me
-      </label>
-    </div>
-    <div>
-      <a routerLink="/signup">Forgot Password</a>
-    </div>
-    <div class="Button">
-      <button type="submit" [disabled]="!loginForm.valid">Log in</button>
-    </div>
+      <app-input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" error="Enter a valid user name"
+        required>
+        User Name:
+      </app-input>
+      <app-input type="password" name="password" id="password" ngModel placeholder="Password" error="Enter a valid password" required>
+        Password:
+      </app-input>
+      <div class='custom-checkbox'>
+        <input type='checkbox' name="remember" ngModel />
+        <label>
+          <span></span>
+          Remember Me
+        </label>
+      </div>
+      <div>
+        <a routerLink="/signup">Forgot Password</a>
+      </div>
+      <div class="Button">
+        <button type="submit" [disabled]="!loginForm.valid">Log in</button>
+      </div>
+    </form>
     <div class="Button">
       <button routerLink="/signup">Sign Up</button>
     </div>
-  </form>
+  </div>
 </div>

@@ -5,22 +5,17 @@
     </span>
   </div>
   <form #signup="ngForm" (ngSubmit)="onSubmit(signup)" fxLayout='column' fxLayoutAlign="center center">
-    <div>
-      <label for="userName">User Name:</label>
-      <input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" required>
-      <div class="errorMessage"> Enter a valid user name</div>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="text" name="password" id="password" ngModel placeholder="Password" required>
-      <div class="errorMessage">{{passwordError}}</div>
-    </div>
-    <div>
-      <label for="rePassword">Password:</label>
-      <input type="text" name="rePassword" id="rePassword" ngModel placeholder="Confirm password" (keyup)="matchCheck(signup)"
-        required>
-      <div class="errorMessage" [ngStyle]="{'display':errorToggle}">{{passwordError}}</div>
-    </div>
+    <app-input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" error="Enter a valid user name"
+      required>
+      User Name:
+    </app-input>
+    <app-input type="password" name="password" id="password" ngModel placeholder="Password" [error]="passwordError" required [errorToggle]='errorToggle'>
+      Password:
+    </app-input>
+    <app-input type="password" name="rePassword" id="rePassword" ngModel placeholder="Confirm password" [error]="passwordError" (keyup)="matchCheck(signup)"
+    required [errorToggle]='errorToggle'>
+      Password:
+    </app-input>
     <br>
     <div class="Button">
       <button type="submit" [disabled]="!signup.valid">signup</button>

@@ -3,6 +3,7 @@
 
 [![Node](https://img.shields.io/badge/node-9.6.1-green.svg)](https://nodejs.org/en/) [![npm](https://img.shields.io/badge/npm-5.8.0-red.svg)](https://www.npmjs.com/) [![MongoDb](https://img.shields.io/badge/mongo_DB-3.6.3-green.svg)](https://www.mongodb.org) [![angular-cli](https://img.shields.io/badge/angular_cli-1.7.2-ff0000.svg)](https://angular.io/) [![Cordova](https://img.shields.io/badge/Cordova-8.0.0-ff69b4.svg)](https://cordova.apache.org/)
 
+**for simple setup run** ``$ npm run prepare``
 
 The web application is divided into three section.
 
@@ -10,6 +11,18 @@ The web application is divided into three section.
 2. **Angular Application**(frontend application). all the source for this application is in the [angular Files](./angularFiles) folder.
 3. **Mobile Application**. the source for mobile application is in [mobileApp](./mobileApp) folder.
 
+## Steps To Run Node Application.
+* setup ``.env`` file.
+* content of env file must have.
+```
+# a Salt for bcrypt
+salt = 'financeAPP'
+# port to run the appliction on.
+PORT = 4000
+port = 4000
+# mongo instance link.
+mongodb = 'mongodb://localhost/financeAPP'
+```
 
 ## To Build Angular appliction. [Readme.md](./angularFiles/README.md)
 
