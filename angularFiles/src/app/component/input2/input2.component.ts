@@ -23,6 +23,7 @@ export class Input2Component implements ControlValueAccessor {
   @Input() error:any;
   @Input() type:any;
   @Input() errorToggle;
+  @Input() id;
   @Output() keyups: EventEmitter<any> = new EventEmitter();
 
   //The internal data model

@@ -24,7 +24,9 @@ import { CordovaService } from './service/cordova/cordova.service';
 import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
 import { InterceptorService } from './service/interceptor/interceptor.service';
-import { Input2Component } from './component/input2/input2.component'
+import { Input2Component } from './component/input2/input2.component';
+import { ModalComponent } from './component/modal/modal.component';
+import { AddTformComponent } from './pages/add-tform/add-tform.component'
 const appRoutes: Routes = [
   {
     path: '',
@@ -51,7 +53,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     CardComponent,
     InputComponent,
     DashboardComponent,
-    Input2Component
+    Input2Component,
+    ModalComponent,
+    AddTformComponent
   ],
   imports: [
     BrowserModule,

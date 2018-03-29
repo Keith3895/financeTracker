@@ -23,7 +23,7 @@ declare var device;
 })
 export class AppComponent implements OnInit {
   menuState: string = 'in';
-
+  
   constructor(private router: ActivatedRoute,
   public cordovaService: CordovaService) {
   }

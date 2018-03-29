@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-
   constructor(private loginService: LoginService,
   private router:Router) { }
 

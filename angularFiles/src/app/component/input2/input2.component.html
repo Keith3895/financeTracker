@@ -1,5 +1,5 @@
-<div class="app-div is-active " [ngClass]="{'is-completed':value.length>0}" >
-  <label for="first-name" class="app-label">{{placeholder}}</label>
-  <input [(ngModel)]="value" [type]="type"  (blur)="onBlur()" (keyup)="onKeyup($event)" [required]='required' type="text"
-    class="app-input" id="first-name">
+<div class="app-div is-active" [ngClass]="{'is-completed':value.length>0}" >
+  <label [for]="id" class="app-label">{{placeholder}}</label>
+  <input [(ngModel)]="value" [type]="type"  (blur)="onBlur()" (keyup)="onKeyup($event)" [required]='required'
+    class="app-input" [id]="id">
 </div>
