@@ -1,0 +1,8 @@
+<div class="test" (click)="value=radioValue">
+      <input type="radio" [name]="name" [value]='radioValue' [(ngModel)]="value" (blur)="onBlur()" (keyup)="onKeyup($event)" [required]='required'
+       >
+      <label > <ng-content></ng-content> {{radioValue}} </label>
+
+      <div class="check"></div>
+    
+</div>
