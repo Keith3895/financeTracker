@@ -4,6 +4,12 @@
       <i class="fas fa-user"></i>
     </span>
   </div>
+  <div fxLayout='row'>
+    <div fxFlex='100%'>
+      <app-select [(ngModel)]='test' [options]="options" placeholder='test input'></app-select>
+    </div>
+  </div>
+  {{test}}
   <div fxLayout='column' fxLayoutAlign='center center'>
     <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayoutAlign='center center' fxLayout='column'>
       <app-input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" error="Enter a valid user name"

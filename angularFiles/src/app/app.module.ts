@@ -13,10 +13,13 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { CardComponent } from './component/card/card.component';
 import { InputComponent } from './component/input/input.component';
+import { Input2Component } from './component/input2/input2.component';
+import { ModalComponent } from './component/modal/modal.component';
 //page imports
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AddTformComponent } from './pages/add-tform/add-tform.component';
 // service import
 import { LoginService } from './service/login.service';
 import { SystemService } from './service/system.service';
@@ -24,9 +27,8 @@ import { CordovaService } from './service/cordova/cordova.service';
 import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
 import { InterceptorService } from './service/interceptor/interceptor.service';
-import { Input2Component } from './component/input2/input2.component';
-import { ModalComponent } from './component/modal/modal.component';
-import { AddTformComponent } from './pages/add-tform/add-tform.component'
+import { RadioComponent } from './component/radio/radio.component';
+import { SelectComponent } from './component/select/select.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -55,7 +57,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     DashboardComponent,
     Input2Component,
     ModalComponent,
-    AddTformComponent
+    AddTformComponent,
+    RadioComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,
