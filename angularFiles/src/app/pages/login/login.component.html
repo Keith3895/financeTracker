@@ -4,12 +4,6 @@
       <i class="fas fa-user"></i>
     </span>
   </div>
-  <div fxLayout='row'>
-    <div fxFlex='100%'>
-        <ng-datepicker [(ngModel)]="date" [options]="options"></ng-datepicker>
-    </div>
-  </div>
-  {{test}}
   <div fxLayout='column' fxLayoutAlign='center center'>
     <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayoutAlign='center center' fxLayout='column'>
       <app-input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" error="Enter a valid user name"
@@ -19,13 +13,16 @@
       <app-input type="password" name="password" id="password" ngModel placeholder="Password" error="Enter a valid password" required>
         Password:
       </app-input>
-      <div class='custom-checkbox'>
+      <!-- <div class='custom-checkbox'>
         <input type='checkbox' name="remember" ngModel />
         <label>
           <span></span>
           Remember Me
         </label>
-      </div>
+      </div> -->
+      <app-checkbox  name="remember" ngModel >
+          Remember Me
+        </app-checkbox>
       <div>
         <a routerLink="/signup">Forgot Password</a>
       </div>

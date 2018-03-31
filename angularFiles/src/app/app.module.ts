@@ -30,6 +30,8 @@ import { BasicGuard } from './gaurd/basic.guard';
 import { InterceptorService } from './service/interceptor/interceptor.service';
 import { RadioComponent } from './component/radio/radio.component';
 import { SelectComponent } from './component/select/select.component';
+import { ToggleComponent } from './component/toggle/toggle.component';
+import { CheckboxComponent } from './component/checkbox/checkbox.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -60,7 +62,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     ModalComponent,
     AddTformComponent,
     RadioComponent,
-    SelectComponent
+    SelectComponent,
+    ToggleComponent,
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+<div class='custom-checkbox'>
+    <input type='checkbox' [id]='id' [(ngModel)]="value"  [value]='toggle' (blur)="onBlur()" (keyup)="onKeyup($event)" [required]='required'/>
+    <label>
+      <span></span>
+      <ng-content></ng-content>
+    </label>
+  </div>

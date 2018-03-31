@@ -10,12 +10,7 @@ body{
     font-family: 'Nunito', sans-serif;
 }
 
-[type=checkbox]:checked + span:before { /* <-- style its checked state..with a ticked icon */
-    content: '\2714';
-    position: absolute;
-    top: -5px;
-    left: 0;
-}
+
 
 .Button {
     margin: 5px;
@@ -52,40 +47,4 @@ body{
   background-color: #cccccc;
   color: #666666;
 }
-.custom-checkbox {
-    position: relative;
-    margin: 10px;
-}
-.custom-checkbox input{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height:15px;
-    width: 50px;    /* Expand the checkbox so that it covers */
-    z-index : 1;    /* the label and span, increase z-index to bring it over */
-    opacity: 0;     /* the label and set opacity to 0 to hide it. */
-}
-.custom-checkbox input+label {
-    position: relative;
-    left: 0;
-    top: 0;
-    padding-left: 25px;
-    color: black;
-}
-.custom-checkbox input+label span {
-    position: absolute;  /* a small box to display as checkbox */
-    left: 0;
-    top: 0;
-    height: 15px;
-    width: 15px;
-    border-radius: 2px;
-    border: 1px solid black;
-    background-color: white;
-}
-.custom-checkbox input:checked+label { /* change label color when checked */
-    color: green;
-}
-.custom-checkbox input:checked+label span{ /* change span box color when checked */
-    background-color: green;
-    border: 1px solid green;
-}
+

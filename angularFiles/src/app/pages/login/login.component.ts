@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
   private router:Router) { 
   }
-  test;
+  test=false;
   // date: Date;
   // options: DatepickerOptions = {
   //   locale: enLocale
