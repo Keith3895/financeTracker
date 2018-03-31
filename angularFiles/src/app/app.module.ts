@@ -15,6 +15,7 @@ import { CardComponent } from './component/card/card.component';
 import { InputComponent } from './component/input/input.component';
 import { Input2Component } from './component/input2/input2.component';
 import { ModalComponent } from './component/modal/modal.component';
+import {NgDatepickerModule} from './component/ng-datepicker/module/ng-datepicker.module';
 //page imports
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -65,6 +66,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    NgDatepickerModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
