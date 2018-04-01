@@ -13,16 +13,9 @@
       <app-input type="password" name="password" id="password" ngModel placeholder="Password" error="Enter a valid password" required>
         Password:
       </app-input>
-      <!-- <div class='custom-checkbox'>
-        <input type='checkbox' name="remember" ngModel />
-        <label>
-          <span></span>
-          Remember Me
-        </label>
-      </div> -->
-      <app-checkbox  name="remember" ngModel >
-          Remember Me
-        </app-checkbox>
+      <app-checkbox name="remember" ngModel>
+        Remember Me
+      </app-checkbox>
       <div>
         <a routerLink="/signup">Forgot Password</a>
       </div>
@@ -35,3 +28,8 @@
     </div>
   </div>
 </div>
+
+
+<app-modal visible='true'>
+  <app-add-tform></app-add-tform>
+</app-modal>

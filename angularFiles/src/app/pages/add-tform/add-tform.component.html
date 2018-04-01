@@ -1,3 +1,15 @@
-<div fxFlex="column"> 
+<div fxLayout="column">
+    <h2 style="width:100%;">Add Transaction form.</h2>
 
+    <div fxLayout="column">
+        <form #addTrans='ngForm'>
+            <div fxLayout='row'>
+                <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='credit' radioValue='credit'>Credit</app-radio>
+                <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='debit' radioValue='debit'>Debit</app-radio>
+            </div>
+            <app-select [options]='bankAccount' placeholder="Select Account" [(ngModel)]='acc' name='acc' id='acc' ></app-select>
+            <ng-datepicker name='test'  [(ngModel)]="date" [options]= 'options'></ng-datepicker>
+        </form>
+        {{addTrans.value.type}}
+    </div>
 </div>
