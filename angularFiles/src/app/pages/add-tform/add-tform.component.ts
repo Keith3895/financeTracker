@@ -19,6 +19,9 @@ export class AddTformComponent implements OnInit {
   options: DatepickerOptions = {
     locale: enLocale
   };
+  type;
+  acc;
+  overide = true;
   constructor() { }
 
   ngOnInit() {

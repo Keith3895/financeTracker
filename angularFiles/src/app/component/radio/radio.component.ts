@@ -26,7 +26,7 @@ export class RadioComponent implements ControlValueAccessor {
   @Input() id;
   @Input() radioValue;
   @Output() keyups: EventEmitter<any> = new EventEmitter();
-
+  name;
   //The internal data model
   private innerValue: any = '';
 

@@ -26,6 +26,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() id;
   @Output() keyups: EventEmitter<any> = new EventEmitter();
   @Input()  checkboxValue;
+  @Input() toggle;
   //The internal data model
   private innerValue: any = '';
 
