@@ -8,8 +8,4 @@ describe('SystemService', () => {
       providers: [SystemService]
     });
   });
-
-  it('should be created', inject([SystemService], (service: SystemService) => {
-    expect(service).toBeTruthy();
-  }));
 });

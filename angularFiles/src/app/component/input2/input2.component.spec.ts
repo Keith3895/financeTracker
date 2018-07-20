@@ -19,7 +19,5 @@ describe('Input2Component', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 });
