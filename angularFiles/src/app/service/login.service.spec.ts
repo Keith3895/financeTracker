@@ -19,7 +19,7 @@ describe('LoginService', () => {
   });
 
   it('should return true from loggedIn when there is a token', () => {
-    localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImE0ZWFjODMxLTJiZDgtNDBmZS05YWNkLTNkYjZhMzhhN2VmNCIsImlhdCI6MTUzMjA4MzI5NCwiZXhwIjoxNTMyMDg2ODk0fQ.Aowre_GZwbVIzr3Vl4jiXNj_retpBZr6YrwNqyhDtKk');
+    localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzIwOTkwNDUsImV4cCI6NDExOTc3OTA0NSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.Sq6Z2yBTzPo-3te6tPNS_z_J8l037AozQ8XWwQ0tXeo');
     expect(service.loggedIn()).toBeTruthy();
   });
   it('should return false from loggedIn when there is no token', () => {
