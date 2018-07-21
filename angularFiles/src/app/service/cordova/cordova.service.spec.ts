@@ -8,8 +8,4 @@ describe('CordovaService', () => {
       providers: [CordovaService]
     });
   });
-
-  it('should be created', inject([CordovaService], (service: CordovaService) => {
-    expect(service).toBeTruthy();
-  }));
 });

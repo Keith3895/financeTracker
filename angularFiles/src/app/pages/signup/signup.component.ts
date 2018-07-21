@@ -8,29 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  passwordError="Enter a valid password";
+  passwordError = "Enter a valid password";
   errorToggle = 'none';
   constructor(private loginService: LoginService,
-  private router:Router) { }
-  
+    private router: Router) { }
+
   ngOnInit() {
   }
-  matchCheck(signup){
-    if(signup.value.password != signup.value.rePassword){
-      this.passwordError='Passwords do not match';
+  matchCheck(signup) {
+    if (signup.value.password != signup.value.rePassword) {
+      this.passwordError = 'Passwords do not match';
       this.errorToggle = 'block';
-    }else{
-      this.passwordError="Enter a valid password";
+    } else {
+      this.passwordError = "Enter a valid password";
       this.errorToggle = 'none';
     }
   }
-  onSubmit(signup){
-    if(signup.valid){
-      if(this.errorToggle=='none'){
-        this.loginService.registerUser(signup.value).subscribe(res =>{
+  onSubmit(signup) {
+    if (signup.valid) {
+      if (this.errorToggle == 'none') {
+        this.loginService.registerUser(signup.value).subscribe(res => {
           this.router.navigate(['dashboard']);
         });
-      }else{
+      } else {
         this.matchCheck(signup);
       }
     }

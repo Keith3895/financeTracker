@@ -8,8 +8,4 @@ describe('InterceptorService', () => {
       providers: [InterceptorService]
     });
   });
-
-  it('should be created', inject([InterceptorService], (service: InterceptorService) => {
-    expect(service).toBeTruthy();
-  }));
 });

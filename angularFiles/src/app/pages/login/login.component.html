@@ -1,36 +1,35 @@
-<div fxLayoutAlign="center center" fxLayout='column' style="padding:30px 0;">
+<div id='loginPage' fxLayoutAlign="center center" fxLayout='column' style="padding:30px 0;">
   <div fxLayout='row' fxLayoutAlign="center center" class="avatarLogin">
     <span>
       <i class="fas fa-user"></i>
     </span>
   </div>
-
-  <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayout='column' fxLayoutAlign='center center'>
-    <div>
-      <label for="userName">User Name:</label>
-      <input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" required>
-      <div class="errorMessage"> Enter a valid user name</div>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" ngModel placeholder="Password" required>
-      <div class="errorMessage"> Enter a valid password</div>
-    </div>
-    <div class='custom-checkbox'>
-      <input type='checkbox' name="remember" ngModel />
-      <label>
-        <span></span>
+  <div fxLayout='column' fxLayoutAlign='center center'>
+    <form #loginForm='ngForm' (ngSubmit)='onSubmit(loginForm)' fxLayoutAlign='center center' fxLayout='column'>
+      <app-input type="text" name="userName" id="userName" ngModel placeholder="Ex. Keith Franklin" error="Enter a valid user name"
+        required>
+        User Name:
+      </app-input>
+      <app-input type="password" name="password" id="password" ngModel placeholder="Password" error="Enter a valid password" required>
+        Password:
+      </app-input>
+      <app-checkbox name="remember" ngModel>
         Remember Me
-      </label>
-    </div>
-    <div>
-      <a routerLink="/signup">Forgot Password</a>
-    </div>
-    <div class="Button">
-      <button type="submit" [disabled]="!loginForm.valid">Log in</button>
-    </div>
+      </app-checkbox>
+      <div>
+        <a routerLink="/signup">Forgot Password</a>
+      </div>
+      <div class="Button">
+        <button type="submit" [disabled]="!loginForm.valid">Log in</button>
+      </div>
+    </form>
     <div class="Button">
       <button routerLink="/signup">Sign Up</button>
     </div>
-  </form>
+  </div>
 </div>
+
+
+<!-- <app-modal visible='true'>
+  <app-add-tform></app-add-tform>
+</app-modal> -->

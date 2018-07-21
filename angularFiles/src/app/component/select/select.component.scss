@@ -1,0 +1,61 @@
+
+div.main {
+    // border: 1px solid;
+    
+    transition: .4s linear;
+    // overflow: hidden;
+    
+    background: white;
+    z-index: 9999;
+}
+
+// div.main:focus-within,
+ul.active {
+    min-height: 200px !important;
+    max-height: 100% !important;
+}
+
+div.inputWraper {
+    position: relative;
+}
+
+div.inputWraper svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+input {
+    cursor: pointer;
+    background: transparent;
+    width: 95%;
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.29);
+    outline: none;
+    padding: 10px 5px;
+    padding-right: 0;
+    font-size: 16px;
+}
+ul {
+    background: white;
+    position: absolute;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+    height:0;
+    overflow: scroll;
+    min-width: 100%;
+    z-index: 99;
+    border: 1px solid rgba(128, 128, 128, 0.29);
+    border-top: none;
+}
+
+ul li {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.29);
+    padding: 10px;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background: rgba(179, 178, 178, 0.349);
+}

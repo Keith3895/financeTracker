@@ -1,0 +1,8 @@
+<div fxLayout="row">
+    <input class="tgl tgl-ios" type="checkbox" [id]='id' [(ngModel)]="value" [value]='toggle' (blur)="onBlur()" (keyup)="onKeyup($event)"
+        [required]='required' />
+    <label (click)="toggle=!toggle;value=toggle;" class="tgl-btn" for="{{id}}"></label>
+    <h3>
+        <ng-content></ng-content>
+    </h3>
+</div>

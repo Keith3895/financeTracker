@@ -1,3 +1,5 @@
-<p>
-  input works!
-</p>
+<div>
+  <label><ng-content></ng-content></label>
+  <input [(ngModel)]="value" class="form-control" (blur)="onBlur()" (keyup)="onKeyup($event)" [type]="type"  [placeholder]='placeholder' [required]='required'/>
+  <div class="errorMessage" [ngStyle]="{'display':errorToggle}"> {{error}} </div>
+</div>
