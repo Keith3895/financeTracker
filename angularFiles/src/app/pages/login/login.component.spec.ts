@@ -75,16 +75,18 @@ describe('LoginComponent', () => {
     });
     expect(component.submitted).toBeTruthy();
   }));
-  // it("valid input of form elements", () => {
-  //   component.onSubmit({
-  //     valid: true,
-  //     userName:"keith",
-  //     password:"1234"
-  //   });
-  //   expect(component.submitted).toBeTruthy();
-  //   spy = spyOn(loginService, 'authenticateUser').and.returnValue(true);
-  //   console.log(spy);
-  //   // console.log("service",loginService);
-  //   // expect(loginService.authenticateUser).toHaveBeenCalled();
-  // });
+  it("valid input of form elements", async () => {
+    await component.onSubmit({
+      valid: true,
+      value: {
+        userName: "keith",
+        password: "1234"
+      }
+    });
+    expect(component.submitted).toBeTruthy();
+    spy = spyOn(loginService, 'authenticateUser').and.returnValue({});
+    console.log(spy);
+    // console.log("service",loginService);
+    // expect(loginService.authenticateUser).toHaveBeenCalled();
+  });
 });

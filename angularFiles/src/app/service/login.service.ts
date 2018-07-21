@@ -19,7 +19,7 @@ export class LoginService {
     return this.http.post(this.ep+'/register',user);
   }
   authenticateUser(user){
-    console.log(user);
+    console.log("iinside auth",user);
     return this.http.post(this.ep+'/sign_in',user);
   }
   storeUserData(token,user){

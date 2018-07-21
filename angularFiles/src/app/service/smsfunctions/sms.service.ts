@@ -24,7 +24,7 @@ export class SmsService {
     };
   }
   getTransactions(str: string) {
-    const regex = /(rs.)([0-9]*.[0-9]*)/gi
+    const regex = /(rs.|INR)([0-9]*.[0-9]*)/gi
     const tokens = regex.exec(str);
     if(tokens)
     if (parseFloat(tokens[2]) != this.getBalance(str)) {
@@ -34,8 +34,9 @@ export class SmsService {
   getBalance(str: string) {
     const regex = [/(bal)/i,
     /(ballance is)/i,
-    /(balance is)/i];
-     const val = /(rs.)([0-9]*.[0-9]*)/gi
+    /(balance is)/i,
+    /(bal:)/i];
+     const val = /(rs.|INR)([0-9]*.[0-9]*)/gi
     for(let i=0;i<regex.length;i++){
       let tokens = regex[i].exec(str);
       if(tokens){
