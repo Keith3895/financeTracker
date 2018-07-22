@@ -17,7 +17,14 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installAPI": "npm i",
+    "installAngular": "cd ./angularFiles && npm i",
+    "installMobile": "cd ./mobileApp && cordova prepare",
+    "setupAll": "npm run installAPI && npm run installAngular && npm run installMobile",
+    "preparer": "npm run setupAll && echo \"$(tput bold) run '$(tput smul)$(tput setaf 1)$(tput setab 7)npm start$(tput sgr 0)' to get to application runing \"",
+    "buildAngular": "echo \"'$(tput smso)You will have to configure android Studio to run this.'\" && cd ./mobileApp && npm run android",
+    "start": "npm run buildAngular && node app.js"
   },
   "repository": {
     "type": "git",

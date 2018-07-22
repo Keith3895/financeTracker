@@ -10,7 +10,7 @@ The project is a transaction tracking application. The application when run on a
 The plan of the project is to make the application intelligent enough to predict the *budget* and the *expected expenditure* and apply more statistical models to achieve greater intelligence and analytics.
 
 
-**for simple setup run** ``$ npm run prepare``
+**for simple setup run** ``$ npm run preparer``
 
 The web application is divided into three section.
 
@@ -18,6 +18,13 @@ The web application is divided into three section.
 2. **Angular Application**(frontend application). all the source for this application is in the [angular Files](./angularFiles) folder.
 3. **Mobile Application**. the source for mobile application is in [mobileApp](./mobileApp) folder.
 
+### Prerequsites to run the application.
+The following tools and frameworks should be installed to run the application.
+- Node.js.
+- Mongo DB.
+- Angular.
+- Cordova.
+- Android Studio.
 ## Steps To Run Node Application.
 * setup ``.env`` file.
 * content of env file must have.
