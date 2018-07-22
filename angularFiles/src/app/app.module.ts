@@ -32,6 +32,10 @@ import { RadioComponent } from './component/radio/radio.component';
 import { SelectComponent } from './component/select/select.component';
 import { ToggleComponent } from './component/toggle/toggle.component';
 import { CheckboxComponent } from './component/checkbox/checkbox.component';
+import { TabComponent } from './component/tab/tab.component';
+import { SpendListComponent } from './pages/subpages/spend-list/spend-list.component';
+import { AccountInfoListComponent } from './pages/subpages/account-info-list/account-info-list.component';
+import { GraphsComponent } from './pages/subpages/graphs/graphs.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -64,8 +68,12 @@ export class MyHammerConfig extends HammerGestureConfig {
     RadioComponent,
     SelectComponent,
     ToggleComponent,
-    CheckboxComponent
-  ],
+    CheckboxComponent,
+    TabComponent,
+    SpendListComponent,
+    AccountInfoListComponent,
+    GraphsComponent
+],
   imports: [
     BrowserModule,
     FlexLayoutModule,

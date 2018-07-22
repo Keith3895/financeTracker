@@ -1,0 +1,12 @@
+<!-- <div fxLayout="row" fxFlex=100>
+  <div fxLayout="column" fxFlex="30" fxLayoutAlign="center center" *ngFor="let icon of iconName; let i=index">
+      <i class="material-icons" (click)="test(i)" [ngClass]="{'homeChange':selected[i]}">{{icon}}</i>
+  </div>
+</div> -->
+
+<div fxLayout="row" fxFlex=100>
+  <div fxLayout="column" fxFlex="30" fxLayoutAlign="center center" *ngFor="let icon of iconName; let i=index">
+      <i [class]="icon" (click)="test(i)" [ngClass]="{'homeChange': selected[i]}"></i>
+  </div>
+</div>
+
