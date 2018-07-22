@@ -27,7 +27,7 @@ addons:
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-    - yarn install -g cordova
+    - yarn global add cordova
 install:
   npm install
 script:
