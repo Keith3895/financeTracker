@@ -25,7 +25,9 @@ install:
   # npm install
   - npm i -g cordova
 script:
-  - ls ~/builds
+  - ls ~/build/
+  - ls ~/build/Keith3895/
+  - ls ~/build/Keith3895/financeTracker/
   - echo -----------------------
   - 
   - cd ./angularFiles && npm i
