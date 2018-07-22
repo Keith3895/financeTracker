@@ -7,8 +7,8 @@ node_js:
   - "lts/*"
 android:
   components:
-    - build-tools-26
-    - android-26
+    - build-tools-27.0.3
+    - android-26.1.1
 dist: trusty
 addons:
     chrome: stable
