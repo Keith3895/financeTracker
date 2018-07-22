@@ -11,7 +11,7 @@ install:
   npm install
 script:
   - cd ./angularFiles && npm i
-  - cd ./angularFiles && ng test
+  - ng test
 branches:
   only:
   - TravisIntigration
