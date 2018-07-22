@@ -25,10 +25,9 @@ install:
   # npm install
   - npm i -g cordova
 script:
-  - echo $HOME
-  - ls ~
+  - ls ~/builds
   - echo -----------------------
-  - ls ~/Android
+  - 
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
