@@ -1,6 +1,16 @@
-language: node_js
+language: 
+  - node_js
+  - android
 node_js:
   - "node"
+android:
+  components:
+    - build-tools-27
+    - android-26
+cache:
+  yarn: true
+  directories:
+    - node_modules
 sudo: required
 dist: trusty
 addons:
@@ -8,11 +18,13 @@ addons:
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+    - yarn i -g cordova
 install:
   npm install
 script:
-  - cd ./angularFiles && npm i
+  - cd ./angularFiles && yarn i
   - ng test
+  - cd ../mobileApp && cordova prepare && npm run build
 branches:
   only:
   - TravisIntigration

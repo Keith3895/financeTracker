@@ -6,7 +6,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "android": "cd ../angularFiles/ && npm run build && cd ../mobileApp/ && cordova run android"
+        "android": "cd ../angularFiles/ && npm run build && cd ../mobileApp/ && cordova run android",
+        "build": "cd ../angularFiles/ && npm run build && cd ../mobileApp/ && cordova build android"
     },
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
