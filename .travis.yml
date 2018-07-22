@@ -27,11 +27,11 @@ addons:
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-    - yarn i -g cordova
+    - yarn install -g cordova
 install:
   npm install
 script:
-  - cd ./angularFiles && yarn i
+  - cd ./angularFiles && yarn install
   - ng test
   - cd ../mobileApp && cordova prepare && npm run build
 branches:
