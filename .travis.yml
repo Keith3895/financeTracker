@@ -13,6 +13,12 @@ addons:
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+cache:
+  # npm: true
+  directories:
+    # - $HOME/.yarn-cache
+    - node_modules
+    - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
 install:
   # npm install
   - npm i -g cordova
