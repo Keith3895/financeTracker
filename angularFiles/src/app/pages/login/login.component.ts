@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   private router:Router) { 
   }
   test=false;
+  submitted =false;
   // date: Date;
   // options: DatepickerOptions = {
   //   locale: enLocale
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(fVal){
+    this.submitted = true;
     if(fVal.valid){
       this.loginService.authenticateUser(fVal.value).subscribe(res => {
         this.loginService.storeUserData(res['token'],res['user']);
