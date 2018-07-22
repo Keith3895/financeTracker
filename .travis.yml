@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "node"
+dist: trusty
+addons:
+  chrome: stable
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  # - npm i -g makeshift && makeshift -s @bcoe -r registry.npmjs.org
+install:
+  npm install
+script:
+  - cd ./angularFiles && npm i
+  - cd ./angularFiles && ng test
+branches:
+  only:
+  - TravisIntigration
