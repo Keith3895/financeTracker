@@ -19,7 +19,7 @@ install:
 script:
   - cd ./angularFiles && npm i
   - ng test
-  - cd ../mobileApp && cordova prepare && npm run build
+  - cd ../mobileApp && npm run build
 branches:
   only:
   - TravisIntigration
