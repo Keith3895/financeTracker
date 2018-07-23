@@ -16,13 +16,14 @@ sudo: required
 #       - oraclejdk8
 #     - language: 
 #         node_js
-language: 
-  node_js
-node_js:
-  - "lts/*"
+# language: 
+#   node_js
+# node_js:
+#   - "lts/*"
 language: 
   android
 jdk: oraclejdk8
+node_js: "lts/*"
 android:
   components:
     - tools
@@ -48,16 +49,6 @@ addons:
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-    # - wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-    # - tar -xvf sdk-tools-linux-4333796.zip
-    # - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
-    # - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-27.0.1
-    # - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-26
-    # - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
-    # - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
-    # - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
-    # - export ANDROID_HOME=$PWD/android-sdk-linux
-    # - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
 cache:
   # npm: true
   directories:
