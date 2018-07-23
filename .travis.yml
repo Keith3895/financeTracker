@@ -41,7 +41,7 @@ install:
   - npm i -g npm
   - sudo npm i -g @angular/cli
   - sudo npm i -g cordova
-  - export $ANDROID_HOME = "/usr/local/android-sdk/"
+  - export ANDROID_HOME = "/usr/local/android-sdk/"
 script:
   - ls ~/builds/
   - echo  ----------------------- 
