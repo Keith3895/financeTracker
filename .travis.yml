@@ -15,27 +15,27 @@ android:
     - addons
 
 dist: trusty
-before_install:
-  # - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-  # - sudo apt-get install -y nodejs
-  # - sudo chown root /usr/lib/node_modules
-  # - sudo chmod 777 /usr/lib/node_modules
 addons:
-    - chrome: stable
-    # - node_js:
-    #   - "10"
+    apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+
+before_install:
+    - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+    - sudo apt-get install nodejs
+    - sudo apt-get install build-essential
+    - PATH=$PATH:$JAVA_HOME/bin
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 cache:
   # npm: true
   directories:
-    # - $HOME/.yarn-cache
     - node_modules
     - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
-# install:
-  # npm install
-  # - sudo npm i -g cordova
 script:
   - ls ~/builds/
   - echo  ----------------------- 
