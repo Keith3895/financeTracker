@@ -2,6 +2,8 @@ sudo: required
 language: 
   android
 jdk: oraclejdk8
+node_js: "lts/*"
+
 android:
   components:
     - tools
@@ -10,12 +12,11 @@ android:
     - android-27
 
 dist: trusty
-# env:
-#   - NVM_DIR='$HOME/.nvm'
 before_install:
-  - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-  # - export NVM_DIR=\"$HOME/.nvm\"
-  - sudo $HOME/.nvm/nvm.sh
+  - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
+  - sudo chown root /usr/lib/node_modules
+  - sudo chmod 777 /usr/lib/node_modules
 addons:
     - chrome: stable
 before_script:
@@ -29,8 +30,6 @@ cache:
     - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
 install:
   # npm install
-  - export NVM_DIR="$HOME/.nvm"
-  - nvm install --lts
   - npm i -g cordova
 script:
   - ls ~/builds/
@@ -42,3 +41,12 @@ script:
 branches:
   only:
   - TravisIntigration
+
+
+
+
+
+
+
+
+
