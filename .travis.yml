@@ -1,3 +1,4 @@
+sudo: required
 matrix:
   include:
     -language: 
@@ -13,11 +14,11 @@ matrix:
         - extra
     jdk:
       - oraclejdk8
-language: 
-  node_js
-sudo: required
-node_js:
-  - "lts/*"
+    - language: 
+        node_js
+      node_js:
+        - "lts/*"
+
 dist: trusty
 addons:
     - chrome: stable
@@ -57,8 +58,8 @@ script:
   - ls ~/build/
   - ls ~/build/Keith3895/
   - ls ~/build/Keith3895/financeTracker/
-  - echo  ----------------------- $ANDROID_HOME
-  - 
+  - echo  ----------------------- 
+  - echo $ANDROID_HOME
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
