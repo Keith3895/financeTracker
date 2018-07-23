@@ -2,7 +2,8 @@ sudo: required
 language: 
   android
 jdk: oraclejdk8
-node_js: "lts/*"
+node_js: 
+  - "10"
 
 android:
   components:
