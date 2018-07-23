@@ -1,6 +1,7 @@
 sudo: required
 language: 
   android
+  # node_js
 jdk: oraclejdk8
 node_js: 
   - "10"
@@ -31,7 +32,7 @@ cache:
     - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
 install:
   # npm install
-  -sudo npm i -g cordova
+  - sudo npm i -g cordova
 script:
   - ls ~/builds/
   - echo  ----------------------- 
