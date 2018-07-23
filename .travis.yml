@@ -1,33 +1,36 @@
+matrix:
+  include:
+    -language: 
+      android
+    jdk: oraclejdk8
+    android:
+      components:
+        - tools
+        - platform-tools
+        - build-tools-27.0.2
+        - android-27
+        - add-on
+        - extra
+    jdk:
+      - oraclejdk8
 language: 
-  - node_js
-  - android
+  node_js
 sudo: required
-jdk: oraclejdk8
 node_js:
   - "lts/*"
-android:
-  components:
-     - tools
-    - platform-tools
-    - build-tools-27.0.2
-    - android-27
-    - add-on
-    - extra
-jdk:
-    - oraclejdk8
 dist: trusty
 addons:
     - chrome: stable
-    - apt:
-      sources:
-        - ubuntu-toolchain-r-test
-      packages:
-        - g++-4.8
-        - openjdk-7-jdk
-        - lib32stdc++6
-        - lib32z1
-env:
-  CXX=g++-4.8
+    # - apt:
+    #   sources:
+    #     - ubuntu-toolchain-r-test
+    #   packages:
+    #     - g++-4.8
+    #     - openjdk-7-jdk
+    #     - lib32stdc++6
+    #     - lib32z1
+# env:
+#   CXX=g++-4.8
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
@@ -54,7 +57,7 @@ script:
   - ls ~/build/
   - ls ~/build/Keith3895/
   - ls ~/build/Keith3895/financeTracker/
-  - echo -----------------------
+  - echo  ----------------------- $ANDROID_HOME
   - 
   - cd ./angularFiles && npm i
   - ng test
