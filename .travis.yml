@@ -33,7 +33,7 @@ before_install:
     - sudo apt-get install nodejs
     - sudo apt-get install build-essential
     - PATH=$PATH:$JAVA_HOME/bin
-before_script:
+# before_script:
     # - "sudo chown root /opt/google/chrome/chrome-sandbox"
     # - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 cache:
@@ -51,10 +51,10 @@ install:
   - sudo npm i -g cordova
   - export ANDROID_HOME=/usr/local/android-sdk/
 script:
- - ./gradlew test
-  - ls ~/builds/
-  - echo  ----------------------- 
-  - echo $PATH
+#  - ./gradlew test
+#   - ls ~/builds/
+#   - echo  ----------------------- 
+#   - echo $PATH
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
