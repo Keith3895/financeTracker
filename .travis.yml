@@ -1,76 +1,38 @@
-os:
-  linux
-sudo: required
-language: 
-  android
-jdk: oraclejdk8
-node_js: 
-  - "10"
+sudo: false
 
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-26.0.2
-    - android-27
-    - extra-google-m2repository
-    - addons
+language: node_js
+node_js:
+  - "lts/*"
 
-dist: trusty
 addons:
-    apt:
+  apt:
     sources:
-      - google-chrome
+    - ubuntu-toolchain-r-test
     packages:
-      - google-chrome-stable
-
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-before_install:
-    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-    - yes | sdkmanager "platforms;android-27"
-    - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-    - sudo apt-get install nodejs
-    - sudo apt-get install build-essential
-    - PATH=$PATH:$JAVA_HOME/bin
-    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-    - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-    - sudo apt-get update 
-    - sudo apt-get install google-chrome-stable
-before_script:
-    # - "sudo chown root /opt/google/chrome/chrome-sandbox"
-    # - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-    - ls /opt/google/chrome/chrome-sandbox
-cache:
-  # npm: true
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
-    - node_modules
-    - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
+    - g++-4.8
+    - openjdk-7-jdk
+    - lib32stdc++6
+    - lib32z1
+env:
+  CXX=g++-4.8
 
 install:
-  - sudo npm i -g npm
-  - sudo npm i -g @angular/cli
-  - sudo npm i -g cordova
-  - export ANDROID_HOME=/usr/local/android-sdk/
+  - npm install -g gulp cordova
+  - npm install
+  # - bower update
+
+before_script:
+  - wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+  - unzip sdk-tools-linux-4333796.zip
+  - echo y | ./tools/bin/sdkmanager packages platform-tools
+  - echo y | ./tools/bin/sdkmanager packages build-tools-27.0.2
+  - echo y | ./tools/bin/sdkmanager packages android-27
+  - echo y | ./tools/bin/sdkmanager packages extra-android-support
+  - echo y | ./tools/bin/sdkmanager packages extra-android-m2repository
+  - echo y | ./tools/bin/sdkmanager packages extra-google-m2repository        
+  - ls
+  - export ANDROID_HOME=$PWD/tools
+  - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
+
 script:
-  - ./gradlew test
-  - cd ./angularFiles && npm i
-  - ng test
-  - cd ../mobileApp && npm run build
-branches:
-  only:
-  - TravisIntigration
-
-
-
-
-
-
-
-
-
+  - cordova prepare
