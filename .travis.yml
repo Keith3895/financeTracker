@@ -33,7 +33,7 @@ before_script:
   - yes | ./tools/bin/sdkmanager "extras;android;m2repository" >> test3.txt
   - yes | ./tools/bin/sdkmanager "extras;google;m2repository" >> test4.txt
   # - echo y | ./tools/bin/sdkmanager "build-tools;27.0.3"
-  - export PATH=${PATH}:$ANDROID_HOME:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/27.0.3
+  - export PATH=${PATH}:$ANDROID_HOME:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/
   # - ls -a $PWD/tools
   # - ls -a $PWD/tools/platform-tools
   - "sudo chown root /opt/google/chrome/chrome-sandbox"
