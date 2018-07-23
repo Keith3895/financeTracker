@@ -1,51 +1,22 @@
 sudo: required
-# matrix:
-#   include:
-#     -language: 
-#       android
-#     jdk: oraclejdk8
-#     android:
-#       components:
-#         - tools
-#         - platform-tools
-#         - build-tools-27.0.2
-#         - android-27
-#         - add-on
-#         - extra
-#     jdk:
-#       - oraclejdk8
-#     - language: 
-#         node_js
-# language: 
-#   node_js
-# node_js:
-#   - "lts/*"
 language: 
   android
 jdk: oraclejdk8
 node_js: "lts/*"
+
 android:
   components:
     - tools
     - platform-tools
     - build-tools-27.0.2
     - android-27
-    - add-on
-    - extra
 
 dist: trusty
+before_install:
+  - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
 addons:
     - chrome: stable
-    # - apt:
-    #   sources:
-    #     - ubuntu-toolchain-r-test
-    #   packages:
-    #     - g++-4.8
-    #     - openjdk-7-jdk
-    #     - lib32stdc++6
-    #     - lib32z1
-# env:
-#   CXX=g++-4.8
 before_script:
     - "sudo chown root /opt/google/chrome/chrome-sandbox"
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
@@ -59,9 +30,7 @@ install:
   # npm install
   - npm i -g cordova
 script:
-  - ls ~/build/
-  - ls ~/build/Keith3895/
-  - ls ~/build/Keith3895/financeTracker/
+  - ls ~/builds/
   - echo  ----------------------- 
   - echo $ANDROID_HOME
   - cd ./angularFiles && npm i
