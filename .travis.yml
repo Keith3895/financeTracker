@@ -35,9 +35,14 @@ before_install:
     - sudo apt-get install nodejs
     - sudo apt-get install build-essential
     - PATH=$PATH:$JAVA_HOME/bin
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+    - sudo apt-get update 
+    - sudo apt-get install google-chrome-stable
 before_script:
-    - "sudo chown root /opt/google/chrome/chrome-sandbox"
-    - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+    # - "sudo chown root /opt/google/chrome/chrome-sandbox"
+    # - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+    - ls /opt/google/chrome/chrome-sandbox
 cache:
   # npm: true
   directories:
