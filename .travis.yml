@@ -1,7 +1,6 @@
 sudo: required
 language: 
   android
-  node_js
 jdk: oraclejdk8
 node_js: 
   - "10"
