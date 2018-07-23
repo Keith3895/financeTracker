@@ -2,22 +2,22 @@ sudo: false
 
 language: node_js
 node_js:
-  - "lts/*"
-
-# addons:
-#   apt:
-#     sources:
-#     - ubuntu-toolchain-r-test
-#     packages:
-#     - g++-4.8
-#     - openjdk-7-jdk
-#     - lib32stdc++6
-#     - lib32z1
-# env:
-#   CXX=g++-4.8
-
+  - "10"
+dist: trusty
+addons:
+  chrome: stable
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+    - node_modules
+    - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
 install:
-  # - npm install -g gulp cordova
+  - npm install -g gulp cordova @angular/cli
   - npm install
   # - bower update
 
@@ -28,10 +28,16 @@ before_script:
   - echo y | ./tools/android update sdk --no-ui --all --filter build-tools-27.0.1
   - echo y | ./tools/android update sdk --no-ui --all --filter android-27
   # - echo y | ./tools/android update sdk --no-ui --all --filter extra-android-support
-  # - echo y | ./tools/android update sdk --no-ui --all --filter extra-android-m2repository
-  # - echo y | ./tools/android update sdk --no-ui --all --filter extra-google-m2repository
+  - echo y | ./tools/android update sdk --no-ui --all --filter extra-android-m2repository
+  - echo y | ./tools/android update sdk --no-ui --all --filter extra-google-m2repository
   - export ANDROID_HOME=$PWD/tools
   - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
-
+  - "sudo chown root /opt/google/chrome/chrome-sandbox"
+  - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 script:
-  - cordova prepare
+  - cd ./angularFiles && npm i
+  - ng test
+  - cd ../mobileApp && npm run build
+branches:
+  only:
+  - TravisIntigration
