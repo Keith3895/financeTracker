@@ -40,7 +40,8 @@ before_script:
   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 script:
   - ls $ANDROID_HOME
-  - ls -a $ANDROID_SDK
+  - ls -a $ANDROID_SDK/build-tools
+  - ls -a $ANDROID_SDK/platform-tools
   - ls -a ~/.android
   - cd ./angularFiles && npm i
   - ng test
