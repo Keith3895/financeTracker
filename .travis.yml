@@ -34,8 +34,8 @@ before_install:
     - sudo apt-get install build-essential
     - PATH=$PATH:$JAVA_HOME/bin
 before_script:
-    - "sudo chown root /opt/google/chrome/chrome-sandbox"
-    - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+    # - "sudo chown root /opt/google/chrome/chrome-sandbox"
+    # - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 cache:
   # npm: true
   directories:
