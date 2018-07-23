@@ -45,7 +45,7 @@ install:
 script:
   - ls ~/builds/
   - echo  ----------------------- 
-  - echo $ANDROID_HOME
+  - echo $PATH
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
