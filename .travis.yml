@@ -30,13 +30,14 @@ cache:
     # - $HOME/.yarn-cache
     - node_modules
     - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
-install:
+# install:
   # npm install
-  - sudo npm i -g cordova
+  # - sudo npm i -g cordova
 script:
   - ls ~/builds/
   - echo  ----------------------- 
   - echo $ANDROID_HOME
+  - sudo npm i -g cordova
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
