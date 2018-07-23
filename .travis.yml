@@ -17,7 +17,11 @@ sudo: required
 #     - language: 
 #         node_js
 language: 
-      android
+  node_js
+node_js:
+  - "lts/*"
+language: 
+  android
 jdk: oraclejdk8
 android:
   components:
@@ -27,10 +31,6 @@ android:
     - android-27
     - add-on
     - extra
-language: 
-  node_js
-node_js:
-  - "lts/*"
 
 dist: trusty
 addons:
