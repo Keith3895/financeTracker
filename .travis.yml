@@ -36,11 +36,16 @@ cache:
   directories:
     - node_modules
     - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
+
+install:
+  - npm i -g npm
+  - sudo npm i -g angular/cli
+  - sudo npm i -g cordova
+  - export $ANDROID_HOME = "/usr/local/android-sdk/"
 script:
   - ls ~/builds/
   - echo  ----------------------- 
   - echo $ANDROID_HOME
-  - sudo npm i -g cordova
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
