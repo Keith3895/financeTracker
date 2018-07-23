@@ -4,17 +4,17 @@ language: node_js
 node_js:
   - "lts/*"
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - openjdk-7-jdk
-    - lib32stdc++6
-    - lib32z1
-env:
-  CXX=g++-4.8
+# addons:
+#   apt:
+#     sources:
+#     - ubuntu-toolchain-r-test
+#     packages:
+#     - g++-4.8
+#     - openjdk-7-jdk
+#     - lib32stdc++6
+#     - lib32z1
+# env:
+#   CXX=g++-4.8
 
 install:
   # - npm install -g gulp cordova
@@ -25,7 +25,7 @@ before_script:
   - wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
   - unzip sdk-tools-linux-4333796.zip
   - echo y | ./tools/bin/sdkmanager platform-tools
-  - echo y | ./tools/bin/sdkmanager build-tools-27.0.2
+  - echo y | ./tools/bin/sdkmanager "build-tools;27.0.3"
   - echo y | ./tools/bin/sdkmanager android-27
   - echo y | ./tools/bin/sdkmanager extra-android-support
   - echo y | ./tools/bin/sdkmanager extra-android-m2repository
