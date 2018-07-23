@@ -26,12 +26,12 @@ before_script:
   - unzip sdk-tools-linux-4333796.zip
   - export ANDROID_HOME=$PWD/tools
   - export ANDROID_SDK=$PWD
-  - yes | ./tools/bin/sdkmanager "platform-tools" > test.txt
-  - yes | ./tools/bin/sdkmanager "build-tools;27.0.3" > test1.txt
-  - yes | ./tools/bin/sdkmanager "platforms;android-27" > test2.txt
+  - yes | ./tools/bin/sdkmanager "platform-tools" >> test.txt
+  - yes | ./tools/bin/sdkmanager "build-tools;27.0.3" >> test1.txt
+  - yes | ./tools/bin/sdkmanager "platforms;android-27" >> test2.txt
   # - echo y | ./tools/android update sdk --no-ui --all --filter extra-android-support
-  - yes | ./tools/bin/sdkmanager "extras;android;m2repository" > test3.txt
-  - yes | ./tools/bin/sdkmanager "extra;google;m2repository" > test4.txt
+  - yes | ./tools/bin/sdkmanager "extras;android;m2repository" >> test3.txt
+  - yes | ./tools/bin/sdkmanager "extra;google;m2repository" >> test4.txt
   # - echo y | ./tools/bin/sdkmanager "build-tools;27.0.3"
   - export PATH=${PATH}:$ANDROID_HOME:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/27.0.3
   # - ls -a $PWD/tools
