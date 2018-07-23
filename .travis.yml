@@ -31,7 +31,7 @@ cache:
     - /home/travis/build/Keith3895/financeTracker/angularFiles/node_modules/
 install:
   # npm install
-  - npm i -g cordova
+  -sudo npm i -g cordova
 script:
   - ls ~/builds/
   - echo  ----------------------- 
