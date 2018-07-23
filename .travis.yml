@@ -17,8 +17,8 @@ dist: trusty
 before_install:
   - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
   - sudo apt-get install -y nodejs
-  - sudo chown root /usr/lib/node_modules
-  - sudo chmod 777 /usr/lib/node_modules
+  # - sudo chown root /usr/lib/node_modules
+  # - sudo chmod 777 /usr/lib/node_modules
 addons:
     - chrome: stable
 before_script:
