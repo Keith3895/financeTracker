@@ -19,7 +19,6 @@ cache:
 install:
   - npm install -g gulp cordova @angular/cli
   - npm install
-  # - bower update
 
 before_script:
   - rm -rf financeTracker.apk
