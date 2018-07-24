@@ -46,6 +46,15 @@ script:
   - cd ./angularFiles && npm i
   - ng test
   - cd ../mobileApp && npm run build
+  - cp ./platforms/android/app/build/outputs/apk/debug/app-debug.apk ../
+  - mv app-debug.apk financeTracker.apk
 branches:
   only:
   - TravisIntigration
+deploy:
+  provider: releases
+  api_key: $GitHubToken
+  file: "/home/travis/build/Keith3895/financeTracker/financeTracker.apk"
+  skip_cleanup: true
+  on:
+    tags: true
