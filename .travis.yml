@@ -54,7 +54,7 @@ branches:
   - TravisIntigration
 deploy:
   provider: releases
-  api_key: $GitHubToken
+  api_key: $GitHubToken 
   file: "/home/travis/build/Keith3895/financeTracker/financeTracker.apk"
   skip_cleanup: true
   on:
