@@ -42,7 +42,7 @@ script:
   - cd .. && mv app-debug.apk financeTracker.apk
 branches:
   only:
-  - TravisIntigration
+  - master
 deploy:
   provider: releases
   api_key: $GitHubToken 
@@ -51,4 +51,3 @@ deploy:
   on:
     tags: false
     branch: master
-# hope this workds
