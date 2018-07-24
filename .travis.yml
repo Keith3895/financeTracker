@@ -25,23 +25,23 @@ before_script:
   - wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
   - unzip sdk-tools-linux-4333796.zip
   - export ANDROID_HOME=$PWD/tools
-  - export ANDROID_SDK=$PWD
-  - yes | ./tools/bin/sdkmanager "platform-tools" >> test.txt
-  - yes | ./tools/bin/sdkmanager "build-tools;27.0.3" >> test1.txt
-  - yes | ./tools/bin/sdkmanager "platforms;android-27" >> test2.txt
+  - export ANDROID_HOME=$PWD
+  - yes | ./tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" >> test.txt
+  - yes | ./tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "build-tools;27.0.3" >> test1.txt
+  - yes | ./tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-27" >> test2.txt
   # - echo y | ./tools/android update sdk --no-ui --all --filter extra-android-support
-  - yes | ./tools/bin/sdkmanager "extras;android;m2repository" >> test3.txt
-  - yes | ./tools/bin/sdkmanager "extras;google;m2repository" >> test4.txt
+  - yes | ./tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "extras;android;m2repository" >> test3.txt
+  - yes | ./tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "extras;google;m2repository" >> test4.txt
   # - echo y | ./tools/bin/sdkmanager "build-tools;27.0.3"
-  - export PATH=${PATH}:$ANDROID_HOME:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/
+  - export PATH=${PATH}:$ANDROID_HOME:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/
   # - ls -a $PWD/tools
   # - ls -a $PWD/tools/platform-tools
   - "sudo chown root /opt/google/chrome/chrome-sandbox"
   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 script:
   - ls $ANDROID_HOME
-  - ls -a $ANDROID_SDK/build-tools
-  - ls -a $ANDROID_SDK/platform-tools
+  - ls -a $ANDROID_HOME/build-tools
+  - ls -a $ANDROID_HOME/platform-tools
   - ls -a ~/.android
   - cd ./angularFiles && npm i
   - ng test
