@@ -24,7 +24,8 @@ export class ModalComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   close() {
     this.visible = false;

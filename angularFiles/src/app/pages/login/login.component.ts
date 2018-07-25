@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation, Input } from '@angular/core';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 
@@ -12,8 +12,10 @@ import * as frLocale from 'date-fns/locale/fr';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
+ // @Input() visible : boolean;
   constructor(private loginService: LoginService,
   private router:Router) { 
+    //this.visible = true;
   }
   test=false;
   submitted =false;
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
 	// 	'laoreet', 'auctor', 'mauris', 'non', 'velit', 'eros'];
   ngOnInit() {
   }
+
   onSubmit(fVal){
     this.submitted = true;
     if(fVal.valid){
@@ -42,4 +45,7 @@ export class LoginComponent implements OnInit {
       
     }
   }
+  // closeDialog(event){
+  //   this.visible = event;
+  // }
 }

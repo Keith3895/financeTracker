@@ -18,14 +18,17 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 })
 export class Input2Component implements ControlValueAccessor {
-  @Input () placeholder;
+  @Input() placeholder;
   @Input() required:any;
   @Input() error:any;
   @Input() type:any;
   @Input() errorToggle;
   @Input() id;
+  @Input() maxlength;
+  @Input() pattern;
   @Output() keyups: EventEmitter<any> = new EventEmitter();
-
+  @Input() length : Number;
+    showError;
   //The internal data model
   private innerValue: any = '';
 
@@ -33,6 +36,7 @@ export class Input2Component implements ControlValueAccessor {
   //by the Control Value Accessor
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
+  
 
   //get accessor
   get value(): any {
@@ -53,6 +57,11 @@ export class Input2Component implements ControlValueAccessor {
   }
   onKeyup(event){
     this.keyups.emit(event);
+    if(this.errorToggle.status == 'INVALID' || this.errorToggle.value == ''){
+        this.showError = true;
+    }else{
+        this.showError = false;
+    }
   }
   //From ControlValueAccessor interface
   writeValue(value: any) {

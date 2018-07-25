@@ -28,6 +28,7 @@ import { CordovaService } from './service/cordova/cordova.service';
 import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
 import { InterceptorService } from './service/interceptor/interceptor.service';
+import { AddAccountService } from './service/add-account.service';
 import { RadioComponent } from './component/radio/radio.component';
 import { SelectComponent } from './component/select/select.component';
 import { ToggleComponent } from './component/toggle/toggle.component';
@@ -36,6 +37,9 @@ import { TabComponent } from './component/tab/tab.component';
 import { SpendListComponent } from './pages/subpages/spend-list/spend-list.component';
 import { AccountInfoListComponent } from './pages/subpages/account-info-list/account-info-list.component';
 import { GraphsComponent } from './pages/subpages/graphs/graphs.component';
+import { AddAccountComponent } from './pages/subpages/add-account/add-account.component';
+import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
+import { SnackBarService } from '../app/service/snack-bar.service';
 const appRoutes: Routes = [
   {
     path: '',
@@ -72,7 +76,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     TabComponent,
     SpendListComponent,
     AccountInfoListComponent,
-    GraphsComponent
+    GraphsComponent,
+    AddAccountComponent,
+    SnackBarComponent
 ],
   imports: [
     BrowserModule,
@@ -95,6 +101,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     BasicGuard,
     CordovaService,
     SmsService,
+    AddAccountService,
+    SnackBarService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,

@@ -50,3 +50,25 @@
   font-size: 12px;
   transform: translateY(0);
 }
+
+.app-div[_ngcontent-c8]{
+  padding-top : 10px !important;
+}
+
+input:not([type='checkbox']).ng-invalid,input:invalid:not(:focus) {
+  border-bottom: 1px solid red;
+}
+
+input:not([type='checkbox']).ng-untouched{
+  border-bottom: none !important;
+}
+input:not([type='checkbox']).ng-valid + .errorMessage,
+input:not([type='checkbox']).ng-untouched + .errorMessage{
+    display: none;
+}
+.errorMessage{
+    color: red;
+  //  margin-left: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}

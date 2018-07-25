@@ -1,3 +1,9 @@
+<app-modal [visible]="visible">
+  <app-add-account (visibleChange)="closeDialog($event)"></app-add-account>
+</app-modal>
 <div fxLayout="row" class="footer">
   <app-tab [iconName] = "iconList" fxFlex=100></app-tab>
 </div>
+<app-snack-bar></app-snack-bar>
+
+
