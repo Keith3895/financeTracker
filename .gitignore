@@ -13,6 +13,7 @@
 
 # IDE - VSCode
 .vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -36,3 +37,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
+.travis_back.yml

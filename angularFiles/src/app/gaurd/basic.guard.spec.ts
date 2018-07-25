@@ -11,8 +11,4 @@ describe('BasicGuard', () => {
     });
     
   });
-
-  it('should ...', inject([BasicGuard], (guard: BasicGuard) => {
-    expect(guard).toBeTruthy();
-  }));
 });

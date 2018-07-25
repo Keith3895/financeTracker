@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation,ViewChild,ElementRef } from '@angular/core';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
   test=false;
   submitted =false;
+  @ViewChild("loginForm") loginForm: ElementRef;
   // date: Date;
   // options: DatepickerOptions = {
   //   locale: enLocale
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
 	// 	'a', 'pretium', 'quis', 'congue', 'praesent', 'sagittis', 
 	// 	'laoreet', 'auctor', 'mauris', 'non', 'velit', 'eros'];
   ngOnInit() {
+    // this.loginForm['valid'] = false;
+    console.log(this.loginService.loggedIn());
   }
 
   onSubmit(fVal){
