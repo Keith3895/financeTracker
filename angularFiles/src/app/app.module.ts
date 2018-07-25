@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { AgmCoreModule } from '@agm/core';
 // components import 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
@@ -16,6 +16,10 @@ import { InputComponent } from './component/input/input.component';
 import { Input2Component } from './component/input2/input2.component';
 import { ModalComponent } from './component/modal/modal.component';
 import {NgDatepickerModule} from './component/ng-datepicker/module/ng-datepicker.module';
+import { RadioComponent } from './component/radio/radio.component';
+import { SelectComponent } from './component/select/select.component';
+import { ToggleComponent } from './component/toggle/toggle.component';
+import { CheckboxComponent } from './component/checkbox/checkbox.component';
 //page imports
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -28,10 +32,7 @@ import { CordovaService } from './service/cordova/cordova.service';
 import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
 import { InterceptorService } from './service/interceptor/interceptor.service';
-import { RadioComponent } from './component/radio/radio.component';
-import { SelectComponent } from './component/select/select.component';
-import { ToggleComponent } from './component/toggle/toggle.component';
-import { CheckboxComponent } from './component/checkbox/checkbox.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -75,6 +76,10 @@ export class MyHammerConfig extends HammerGestureConfig {
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
     ),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAGuj_bN2XCr5GRFCcReiT1698SU4X2A7Y",
+      libraries: ["places"]
+    }),
     FormsModule,
     HttpClientModule
   ],

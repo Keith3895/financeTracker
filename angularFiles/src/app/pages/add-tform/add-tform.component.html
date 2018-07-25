@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<div fxLayout="column" id="addForm">
     <h2 style="width:100%;">Add Transaction form.</h2>
 
     <div fxLayout="column">
@@ -13,5 +13,17 @@
                 Overide bank balance
             </app-toggle>
         </form>
+        <div class="container">
+            <div class="form-group">
+              <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
+            </div>
+            <agm-map (mapClick)="placeMarker($event)" style="height: 250px;" mapTypeId="roadmap" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+              <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+            </agm-map>
+          </div>
     </div>
 </div>
+<!-- <agm-map  mapTypeId="roadmap" [latitude]="destination.longitude" [longitude]="destination.latitude" [zoom]='10'> -->
+    <!-- <agm-marker [latitude]="-26.031319" [longitude]="28.036583" [label]="'D'" [animation]="BOUNCE"></agm-marker> -->
+  <!-- <ims-maps [origin]="origin" [destination]="destination" (distanceAndTime)='distanceAndTime($event)' ></ims-maps> -->
+<!-- </agm-map> -->
