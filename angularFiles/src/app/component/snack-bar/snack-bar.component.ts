@@ -16,6 +16,7 @@ export class SnackBarComponent implements OnInit {
         return;
       }
       this.alerts.push(alert);
+      //execute below function after 3s
       setTimeout(() => {
         this.alerts = [];
         this.toggleSnackBar = !this.toggleSnackBar;
@@ -27,15 +28,11 @@ export class SnackBarComponent implements OnInit {
 
   }
 
-  removeAlert(alert: Alert) {
-    this.alerts = this.alerts.filter(x => x !== alert);
-  }
-
+   // return css class based on alert type
   cssClass(alert: Alert) {
     if (!alert) {
       return;
     }
-    // return css class based on alert type
     switch (alert.type) {
       case AlertType.Success:
         return 'snackbar show alert-success';

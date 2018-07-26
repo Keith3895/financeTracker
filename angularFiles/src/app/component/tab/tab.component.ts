@@ -13,7 +13,8 @@ export class TabComponent implements OnInit {
   ngOnInit() {
   }
   
-  test(i){
+  //applies css for selected tab
+  tabSelect(i){
    var keys = Object.keys(this.iconName);
    keys.forEach(ind => {
      if(parseInt(ind) === i){ 

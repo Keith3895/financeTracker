@@ -8,8 +8,4 @@ describe('SnackBarService', () => {
       providers: [SnackBarService]
     });
   });
-
-  it('should be created', inject([SnackBarService], (service: SnackBarService) => {
-    expect(service).toBeTruthy();
-  }));
 });

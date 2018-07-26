@@ -8,8 +8,4 @@ describe('AddAccountService', () => {
       providers: [AddAccountService]
     });
   });
-
-  it('should be created', inject([AddAccountService], (service: AddAccountService) => {
-    expect(service).toBeTruthy();
-  }));
 });

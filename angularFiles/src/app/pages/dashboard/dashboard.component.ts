@@ -7,7 +7,7 @@ import { CordovaService } from '../../service/cordova/cordova.service';
 })
 export class DashboardComponent implements OnInit {
   @Input() visible : boolean;
-  iconList = ['fa fa-home','fa fa-bar-chart','fa fa-home','fa fa-home'];
+  iconList = ['fa fa-home','fa fa-line-chart','fa fa-credit-card','fa fa-cog']; //display list of icons in footer
 
   constructor(public cordovaService:CordovaService) { }
 

@@ -8,19 +8,18 @@ import { SnackBarService } from '../../../service/snack-bar.service';
 })
 export class AddAccountComponent implements OnInit {
   @Output() visibleChange: EventEmitter<boolean>  = new EventEmitter();
-  overrideBalance = false;
+  overrideBalance = false; //default value of toggle switch
   constructor(private addAcc : AddAccountService,private snack : SnackBarService) { }
-  disableBtn;
   ngOnInit() {
   }
 
   cancel(){
-    this.visibleChange.emit(false);
+    this.visibleChange.emit(false);   //to close the dialog
   }
 
+  //add account information into database 
   addAccount(obj){
     if(obj.valid && obj.touched){
-      console.log(obj.value); 
       this.addAcc.addAccount(obj.value).subscribe(res => {
         this.snack.success('saved successfully');
       },error => {
