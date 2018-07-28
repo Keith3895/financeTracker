@@ -2,24 +2,24 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs';
 import { Router, NavigationStart } from '@angular/router';
-
+// @RamyaKrishna94 remove the dependency on router event.
 @Injectable()
 export class SnackBarService {
     private subject = new Subject<Alert>();
     private keepAfterRouteChange = false;
-    constructor(private router: Router) {
+    constructor() {
         // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
-        router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-                if (this.keepAfterRouteChange) {
-                    // only keep for a single route change
-                    this.keepAfterRouteChange = false;
-                } else {
-                    // clear alert messages
-                    this.clear();
-                }
-            }
-        });
+//         router.events.subscribe(event => {
+//             if (event instanceof NavigationStart) {
+//                 if (this.keepAfterRouteChange) {
+//                     // only keep for a single route change
+//                     this.keepAfterRouteChange = false;
+//                 } else {
+//                     // clear alert messages
+//                     this.clear();
+//                 }
+//             }
+//         });
     }
  
     getAlert(): Observable<any> {

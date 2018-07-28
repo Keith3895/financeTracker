@@ -1,20 +1,24 @@
 <div fxFlexLayout="column" fxFlex=100>
   <form #addForm = "ngForm">
   <h2 fxLayoutAlign="center center">Add Account</h2>
+  <!--  
+    @RamyaKrishna94 The folowing block is repeating multiple times in this document, please optimise the code.
+    <div fxFlexLayout="row" fxLayoutAlign="center center"> -->
   <div fxFlexLayout="row" fxLayoutAlign="center center">
-      <app-input2  fxFlex="70" type="text" name="bankName" pattern="[a-zA-Z]+([\s][a-zA-Z]+)*"  placeholder="Bank Name" id="bankName" ngModel required error="bank name required" [errorToggle]="addForm.form.controls.bankName"></app-input2>
+      <app-input2  fxFlex="70"  type="text" id='bankName' name="bankName" pattern="[a-zA-Z]+([\s][a-zA-Z]+)*"  placeholder="Bank Name" id="bankName" [(ngModel)]="bankName" required error="bank name required" [errorToggle]="addForm.form.controls.bankName"></app-input2>
   </div>
   <div fxFlexLayout="row" fxLayoutAlign="center center">
-    <app-input2  fxFlex="70" type="text" name="mobileNumber" pattern="[0-9]{10}" maxlength="10" placeholder="Reg Mobile Number" id="mobileNumber" ngModel required error="mobile Number is required" [errorToggle]="addForm.form.controls.mobileNumber"></app-input2>
+    <app-input2 [(ngModel)]="mobileNumber"  fxFlex="70" type="text" name="mobileNumber" pattern="[0-9]{10}" maxlength="10" placeholder="Reg Mobile Number" id="mobileNumber" ngModel required error="mobile Number is required" [errorToggle]="addForm.form.controls.mobileNumber"></app-input2>
   </div>
   <div fxFlexLayout="row" fxLayoutAlign="center center">
-      <app-input2  fxFlex="70" type="text" name="accountNumber" pattern="^[0-9]{11,17}$" placeholder="Account Number" id="accountNumber" ngModel required error="account Number is required" [errorToggle]="addForm.form.controls.accountNumber"></app-input2>
+      <app-input2 [(ngModel)]="accountNumber"  fxFlex="70" type="text" name="accountNumber" pattern="^[0-9]{11,17}$" placeholder="Account Number" id="accountNumber" ngModel required error="account Number is required" [errorToggle]="addForm.form.controls.accountNumber"></app-input2>
     </div>
     <div fxFlexLayout="row" fxLayoutAlign="center center">
-        <app-input2 fxFlex="70" type="number" name="balance" pattern="\d*" placeholder="Balance" id="balance" ngModel required  error="balance is required" [errorToggle]="addForm.form.controls.balance"></app-input2>
+        <app-input2 [(ngModel)]="balance" fxFlex="70" type="number" name="balance" pattern="\d*" placeholder="Balance" id="balance" ngModel required  error="balance is required" [errorToggle]="addForm.form.controls.balance"></app-input2>
       </div>
       <div fxFlexLayout="row" fxLayoutAlign="center center"  fxLayoutGap="4em">
         <div fxFlexLayout="column">
+          <!--@RamyaKrishna94 WHY Do we need two? -->
           <h3 fxHide.xs="true" fxHide.gt-xs="false">Overide Balance</h3>
           <h4 fxHide.xs="false" fxHide.gt-xs="true">Overide Balance</h4>
         </div>  
@@ -22,10 +26,13 @@
           <app-toggle name = "overrideBalance" (click)="overrideBalance = !overrideBalance;" [(ngModel)]="overrideBalance"></app-toggle>
         </div>
       </div>
+      <!--@RamyaKrishna94 Button on disabled mode looks same as enabled.-->
       <div fxFlexLayout="row">
           <div fxFlexLayout="column"  style="padding-left:15px" fxLayoutAlign="center" fxFlex="50">
+            <!-- @RamyaKrishna94 use ngSubmit event listener -->
               <button class="button"  [disabled]="addForm.untouched || addForm.invalid" (click)="addAccount(addForm)">Add </button>
           </div>
+          <!-- @RamyaKrishna94 use form reset also.-->
           <div fxFlexLayout="column" style="padding-right:15px" fxLayoutAlign="center" fxFlex="50">
               <button class="button" (click)="cancel()">Cancel</button>
           </div>
