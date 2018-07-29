@@ -30,6 +30,6 @@
 </div>
 
 
-<app-modal visible='true'>
-  <app-add-tform></app-add-tform>
+<app-modal [visible]='visible'>
+  <app-add-tform (close)="visible=false"></app-add-tform>
 </app-modal>

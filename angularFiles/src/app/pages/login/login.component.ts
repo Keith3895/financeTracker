@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   }
   test=false;
   submitted =false;
+  visible=true;
   @ViewChild("loginForm") loginForm: ElementRef;
   // date: Date;
   // options: DatepickerOptions = {

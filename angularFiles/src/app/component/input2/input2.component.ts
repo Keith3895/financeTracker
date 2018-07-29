@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter,ElementRef,ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const noop = () => {
@@ -24,8 +24,10 @@ export class Input2Component implements ControlValueAccessor {
   @Input() type:any;
   @Input() errorToggle;
   @Input() id;
+  @ViewChild('input') nativeElement:ElementRef;
+  @Output() el:ElementRef;
   @Output() keyups: EventEmitter<any> = new EventEmitter();
-
+    constructor(){}
   //The internal data model
   private innerValue: any = '';
 
