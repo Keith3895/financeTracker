@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output,ViewChild } from '@angular/core';
 import { AddAccountService } from '../../../service/add-account.service';
 import { SnackBarService } from '../../../service/snack-bar.service';
 import {NgForm} from '@angular/forms';
@@ -22,18 +22,18 @@ export class AddAccountComponent implements OnInit {
   cancel(){
     this.visibleChange.emit(false);   //to close the dialog
   }
-
-  //add account information into database 
+/**
+ * add account information into database 
+ * @param obj:ngForm inputForm Object
+ */
   addAccount(obj){
-    console.log(obj.value);
-    // return;
-    if(obj.valid && obj.touched){
-      this.addAcc.addAccount(obj.value).subscribe(res => {
-        this.snack.success('saved successfully');
-      },error => {
-        this.snack.error(error);
-      });
-      this.cancel();
-    }
+      if(obj.valid && obj.touched){
+        this.addAcc.addAccount(obj.value).subscribe(res => {
+          this.snack.success('saved successfully');
+        },error => {
+          this.snack.error(error.error.errorMessage);
+        });
+        this.cancel();
+      }
    }
 }

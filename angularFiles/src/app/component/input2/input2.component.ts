@@ -27,7 +27,7 @@ export class Input2Component implements ControlValueAccessor {
   @Input() maxlength;
   @Input() pattern;
   @Output() keyups: EventEmitter<any> = new EventEmitter();
-  @Input() length : Number;
+//   @Input() length : Number;
     showError;
   //The internal data model
   private innerValue: any = '';
