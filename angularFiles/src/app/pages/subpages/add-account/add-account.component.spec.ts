@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddAccountComponent } from './add-account.component';
-import { AddAccountService } from '../../../service/add-account.service';
-import { SnackBarService } from '../../../service/snack-bar.service';
+import { AddAccountService } from '../../../service/addAccount/add-account.service';
+import { SnackBarService } from '../../../service/snackBar/snack-bar.service';
 import { Input2Component } from '../../../component/input2/input2.component';
 import { ToggleComponent } from '../../../component/toggle/toggle.component';
 

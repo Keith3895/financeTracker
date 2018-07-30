@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output,ViewChild } from '@angular/core';
-import { AddAccountService } from '../../../service/add-account.service';
-import { SnackBarService } from '../../../service/snack-bar.service';
+import { AddAccountService } from '../../../service/addAccount/add-account.service';
+import { SnackBarService } from '../../../service/snackBar/snack-bar.service';
 import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-add-account',

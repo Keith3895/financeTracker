@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
-import { LoginService } from '../../service/login.service';
+import { LoginService } from '../../service/login/login.service';
 import { Router } from '@angular/router';
 
 import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-datepicker.component';

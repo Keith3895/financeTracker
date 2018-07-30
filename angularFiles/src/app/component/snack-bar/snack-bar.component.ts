@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SnackBarService, Alert, AlertType } from '../../service/snack-bar.service';
+import { SnackBarService, Alert, AlertType } from '../../service/snackBar/snack-bar.service';
 @Component({
   selector: 'app-snack-bar',
   templateUrl: './snack-bar.component.html',

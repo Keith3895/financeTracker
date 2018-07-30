@@ -22,13 +22,13 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddTformComponent } from './pages/add-tform/add-tform.component';
 // service import
-import { LoginService } from './service/login.service';
-import { SystemService } from './service/system.service';
+import { LoginService } from './service/login/login.service';
+import { SystemService } from './service/system/system.service';
 import { CordovaService } from './service/cordova/cordova.service';
 import { SmsService } from './service/smsfunctions/sms.service';
 import { BasicGuard } from './gaurd/basic.guard';
 import { InterceptorService } from './service/interceptor/interceptor.service';
-import { AddAccountService } from './service/add-account.service';
+import { AddAccountService } from './service/addAccount/add-account.service';
 import { RadioComponent } from './component/radio/radio.component';
 import { SelectComponent } from './component/select/select.component';
 import { ToggleComponent } from './component/toggle/toggle.component';
@@ -39,7 +39,7 @@ import { AccountInfoListComponent } from './pages/subpages/account-info-list/acc
 import { GraphsComponent } from './pages/subpages/graphs/graphs.component';
 import { AddAccountComponent } from './pages/subpages/add-account/add-account.component';
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
-import { SnackBarService } from '../app/service/snack-bar.service';
+import { SnackBarService } from '../app/service/snackBar/snack-bar.service';
 const appRoutes: Routes = [
   {
     path: '',
