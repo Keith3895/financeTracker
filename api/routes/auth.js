@@ -6,10 +6,40 @@ router.get('/', (req, res, next) => {
     res.status(200).send('this works');
 });
 
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     tags:
+ *       - Authentication.
+ *     description: API to Register a new User.
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: userName
+ *         description: Username to use while login.
+ *         in: body
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User's password.
+ *         in: body
+ *         required: true
+ *         type: string
+ *     security:
+ *       - basicAuth: []
+ *     responses:
+ *       200:
+ *         description: Operation Success
+ *       500:
+ *         description: Operation Failed
+ */
+
+
 router.post('/register', userHandlers.register);
 /**
  * @swagger
- * /sign_in:
+ * /auth/sign_in:
  *   post:
  *     tags:
  *       - Authentication.
@@ -19,17 +49,17 @@ router.post('/register', userHandlers.register);
  *     parameters:
  *       - name: userName
  *         description: Username to use for login.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
  *       - name: password
  *         description: User's password.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
  *       - name: remember
  *         description: User's password.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
  *     security:
