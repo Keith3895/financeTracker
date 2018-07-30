@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -15,7 +15,7 @@ import { CardComponent } from './component/card/card.component';
 import { InputComponent } from './component/input/input.component';
 import { Input2Component } from './component/input2/input2.component';
 import { ModalComponent } from './component/modal/modal.component';
-import {NgDatepickerModule} from './component/ng-datepicker/module/ng-datepicker.module';
+import { NgDatepickerModule } from './component/ng-datepicker/module/ng-datepicker.module';
 //page imports
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -79,7 +79,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     GraphsComponent,
     AddAccountComponent,
     SnackBarComponent
-],
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -109,7 +109,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     useClass: InterceptorService,
     multi: true
   }
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

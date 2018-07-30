@@ -25,7 +25,7 @@ describe('AddAccountService', () => {
   it(
     "search should return SearchItems",
     fakeAsync(() => {
-      let response = {
+      const response = {
         "bankName": "dkkdk",
         "mobileNumber": "1231231231",
         "accountNumber": "12345678901",
@@ -34,14 +34,13 @@ describe('AddAccountService', () => {
       };
 
       // Perform a request (this is fakeAsync to the responce won't be called until tick() is called)
-      console.log("res");
       service.addAccount({
         "bankName": "dkkdk",
         "mobileNumber": "1231231231",
         "accountNumber": "12345678901",
         "balance": "2931",
         "overrideBalance": false
-      }).subscribe(res=>{
+      }).subscribe(res => {
         expect(res).toBeDefined();
       });
 
@@ -56,7 +55,7 @@ describe('AddAccountService', () => {
 
       // Call tick whic actually processes te response
       tick();
-      
+
     })
   );
 });
