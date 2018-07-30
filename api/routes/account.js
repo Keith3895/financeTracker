@@ -19,26 +19,13 @@ router.get('/', (req, res, next) => {
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: accountNumber
- *         description: Username to use for login.
+ *       - name: Account Data
+ *         description: The Account information.
  *         in: body
  *         required: true
- *         type: string
- *       - name: balance
- *         description: the balance for the account.
- *         in: body
- *         required: true
- *         type: number
- *       - name: user
- *         description: Username of the related account.
- *         in: body
- *         required: true
- *         type: string
- *       - name: bankName
- *         description: Name of the bank.
- *         in: body
- *         required: true
- *         type: string
+ *         schema:
+ *           description: All the parameters you can send to the search engine
+ *           $ref: '#definitions/Account'
  *     security:
  *       - basicAuth: []
  *     responses:
@@ -81,3 +68,25 @@ router.post('/getAccount', middleware.jwtCheck, accountHandler.getAccounts);
 
 
 module.exports = router;
+
+
+/**
+ * @swagger
+ * definitions:
+ *  Account:
+ *    type: object
+ *    required:
+ *      - accountNumber
+ *      - balance
+ *      - user
+ *      - bankName
+ *    properties:
+ *      accountNumber:
+ *        type: string
+ *      balance:
+ *        type: integer
+ *      user:
+ *        type: string
+ *      bankName:
+ *        type: string 
+ */
