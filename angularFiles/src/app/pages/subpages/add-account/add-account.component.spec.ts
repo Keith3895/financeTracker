@@ -13,13 +13,11 @@ import { ToggleComponent } from '../../../component/toggle/toggle.component';
 
 function random(min, max) {
   return Math.floor(Math.random() * (+max - +min)) + +min;
-};
+}
 
 describe('AddAccountComponent', () => {
   let component: AddAccountComponent;
   let fixture: ComponentFixture<AddAccountComponent>;
-  let el: HTMLElement;
-  // let loginService: LoginService;
   let service;
   // let randomValue;
   beforeEach(async(() => {
@@ -48,7 +46,7 @@ describe('AddAccountComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  it("Bank Name Check with value: 'Dummy bank Name'", () => {
+  it('Bank Name Check with value: "Dummy bank Name"', () => {
     component.bankName = 'Dummy bank Name';
     fixture.detectChanges();
     fixture.whenStable().then(() => {
@@ -57,7 +55,7 @@ describe('AddAccountComponent', () => {
     });
   });
   const randomValue = random(0, 1000000000);
-  it("Bank Name Check with value<number> :" + randomValue + " ", () => {
+  it('Bank Name Check with value<number> :' + randomValue + ' ', () => {
     component.bankName = randomValue;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
@@ -66,7 +64,7 @@ describe('AddAccountComponent', () => {
     });
   });
   const randomValue2 = random(0, 1000000000);
-  it("Bank Name Check with value<string> : '" + randomValue2 + "'", () => {
+  it('Bank Name Check with value<string> : "' + randomValue2 + '"', () => {
     component.bankName = randomValue2;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
@@ -75,8 +73,8 @@ describe('AddAccountComponent', () => {
     });
   });
   const randomValue3 = random(1000000000, 9999999999);
-  it("1) Mobile Number Check with value<string> : '" + randomValue3 + "'", () => {
-    component.mobileNumber = "" + randomValue3 + "";
+  it('1) Mobile Number Check with value<string> : "' + randomValue3 + '"', () => {
+    component.mobileNumber = '' + randomValue3 + '';
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const test = component.ngForm.form.get('mobileNumber');
@@ -86,7 +84,7 @@ describe('AddAccountComponent', () => {
     });
   });
   const randomValue4 = random(1000000000, 9999999999);
-  it("2) Mobile Number Check with value<Number> : " + randomValue4 + "", () => {
+  it('2) Mobile Number Check with value<Number> : ' + randomValue4 + '', () => {
     component.mobileNumber = randomValue4;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
@@ -95,8 +93,8 @@ describe('AddAccountComponent', () => {
     });
   });
   const randomValue5 = random(10000000000, 99999999999999);
-  it("3) Mobile Number Check with value<string> : '" + randomValue5 + "'", () => {
-    component.mobileNumber = "" + randomValue5 + "";
+  it('3) Mobile Number Check with value<string> : "' + randomValue5 + '"', () => {
+    component.mobileNumber = '' + randomValue5 + '';
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const test = component.ngForm.form.get('mobileNumber');
@@ -104,8 +102,8 @@ describe('AddAccountComponent', () => {
     });
   });
   const randomValue6 = random(0, 999);
-  it("4) Mobile Number Check with value<string> : '" + randomValue6 + "'", () => {
-    component.mobileNumber = "" + randomValue6 + "";
+  it('4) Mobile Number Check with value<string> : "' + randomValue6 + '"', () => {
+    component.mobileNumber = '' + randomValue6 + '';
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const test = component.ngForm.form.get('mobileNumber');
@@ -113,15 +111,15 @@ describe('AddAccountComponent', () => {
     });
   });
   for (let i = 100000000000; i <= 10000000000000000; i *= 10) {
-    it("Account Number Check with value<string> ", () => {
-      component.accountNumber = "" + random(i, i - 1) + "";
+    it('Account Number Check with value<string> ', () => {
+      component.accountNumber = '' + random(i, i - 1) + '';
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const test = component.ngForm.form.get('accountNumber');
         expect(test.valid).toBeTruthy();
       });
     });
-    it("Account Number Check with value<Number>", () => {
+    it('Account Number Check with value<Number>', () => {
       component.accountNumber = random(i, i - 1);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -132,8 +130,8 @@ describe('AddAccountComponent', () => {
   }
   for (let i = 10000; i <= 100000000; i *= 10) {
     // const randomValue = random(i, i - 1);
-    it("Account Number Check with value<string>", () => {
-      component.accountNumber = "" + random(i, i - 1) + "";
+    it('Account Number Check with value<string>', () => {
+      component.accountNumber = '' + random(i, i - 1) + '';
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const test = component.ngForm.form.get('accountNumber');
@@ -141,7 +139,7 @@ describe('AddAccountComponent', () => {
       });
     });
   }
-  it("Ballance Accepts Digits", () => {
+  it('Ballance Accepts Digits', () => {
     component.balance = random(0, 99999);
     fixture.detectChanges();
     fixture.whenStable().then(() => {

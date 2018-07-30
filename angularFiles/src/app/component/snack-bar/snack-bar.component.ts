@@ -8,7 +8,7 @@ import { SnackBarService, Alert, AlertType } from '../../service/snack-bar.servi
 export class SnackBarComponent implements OnInit {
   alerts: Alert[] = [];
   toggleSnackBar = true;
-  
+
   constructor(private snack: SnackBarService) {
     this.snack.getAlert().subscribe((alert: Alert) => {
       if (!alert) {
@@ -28,7 +28,7 @@ export class SnackBarComponent implements OnInit {
 
   }
 
-   // return css class based on alert type
+  // return css class based on alert type
   cssClass(alert: Alert) {
     if (!alert) {
       return;
