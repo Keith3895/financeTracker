@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SystemService } from '../system.service';
+import { SystemService } from '../system/system.service';
 import { SmsService } from '../smsfunctions/sms.service';
 import { HttpClient } from '@angular/common/http';
 // declare const window: any;
@@ -69,6 +69,7 @@ export class CordovaService {
     });
   }
   requestPermision(callback) {
+    console.log(cordova);
     const permissions = cordova.plugins.permissions;
     permissions.requestPermission(permissions.RECEIVE_SMS
       , (status) => {
@@ -81,10 +82,10 @@ export class CordovaService {
       }, null);
   }
   test() {
-    this.requestPermision((st) => {
-      SMS.startWatch((status) => {
-      }, null);
-      cordova.plugins.backgroundMode.disableWebViewOptimizations();
-    });
+    // this.requestPermision((st) => {
+    //   SMS.startWatch((status) => {
+    //   }, null);
+    //   cordova.plugins.backgroundMode.disableWebViewOptimizations();
+    // });
   }
 }

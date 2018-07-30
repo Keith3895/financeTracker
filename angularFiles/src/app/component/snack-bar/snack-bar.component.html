@@ -1,0 +1,7 @@
+<!-- <div class="snackbar" (click)="showsnackBar()" [ngClass]="toggleSnackBar">{{message}}</div> -->
+<div fxLayout = "column" fxLayoutAlign="center center">
+<div fxLayout="row" *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable">
+    <span fxFlex='100'>{{alert.message}}</span>
+    <a class="close" (click)="removeAlert(alert)">&times;</a>
+</div>
+</div>
