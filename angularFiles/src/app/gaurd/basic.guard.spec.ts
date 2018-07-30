@@ -1,7 +1,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
 import { BasicGuard } from './basic.guard';
-import {LoginService} from '../service/login.service';
+import {LoginService} from '../service/login/login.service';
 describe('BasicGuard', () => {
   let testBedService;
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
-import { SystemService } from './system.service';
+import { SystemService } from '../system/system.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { } from 'jasmine';
 describe('LoginService', () => {
