@@ -6,16 +6,24 @@ import { CordovaService } from '../../service/cordova/cordova.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  @Input() visible: boolean;
-  iconList = ['fa fa-home', 'fa fa-line-chart', 'fa fa-credit-card', 'fa fa-cog']; //display list of icons in footer
+  @Input() visibleChange: boolean;
+  iconList = ['fa fa-home', 'fa fa-tachometer', 'fa fa-credit-card', 'fa fa-cog']; //display list of icons in footer
 
   constructor(public cordovaService: CordovaService) { }
 
   ngOnInit() {
-    this.visible = true;
     this.cordovaService.test();
+    console.log(this.visibleChange);
   }
+
+  showAddAccount(){
+    console.log("Here");
+   this.visibleChange = true;
+  }
+
   closeDialog(event) {
-    this.visible = event;
+this.visibleChange = event;
   }
 }
+
+

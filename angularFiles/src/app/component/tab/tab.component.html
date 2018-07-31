@@ -6,7 +6,9 @@
 
 <div fxLayout="row" fxFlex=100>
   <div fxLayout="column" fxFlex="30" fxLayoutAlign="center center" *ngFor="let icon of iconName; let i=index">
-      <i [class]="icon" (click)="tabSelect(i)" [ngClass]="{'homeChange': selected[i]}" aria-hidden="true"></i>
+    <span (click)="tabSelect(i)" [ngClass]="{'homeChange': selected[i]}">
+      <i [class]="icon" style="font-size:1.3em"></i>
+    </span>
   </div>
 </div>
 

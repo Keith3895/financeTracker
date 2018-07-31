@@ -1,6 +1,9 @@
-<app-modal [visible]="visible">
+<app-modal [visible]="visibleChange">
   <app-add-account fxLayoutAlign="center center" (visibleChange)="closeDialog($event)"></app-add-account>
 </app-modal>
+<div class="addActIcon" (click)="showAddAccount()">
+  <i class = "fa fa-user-plus"></i>
+</div>
 <div fxLayout="row" class="footer">
   <app-tab [iconName] = "iconList" fxFlex=100></app-tab>
 </div>

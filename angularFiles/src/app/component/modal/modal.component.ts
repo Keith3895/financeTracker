@@ -25,6 +25,7 @@ export class ModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.visibleChange.emit(false);
    }
 
   close() {
