@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FabButtonComponent implements OnInit {
   @Input() flexDirection: String;
-  @Input() showIcons: Boolean; 
+  @Input() showIcons: Boolean;
   @Input() alignBtn: String;   // button alignment on screen
 
   constructor() { }
