@@ -1,8 +1,8 @@
- <app-modal [visible]="visibleChange">
-  <app-add-account fxLayoutAlign="center center" (visibleChange)="closeDialog($event)"></app-add-account>
+ <app-modal [visible]="modalView" (closeDialog)="closeDialog($event)">
+  <app-add-account fxLayoutAlign="center center" (closeDialog)="closeDialog($event)"></app-add-account>
 </app-modal>
 
-<app-fab-button class="red" icon="fa fa-plus fixedIcon" [flexDirection]="flexDirection" [showIcons]="showIcons" alignBtn="bottomRight">
+<app-fab-button color="red" icon="fa fa-plus fixedIcon" [flexDirection]="flexDirection" [showIcons]="showIcons" [alignBtn]="alignFabBtn">
   <span class="buttons red">
     <i class="fa fa-plus iconSize"></i>
   </span>
