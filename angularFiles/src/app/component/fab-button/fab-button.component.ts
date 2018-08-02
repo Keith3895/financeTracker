@@ -8,9 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FabButtonComponent implements OnInit {
   @Input() flexDirection: String;
   @Input() showIcons: Boolean;
-  @Input() alignBtn: String;  
-  @Input() class : String;
-  @Input() icon : String;
+  @Input() alignBtn: String;
+  @Input() class: String;
+  @Input() icon: String;
   constructor() { }
 
   ngOnInit() {
