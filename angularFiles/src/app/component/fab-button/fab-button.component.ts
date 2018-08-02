@@ -42,7 +42,7 @@ export class FabButtonComponent implements OnInit {
       return 'containerRow';
     } else if (this.flexDirection === 'column' || this.flexDirection === 'column-reverse') {
       return 'containerColumn';
-    }else{
+    } else {
       this.flexDirection = 'row';
     }
   }

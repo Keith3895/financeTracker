@@ -10,7 +10,7 @@ export class DashboardComponent implements OnInit {
   showIcons: Boolean;
   flexDirection = 'column';       // to display floating float icon direction
   iconList = ['fa fa-home', 'fa fa-tachometer', 'fa fa-credit-card', 'fa fa-cog']; // display list of icons in footer
-  alignFabBtn = "bottomRight";
+  alignFabBtn = 'bottomRight';
 
   constructor(public cordovaService: CordovaService) { }
 

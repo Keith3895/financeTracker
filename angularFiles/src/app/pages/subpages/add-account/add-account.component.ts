@@ -20,7 +20,7 @@ export class AddAccountComponent implements OnInit {
   }
 
   cancel(){
-    this.closeDialog.emit(false);   //to close the dialog
+    this.closeDialog.emit(false);   // to close the dialog
   }
 /**
  * add account information into database 
