@@ -7,14 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FabButtonComponent implements OnInit {
   @Input() flexDirection: String;
-  @Input() showIcons: Boolean;
-  @Input() alignBtn: String;
+  @Input() showIcons: Boolean; 
+  @Input() alignBtn: String;   // button alignment on screen
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  // set direction of fab to float
   setFlexDirection() {
     if (this.flexDirection == 'row' || this.flexDirection == 'row-reverse') {
       return 'containerRow';

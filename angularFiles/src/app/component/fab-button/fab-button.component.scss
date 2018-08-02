@@ -1,127 +1,125 @@
-.fixedBtn{
-    position: fixed;
-    margin: 1em;
-  //  width:100%;
-  }
-
-  //For Bottom Right
-
-  .bottomRight{
-    place-content : flex-end;
-    bottom : 10%;
-    right : 0;
-  }
-
-  .containerRow{
-    position : fixed;
-    right : 6em;
-    align-self: center;
+.fixedBtn {
+	position: fixed;
+	margin: 1em;
 }
 
-.containerColumn{
-  position: fixed;
-  bottom: 10em;
-  right: 1.5em;
+//For Bottom Right
+.bottomRight {
+	place-content: flex-end;
+	bottom: 10%;
+	right: 0;
+}
+
+.containerRow {
+	position: fixed;
+	right: 6em;
+	align-self: center;
+}
+
+.containerColumn {
+	position: fixed;
+	bottom: 10em;
+	right: 1.5em;
 }
 
 // For Bottom Left
+.bottomLeft {
+	place-content: start;
+	bottom: 10%;
+	left: 0;
+}
 
-  .bottomLeft{
-    place-content: start;
-    bottom : 10%;
-    left : 0;
-  }
- 
-  .bottomLeft .containerColumn{
-    position: fixed;
-    bottom: 10em;
-    right : 0;
-    left: 1.4em;
-  }
+.bottomLeft .containerColumn {
+	position: fixed;
+	bottom: 10em;
+	right: 0;
+	left: 1.4em;
+}
 
-  .bottomLeft .containerRow{
-    position : fixed;
-    left : 6em;
-    right : 0;
-    align-self: center;
+.bottomLeft .containerRow {
+	position: fixed;
+	left: 6em;
+	right: 0;
+	align-self: center;
 }
 
 // For top Left
-
-.topLeft .containerColumn{
-  margin-top: 5em;
-  position: fixed;
-  right: 0;
-  left: 1.6em;
-  bottom : auto !important;
+.topLeft .containerColumn {
+	margin-top: 5em;
+	position: fixed;
+	right: 0;
+	left: 1.6em;
+	bottom: auto !important;
 }
 
 // For top Right
-.topRight{
-  bottom : auto !important;
-  place-content : flex-end;
-  right : 0;
+.topRight {
+	bottom: auto !important;
+	place-content: flex-end;
+	right: 0;
 }
 
-.topRight .containerColumn{
-  position: fixed;
-  bottom: auto !important;
-  margin-top: 5em;
-  right: 1.5em;
+.topRight .containerColumn {
+	position: fixed;
+	bottom: auto !important;
+	margin-top: 5em;
+	right: 1.5em;
 }
 
+/deep/ .buttons {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 50%;
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	-webkit-transition: all .1s ease-out;
+	transition: all .1s ease-out;
+}
 
-  /deep/ .buttons {
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-    border-radius: 50%;
-    display: block;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    -webkit-transition: all .1s ease-out;
-            transition: all .1s ease-out;  
-  }
-  
-  /deep/ .buttons:active, 
-  /deep/ .buttons:focus, 
-  /deep/ .buttons:hover {
-    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
-  }
+/deep/ .buttons:active,
+/deep/ .buttons:focus,
+/deep/ .buttons:hover {
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
 
-  /deep/ .fixedIcon{
-    font-size: 1.4em;
-    padding : 18px;
-    color : white;
-  }
+/deep/ .fixedIcon {
+	font-size: 1.4em;
+	padding: 18px;
+	color: white;
+}
 
-  /deep/ .iconSize{
-      // font-size:1.2em;
-      padding : 13px;
-      color : white;
-  }
+/deep/ .iconSize {
+	// font-size:1.2em;
+	padding: 13px;
+	color: white;
+}
 
-  /deep/ .green{
-    background-color: #4CAF50;
-  }
+/deep/ .green {
+	background-color: #4CAF50;
+}
 
-  /deep/ .red{
-    background-color: #F44336;
-  }
+/deep/ .red {
+	background-color: #F44336;
+}
 
-  /deep/ .blue{
-    background-color: #2196F3;
-  }
-  .fixedBtn .buttons{
-    width: 56px;
-    height: 56px;
-  }
-  .containerRow /deep/ .buttons:nth-last-child(1){
-    margin-right: 10px;
-  }
+/deep/ .blue {
+	background-color: #2196F3;
+}
 
-  .containerColumn /deep/ .buttons:nth-last-child(1){
-    margin-bottom: 10px;
-  }
+/deep/ .default {
+	background-color: rgba(98, 77, 205, 0.79);
+}
 
+.fixedBtn .buttons {
+	width: 56px;
+	height: 56px;
+}
 
-  
+.containerRow /deep/ .buttons:nth-last-child(1) {
+	margin-right: 10px;
+}
+
+.containerColumn /deep/ .buttons:nth-last-child(1) {
+	margin-bottom: 10px;
+}
