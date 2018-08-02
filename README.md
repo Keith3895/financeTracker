@@ -1,8 +1,8 @@
 # Finance Tracker WebApplication
-![Build](https://img.shields.io/travis/Keith3895/financeTracker.svg)
+![Build](https://travis-ci.org/Keith3895/financeTracker.svg?branch=master)
 
 [![Node](https://img.shields.io/badge/node-9.6.1-green.svg)](https://nodejs.org/en/) [![npm](https://img.shields.io/badge/npm-5.8.0-red.svg)](https://www.npmjs.com/) [![MongoDb](https://img.shields.io/badge/mongo_DB-3.6.3-green.svg)](https://www.mongodb.org) [![angular-cli](https://img.shields.io/badge/angular_cli-1.7.2-ff0000.svg)](https://angular.io/) [![Cordova](https://img.shields.io/badge/Cordova-8.0.0-ff69b4.svg)](https://cordova.apache.org/)
-
+[![CodeFactor](https://www.codefactor.io/repository/github/keith3895/financetracker/badge)](https://www.codefactor.io/repository/github/keith3895/financetracker)
 ----
 ### Project Brief:
 The project is a transaction tracking application. The application when run on a phone will analyze the users text messages and categorize the transactional messages. 
