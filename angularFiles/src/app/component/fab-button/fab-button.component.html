@@ -1,10 +1,10 @@
 <div fxLayout="row" class="fixedBtn {{alignBtn}}">
-  <div class="buttons red" (click)="showIcons = !showIcons">
-    <i class="fa fa-plus fixedIcon"></i>
+  <div class="buttons {{class}}" (click)="showIcons = !showIcons">
+    <i class={{icon}}></i>
   </div>
   <div [fxLayout]="flexDirection" class="{{ setFlexDirection() }}" fxLayoutGap="10px" *ngIf="showIcons">
     <ng-content></ng-content>
   </div>
 </div>
 
-
+  
