@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { LoginComponent } from '../login/login.component';
 import { DebugElement } from '@angular/core';
-import { LoginService } from '../../service/login.service';
+import { LoginService } from '../../service/login/login.service';
 import { FormsModule } from '@angular/forms';
 import { InputComponent } from '../../component/input/input.component';
 import { CheckboxComponent } from '../../component/checkbox/checkbox.component';

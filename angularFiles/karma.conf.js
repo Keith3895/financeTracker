@@ -27,8 +27,8 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
-    singleRun: true,
+    browsers: ['ChromeHeadless'], // change value to "Chrome" for debugging. 
+    singleRun: true,// change value to "false" for debugging. 
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',

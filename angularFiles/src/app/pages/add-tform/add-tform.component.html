@@ -6,21 +6,21 @@
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='credit' radioValue='credit'>Credit</app-radio>
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='debit' radioValue='debit'>Debit</app-radio>
             </div>
-            <app-input2 id='Amount' type="number" name='Amount' ngModel placeholder="Amount"></app-input2>
+            <app-input2 [errorToggle]="addTrans.form.controls.Ammount" id='Amount' type="number" name='Amount' ngModel placeholder="Amount"></app-input2>
             <app-select style="margin:5px;" [options]='bankAccount' placeholder="Select Account" [(ngModel)]='acc' name='acc' id='acc'></app-select>
             <ng-datepicker name='date' [(ngModel)]="date" [options]='options'></ng-datepicker>
             <app-toggle style="margin:5px;" id='overide' placeholder="Overide bank balance" [(ngModel)]='overide' name='overide'>
                 Overide bank balance
             </app-toggle>
             <app-input2 *ngIf="overide" id='Balance' type="text" name='Balance' ngModel placeholder="Update Current Balance"></app-input2>
-            <app-toggle style="margin:5px;" id='showMap' placeholder="" [(ngModel)]='showMap' (click)="locationLogic()" name="showMap">
+            <app-toggle  style="margin:5px;" id='showMap' placeholder="" [(ngModel)]='showMap' (click)="locationLogic()" name="showMap">
                 Add Location
             </app-toggle>
             <div class="container" *ngIf="showMap==true">
                 <div class="form-group">
-                    <app-input2 id='test' autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search name="address" ngModel></app-input2>
+                    <app-input2 [errorToggle]="addTrans.form.controls.address" id='test' autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search name="address" ngModel></app-input2>
                 </div>
-                <agm-map (mapClick)="placeMarker($event)" style="height: 250px;" mapTypeId="roadmap" [latitude]="latitude" [longitude]="longitude"
+                <agm-map (mapClick)="placeMarker($event)" style="height: 250px;" mapTypeId="roadmap"  [mapDraggable]='true' [panControl]='true' [latitude]="latitude" [longitude]="longitude"
                     [zoom]="zoom">
                     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                 </agm-map>

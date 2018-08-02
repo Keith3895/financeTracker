@@ -1,11 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SystemService } from './system.service';
+import { SnackBarService } from './snack-bar.service';
 
-describe('SystemService', () => {
+describe('SnackBarService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SystemService]
+      providers: [SnackBarService]
     });
   });
 });

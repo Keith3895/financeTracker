@@ -1,0 +1,35 @@
+<div fxLayout="column" fxFlex="100%">
+<form #addForm="ngForm" (ngSubmit)="addAccount(addForm)">
+    <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center center">
+      <h2 fxLayoutAlign="center center">Add Account</h2>
+      <app-input2 type="text" id='bankName' name="bankName" pattern="[a-zA-Z]+([\s][a-zA-Z]+)*" placeholder="Bank Name" [(ngModel)]='bankName'
+        required error="bank name required" [errorToggle]="addForm.form.controls.bankName"></app-input2>
+
+      <app-input2 [(ngModel)]="mobileNumber" type="text" name="mobileNumber" pattern="[0-9]{10}" maxlength="10" placeholder="Reg Mobile Number"
+        id="mobileNumber" ngModel required error="mobile Number is required" [errorToggle]="addForm.form.controls.mobileNumber"></app-input2>
+     
+      <app-input2 [(ngModel)]="accountNumber" type="text" name="accountNumber" pattern="^[0-9]{11,17}$" placeholder="Account Number"
+        id="accountNumber" ngModel required error="account Number is required" [errorToggle]="addForm.form.controls.accountNumber"></app-input2>
+     
+      <app-input2 [(ngModel)]="balance" type="number" name="balance" pattern="\d*" placeholder="Balance" id="balance" ngModel required
+        error="balance is required" [errorToggle]="addForm.form.controls.balance"></app-input2>
+     
+      <div fxLayout="column"  fxLayoutAlign="center center" style="margin-top:20px">
+        <app-toggle fxFlex="70" name="overrideBalance" (click)="overrideBalance = !overrideBalance;" [(ngModel)]="overrideBalance">
+          Overide Balance
+        </app-toggle>
+
+      <div fxLayout="row" fxFlex="100%" fxLayoutGap="1em"> 
+          <div fxLayout="column" class="Button" fxLayoutAlign="center" fxFlex="50">
+            <button type="submit" [disabled]="(addForm.untouched || addForm.invalid)">Add </button>
+          </div>
+          <div fxLayout="column" class="Button" fxLayoutAlign="center" fxFlex="50">
+            <button (click)="cancel(); addForm.reset()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+</div>
+
+

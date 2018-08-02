@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt';
 import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http';
-import {SystemService} from './system.service';
+import {SystemService} from '../system/system.service';
 import 'rxjs/add/operator/map';
 @Injectable()
 export class LoginService {

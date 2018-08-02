@@ -10,7 +10,7 @@ exports.register = (req, res) => {
     if (err) {
       return res.status(400).send({
         message: err
-      });
+      }); 
     } else {
       user.password = undefined;
       return res.json(user);

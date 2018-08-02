@@ -1,0 +1,14 @@
+<!-- <div fxLayout="row" fxFlex=100>
+  <div fxLayout="column" fxFlex="30" fxLayoutAlign="center center" *ngFor="let icon of iconName; let i=index">
+      <i class="material-icons" (click)="test(i)" [ngClass]="{'homeChange':selected[i]}">{{icon}}</i>
+  </div>
+</div> -->
+
+<div fxLayout="row" fxFlex=100>
+  <div fxLayout="column" fxFlex="30" [ngClass]="{'homeChange': selected[i],'default':!selected[i]}"fxLayoutAlign="center center" *ngFor="let icon of iconName; let i=index">
+    <span (click)="tabSelect(i)">
+      <i [class]="icon" style="font-size:1.3em"></i>
+    </span>
+  </div>
+</div>
+

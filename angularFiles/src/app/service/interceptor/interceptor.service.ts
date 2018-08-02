@@ -9,7 +9,7 @@ import {
   HttpErrorResponse,
   HttpClient
 } from '@angular/common/http';
-import { LoginService } from '../login.service';
+import { LoginService } from '../login/login.service';
 // import { Observable } from 'rxjs/Observable';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 @Injectable()

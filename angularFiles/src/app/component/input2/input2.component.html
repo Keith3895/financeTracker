@@ -3,3 +3,4 @@
   <input #input [(ngModel)]="value" [type]="type"  (blur)="onBlur()" (keyup)="onKeyup($event)" [required]='required'
     class="app-input" [id]="id">
 </div>
+<div *ngIf="showError" class="errorMessage" [ngStyle]="{'display':showError}"> {{error}} </div>
