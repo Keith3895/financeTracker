@@ -1,9 +1,19 @@
-<app-modal [visible]="visible">
-  <app-add-account fxLayoutAlign="center center" (visibleChange)="closeDialog($event)"></app-add-account>
+ <app-modal [visible]="modalView" (closeDialog)="closeDialog($event)">
+  <app-add-account fxLayoutAlign="center center" (closeDialog)="closeDialog($event)"></app-add-account>
 </app-modal>
+
+<app-fab-button color="red" icon="fa fa-plus fixedIcon" [flexDirection]="flexDirection" [showIcons]="showIcons" [alignBtn]="alignFabBtn">
+  <span class="buttons red">
+    <i class="fa fa-plus iconSize"></i>
+  </span>
+  <span class="buttons blue">
+    <i class="fa fa-plus iconSize"></i>
+  </span>
+  <span class="buttons green" (click)="addAccount()">
+    <i class="fa fa-user-plus iconSize"></i>
+  </span>
+</app-fab-button>
 <div fxLayout="row" class="footer">
-  <app-tab [iconName] = "iconList" fxFlex=100></app-tab>
+  <app-tab [iconName]="iconList" fxFlex=100></app-tab>
 </div>
-<app-snack-bar></app-snack-bar>
-
-
+<app-snack-bar></app-snack-bar> 

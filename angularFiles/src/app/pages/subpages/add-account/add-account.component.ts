@@ -8,7 +8,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./add-account.component.scss']
 })
 export class AddAccountComponent implements OnInit {
-  @Output() visibleChange: EventEmitter<boolean>  = new EventEmitter();
+  @Output() closeDialog: EventEmitter<boolean>  = new EventEmitter();
   @ViewChild('addForm')  ngForm :NgForm;
   bankName;
   accountNumber;
@@ -20,7 +20,7 @@ export class AddAccountComponent implements OnInit {
   }
 
   cancel(){
-    this.visibleChange.emit(false);   //to close the dialog
+    this.closeDialog.emit(false);   // to close the dialog
   }
 /**
  * add account information into database 

@@ -6,16 +6,26 @@ import { CordovaService } from '../../service/cordova/cordova.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  @Input() visible: boolean;
-  iconList = ['fa fa-home', 'fa fa-line-chart', 'fa fa-credit-card', 'fa fa-cog']; //display list of icons in footer
+  @Input() modalView: boolean;
+  showIcons: Boolean;
+  flexDirection = 'column';       // to display floating float icon direction
+  iconList = ['fa fa-home', 'fa fa-tachometer', 'fa fa-credit-card', 'fa fa-cog']; // display list of icons in footer
+  alignFabBtn = 'bottomRight';
 
   constructor(public cordovaService: CordovaService) { }
 
   ngOnInit() {
-    this.visible = true;
     this.cordovaService.test();
   }
+
   closeDialog(event) {
-    this.visible = event;
+    this.modalView = event;
+  }
+
+  addAccount() {
+    this.showIcons = false;
+    this.modalView = true;
   }
 }
+
+
