@@ -17,9 +17,9 @@ export class FabButtonComponent implements OnInit {
 
   // set direction of fab to float
   setFlexDirection() {
-    if (this.flexDirection == 'row' || this.flexDirection == 'row-reverse') {
+    if (this.flexDirection === 'row' || this.flexDirection === 'row-reverse') {
       return 'containerRow';
-    } else if (this.flexDirection == 'column' || this.flexDirection == 'column-reverse') {
+    } else if (this.flexDirection === 'column' || this.flexDirection === 'column-reverse') {
       return 'containerColumn';
     }
 
