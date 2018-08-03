@@ -15,8 +15,7 @@ const AccountSchema = new Schema({
     bankName : {
         type : String,
         requires : true
-    },
-    overrideBalance : Boolean
+    }
 });
 
 mongoose.model('Account', AccountSchema);

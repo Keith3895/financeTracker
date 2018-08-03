@@ -8,7 +8,7 @@ exports.register = (req, res) => {
   newUser.password = bcrypt.hashSync(req.body.password, 10);
   newUser.save((err, user) => {
     if (err) {
-      return res.status(400).send({
+      return res.status(500).send({
         message: err
       }); 
     } else {
@@ -24,7 +24,7 @@ exports.sign_in = (req, res) => {
   }, (err, user) => {
     if (err) throw err;
     if (!user || !user.comparePassword(req.body.password)) {
-      return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
+      return res.status(406).json({ message: 'Authentication failed. Invalid user or password.' });
     }
     let options = {};
     if(!req.body.remember)

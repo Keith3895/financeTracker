@@ -64,7 +64,7 @@ function addTransaction(obj) {
                             return reject(err);
                         newTransaction.save((err, transaction) => {
                             if (err) {
-                                return reject({status: 400,send: {message: err}});
+                                return reject({status: 500,send: {message: err}});
                             } else {
                                 return resolve({status: 200,json: transaction});
                             }
@@ -75,7 +75,7 @@ function addTransaction(obj) {
                 }
             });
         } catch (e) {
-            return reject({status: 400,send: {message: err}});
+            return reject({status: 500,send: {message: err}});
         }
     });
 }
