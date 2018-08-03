@@ -9,7 +9,7 @@ export class AddAccountService {
   systemService;
   constructor(private http: HttpClient) {
     this.systemService = new SystemService();
-    this.url = this.systemService.getURL() + '/account';
+    this.url = this.systemService.getURL();
   }
 
   addAccount(details: Object) {
@@ -19,7 +19,7 @@ export class AddAccountService {
       'contentType': 'application/json',
       'Authorization': jwtToken
     });
-    return this.http.put(this.url + '/add', details, { headers: headers });
+    return this.http.put(this.url + '/account/add', details, { headers: headers });
   }
   getAccount() {
     let jwtToken = "jwt " + window.localStorage.getItem('token')
@@ -27,8 +27,17 @@ export class AddAccountService {
       'contentType': 'application/json',
       'Authorization': jwtToken
     });
-    return this.http.post(this.url + '/get', {
+    return this.http.post(this.url + '/account/getAccount', {
       username: window.localStorage.getItem('user')
     }, { headers: headers });
+  }
+  addTransaction(sendValue){
+    sendValue['user'] = window.localStorage.getItem('user');
+    let jwtToken = "jwt " + window.localStorage.getItem('token')
+    let headers = new HttpHeaders({
+      'contentType': 'application/json',
+      'Authorization': jwtToken
+    });
+    return this.http.put(this.url + '/transaction/add', sendValue, { headers: headers });
   }
 }

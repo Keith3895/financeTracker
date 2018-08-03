@@ -5,7 +5,7 @@ const async = require('async');
 exports.addTransaction = (req, res) => {
     addTransaction(req.body).then((response) => {
         return res.status(response.status).json(response.json);
-    }).error((err) => {
+    }).catch((err) => {
         return res.status(err.status).json(err.send);
     });
 };
@@ -55,27 +55,32 @@ function addTransaction(obj) {
             let newTransaction = new Transaction(obj); // creates a transaction object which matches the data model(validation included).
             Account.findOne({ accountNumber: newTransaction.account }).exec((err, acc) => {
                 condition = false;
-                if (acc && newTransaction.balance)// compare new balance with current.
-                    condition = acc.balance > 0 ? newTransaction.balance == (acc.balance - newTransaction.transaction) : true;
+                if (acc && newTransaction.balance ){// compare new balance with current.
+                    if(newTransaction.type=='debit')
+                        condition = acc.balance > 0 ? newTransaction.balance == (acc.balance - newTransaction.transaction) : true;
+                    else
+                        condition = acc.balance > 0 ? newTransaction.balance == (acc.balance + newTransaction.transaction) : true;
+                    console.log(`${acc.balance} > 0 ? ${newTransaction.balance} == (${acc.balance} + ${newTransaction.transaction}) : true`);
+                }
                 if (condition) {
                     acc.balance = newTransaction.balance;
-                    acc.save( (err, data) => {
+                    acc.save((err, data) => {
                         if (err)
                             return reject(err);
                         newTransaction.save((err, transaction) => {
                             if (err) {
-                                return reject({status: 500,send: {message: err}});
+                                return reject({ status: 500, send: { message: err } });
                             } else {
-                                return resolve({status: 200,json: transaction});
+                                return resolve({ status: 200, json: transaction });
                             }
                         });
                     });
                 } else {
-                    return reject({status: 409,send: {message: 'error in adding data'}});
+                    return reject({ status: 409, send: { message: 'error in adding data' } });
                 }
             });
         } catch (e) {
-            return reject({status: 500,send: {message: err}});
+            return reject({ status: 500, send: { message: err } });
         }
     });
 }

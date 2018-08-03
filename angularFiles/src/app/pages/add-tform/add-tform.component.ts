@@ -24,6 +24,7 @@ export class AddTformComponent implements OnInit {
   @Output() close = new EventEmitter();
   showLoader = true;
   bankAccount = [];
+  bankList;
   date: Date = new Date();
   options: DatepickerOptions = {
     locale: enLocale
@@ -52,9 +53,11 @@ export class AddTformComponent implements OnInit {
 
 
   ngOnInit() {
-    this.addAccountService.getAccount().subscribe((res:Object[]) => {
+    this.addAccountService.getAccount().subscribe((res: Object[]) => {
+      this.bankList = res;
       res.forEach(element => {
-        this.bankAccount.push(element['bankName']);
+        console.log(element);
+        this.bankAccount.push(element['accountNumber']);
       });
       this.showLoader = false;
     });
@@ -109,6 +112,7 @@ export class AddTformComponent implements OnInit {
    */
   addTransaction(addTrans) {
     if (addTrans.valid && this.validateForm(addTrans)) {
+      this.showLoader = true;
       // call the service.
       let sendObject = addTrans.value;
       if (addTrans.value.showMap) {
@@ -118,8 +122,21 @@ export class AddTformComponent implements OnInit {
           longitude: this.longitude
         }
       }
+      sendObject['transaction'] = sendObject['Amount'];
+      sendObject['category'] = this.categorySelected;
+      // this.
+      if (!sendObject['overide']) {
+        let tempBank = this.bankList.find(el => {
+          return el.accountNumber === sendObject['account'];
+        });
+        tempBank.balance = parseInt(tempBank.balance);
+        sendObject['Amount'] = parseInt(sendObject['Amount']);
+        sendObject['balance'] = sendObject['type'] == 'credit' ? tempBank.balance + sendObject['Amount'] : Math.abs(tempBank.balance - sendObject['Amount']);
+      }
       console.log(sendObject);
-      this.close.emit(false); // false value is to close the modal.
+      this.addAccountService.addTransaction(sendObject).subscribe(res => {
+        this.close.emit(false); // false value is to close the modal.
+      });
     }
   }
   /**
@@ -136,10 +153,10 @@ export class AddTformComponent implements OnInit {
         return false;
     if (addTrans.value.Amount <= 0)
       return false;
-    if (!addTrans.value.acc)
+    if (!addTrans.value.account)
       return false;
     else {
-      if (addTrans.value.acc.length <= 0)
+      if (addTrans.value.account.length <= 0)
         return false;
     }
     if (addTrans.value.overide) {

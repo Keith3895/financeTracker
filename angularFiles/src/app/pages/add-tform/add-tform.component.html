@@ -1,11 +1,11 @@
 <div fxLayout="column" id="addForm">
     <h2 style="width:100%;">Add Transaction form.</h2>
-    
+
     <div fxLayout='column' fxLayoutAlign="center center" *ngIf='showLoader'>
         <img src="./assets/icons/loader.svg" alt="" style="    height: 100%;
         width: 124px;">
     </div>
-    
+
     <div fxLayout="column" *ngIf='!showLoader'>
         <form #addTrans='ngForm' id="addTransaction" (ngSubmit)="addTransaction(addTrans)">
             <div fxLayout='row' style="margin-bottom: -50px">
@@ -14,7 +14,8 @@
             </div>
             <app-input2 [errorToggle]="addTrans.form.controls.Ammount" id='Amount' type="number" name='Amount' ngModel placeholder="Amount"
                 required></app-input2>
-            <app-select style="margin:5px;" [options]='bankAccount' placeholder="Select Account" [(ngModel)]='acc' name='acc' id='acc'></app-select>
+            <app-select style="margin:5px;" [options]='bankAccount' placeholder="Select Account" [(ngModel)]='account' name='account'
+                id='acc'></app-select>
             <ng-datepicker name='date' [(ngModel)]="date" [options]='options'></ng-datepicker>
             <!-- Category Selector -->
             <div fxLayout='row wrap' class="categoryContainer">
