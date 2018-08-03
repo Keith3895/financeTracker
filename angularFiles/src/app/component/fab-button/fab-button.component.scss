@@ -78,21 +78,20 @@
 	padding: 15px;
 }
 
-/deep/ .buttons:active,
-/deep/ .buttons:hover{
+/deep/ .buttons:active{
 	box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
 }
 
-/deep/ .fixedIcon {
+/deep/ .fixedIcon .svg-inline--fa{
 	font-size: 1.4em;
-	// padding: 18px;
+	vertical-align: 0.875em;
 	color: white;
 }
 
 /deep/ .iconSize {
-	// font-size:1.2em;
-	// padding: 13px;
+	vertical-align: 0.875em;
 	color: white;
+	margin-left: -2px;
 }
 
 /deep/ .green {
