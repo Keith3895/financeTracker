@@ -49,5 +49,5 @@ deploy:
   file: "/home/travis/build/Keith3895/financeTracker/financeTracker.apk"
   skip_cleanup: true
   on:
-    tags: false
-    branch: master
+    tags: true
+    #branch: master
