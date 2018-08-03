@@ -70,11 +70,12 @@
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 	border-radius: 50%;
 	display: block;
-	width: 40px;
-	height: 40px;
+    width: 15px;
+    height: 15px;
 	position: relative;
 	-webkit-transition: all .1s ease-out;
 	transition: all .1s ease-out;
+	padding: 15px;
 }
 
 /deep/ .buttons:active,
@@ -84,13 +85,13 @@
 
 /deep/ .fixedIcon {
 	font-size: 1.4em;
-	padding: 18px;
+	// padding: 18px;
 	color: white;
 }
 
 /deep/ .iconSize {
 	// font-size:1.2em;
-	padding: 13px;
+	// padding: 13px;
 	color: white;
 }
 
@@ -107,8 +108,9 @@
 }
 
 .fixedBtn .buttons {
-	width: 56px;
-	height: 56px;
+	width: 20px;
+    height: 20px;
+    padding: 22px;
 }
 
 .containerRow /deep/ .buttons:nth-last-child(1) {

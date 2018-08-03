@@ -16,8 +16,8 @@
                 <ul fxLayout='row wrap' fxLayoutGap='20px' fxLayoutAlign="center" fxFlex='100%'>
                     <li fxLayout='column' fxLayoutAlign="center center" *ngFor="let category of categoryList" fxFlex="50px" class="categoryButton"
                         [id]='category' [ngClass]="{'clicked':category == categorySelected}" (click)='categorySelected = category'>
-                        <img *ngIf="category != categorySelected" [src]='"/assets/icons/"+category+".svg"' alt="" style="height: auto;width: 25px;padding:12px;margin: 20px 0px 10px;">
-                        <img *ngIf="category == categorySelected" [src]='"/assets/icons/"+category+"White.svg"' alt="" style="height: auto;width: 25px;padding:12px;margin: 20px 0px 10px;">
+                        <img *ngIf="category != categorySelected" [src]='"/assets/Android/res/icons/"+category+".svg"' alt="" style="height: auto;width: 25px;padding:12px;margin: 20px 0px 10px;">
+                        <img *ngIf="category == categorySelected" [src]='"/assets/Android/res/icons/"+category+"White.svg"' alt="" style="height: auto;width: 25px;padding:12px;margin: 20px 0px 10px;">
                         <span class="label">{{category|titlecase}}</span>
                     </li>
                 </ul>
@@ -45,7 +45,7 @@
                     <button type="submit" [disabled]="!validateForm(addTrans)">Add Transaction</button>
                 </div>
                 <div class="Button">
-                    <button type="reset" (click)="close.emit({close:true})">Cancel</button>
+                    <button type="reset" (click)="close.emit(false)">Cancel</button>
                 </div>
             </div>
         </form>
