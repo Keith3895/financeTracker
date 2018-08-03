@@ -6,6 +6,7 @@ import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter 
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { } from 'googlemaps';
+import { AddAccountService } from '../../service/addAccount/add-account.service';
 declare var google: any;
 @Component({
   selector: 'app-add-tform',
@@ -21,13 +22,8 @@ export class AddTformComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
   @Output() close = new EventEmitter();
-  bankAccount = [
-    'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur',
-    'adipiscing', 'elit', 'curabitur', 'vel', 'hendrerit', 'libero',
-    'eleifend', 'blandit', 'nunc', 'ornare', 'odio', 'ut',
-    'orci', 'gravida', 'imperdiet', 'nullam', 'purus', 'lacinia',
-    'a', 'pretium', 'quis', 'congue', 'praesent', 'sagittis',
-    'laoreet', 'auctor', 'mauris', 'non', 'velit', 'eros'];
+  showLoader = true;
+  bankAccount = [];
   date: Date = new Date();
   options: DatepickerOptions = {
     locale: enLocale
@@ -47,15 +43,21 @@ export class AddTformComponent implements OnInit {
   showMap = false;
   acc;
   overide = false;
-  categorySelected="";
+  categorySelected = "";
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private addAccountService: AddAccountService
   ) { }
 
 
   ngOnInit() {
-
+    this.addAccountService.getAccount().subscribe((res:Object[]) => {
+      res.forEach(element => {
+        this.bankAccount.push(element['bankName']);
+      });
+      this.showLoader = false;
+    });
   }
   locationLogic() {
     if (this.showMap) {

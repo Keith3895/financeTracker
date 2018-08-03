@@ -4,12 +4,12 @@ import { SystemService } from '../system/system.service';
 
 @Injectable()
 export class AddAccountService {
-  
+
   url;
   systemService;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.systemService = new SystemService();
-    this.url = this.systemService.getURL()+'/account';
+    this.url = this.systemService.getURL() + '/account';
   }
 
   addAccount(details: Object) {
@@ -20,5 +20,15 @@ export class AddAccountService {
       'Authorization': jwtToken
     });
     return this.http.put(this.url + '/add', details, { headers: headers });
+  }
+  getAccount() {
+    let jwtToken = "jwt " + window.localStorage.getItem('token')
+    let headers = new HttpHeaders({
+      'contentType': 'application/json',
+      'Authorization': jwtToken
+    });
+    return this.http.post(this.url + '/get', {
+      username: window.localStorage.getItem('user')
+    }, { headers: headers });
   }
 }

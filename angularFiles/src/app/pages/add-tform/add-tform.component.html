@@ -1,6 +1,12 @@
 <div fxLayout="column" id="addForm">
     <h2 style="width:100%;">Add Transaction form.</h2>
-    <div fxLayout="column">
+    
+    <div fxLayout='column' fxLayoutAlign="center center" *ngIf='showLoader'>
+        <img src="./assets/icons/loader.svg" alt="" style="    height: 100%;
+        width: 124px;">
+    </div>
+    
+    <div fxLayout="column" *ngIf='!showLoader'>
         <form #addTrans='ngForm' id="addTransaction" (ngSubmit)="addTransaction(addTrans)">
             <div fxLayout='row' style="margin-bottom: -50px">
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='credit' radioValue='credit' required>Credit</app-radio>
