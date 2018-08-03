@@ -2,11 +2,11 @@
 import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-datepicker.component';
 import * as enLocale from 'date-fns/locale/en';
 import * as frLocale from 'date-fns/locale/fr';
-import { ElementRef, NgZone, OnInit, ViewChild, Component,Output,EventEmitter } from '@angular/core';
+import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { Input2Component } from '../../component/Input2/input2.component';
-import {} from 'googlemaps';
+import { } from 'googlemaps';
 declare var google: any;
 @Component({
   selector: 'app-add-tform',
@@ -34,9 +34,20 @@ export class AddTformComponent implements OnInit {
     locale: enLocale
   };
   type;
+  categoryList=[
+    'investment',
+    'food',
+    'entertainment',
+    'fuel',
+    'emi',
+    'medical',
+    'travel',
+    'groceries',
+    'shopping'
+  ];
   showMap = false;
   acc;
-  overide = true;
+  overide = false;
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
@@ -102,7 +113,7 @@ export class AddTformComponent implements OnInit {
         }
       }
       console.log(sendObject);
-      this.close.emit({close:true});
+      this.close.emit({ close: true });
     }
   }
   validateForm(addTrans) {

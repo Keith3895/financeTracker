@@ -52,11 +52,12 @@ export class Input2Component implements ControlValueAccessor {
     }
     onKeyup(event) {
         this.keyups.emit(event);
-        if (this.errorToggle.status === 'INVALID' || this.errorToggle.value === '') {
-            this.showError = true;
-        } else {
-            this.showError = false;
-        }
+        if(this.errorToggle)
+            if (this.errorToggle.status === 'INVALID' || this.errorToggle.value === '') {
+                this.showError = true;
+            } else {
+                this.showError = false;
+            }
     }
     //From ControlValueAccessor interface
     writeValue(value: any) {

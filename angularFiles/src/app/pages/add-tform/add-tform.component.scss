@@ -1,7 +1,95 @@
-#addForm{
+#addForm {
     overflow: scroll;
 }
-#addTransaction{
+
+#addTransaction {
     height: 550px;
-    overflow-y:scroll;
+    overflow-y: scroll;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+}
+
+.categoryButton {
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    margin-bottom: 30px;
+    border-radius: 100px;
+    transition: .4s ease-in-out;
+}
+
+#food{
+    border-color: green;
+}
+#fuel{
+    border-color: #AEA3B0;
+}
+#emi{
+    border-color: #696773;
+}
+#investment{
+    border-color: #E76B74;
+}
+#entertainment{
+    border-color: #C9E4CA;
+}
+#medical{
+    border-color: #B1B6A6;
+}
+#travel{
+    border-color: #E1CE7A;
+}
+#groceries{
+    border-color: #995FA3;
+}
+#shopping{
+    border-color: orange;
+}
+
+#food.clicked{
+    background: green;
+}
+#fuel.clicked{
+    background: #AEA3B0;
+}
+#emi.clicked{
+    background: #696773;
+}
+#investment.clicked{
+    background: #E76B74;
+}
+#entertainment.clicked{
+    background: #C9E4CA;
+}
+#medical.clicked{
+    background: #B1B6A6;
+}
+#travel.clicked{
+    background: #E1CE7A;
+}
+#groceries.clicked{
+    background: #995FA3;
+}
+#shopping.clicked{
+    background: orange;
+}
+.label{
+    // left: -10px;
+    // position: relative;
+    // top: -6px;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.categoryContainer{    
+    border: 1px solid rgba(80, 71, 71, 0.2784313725490196);
+    border-left: none;
+    border-right: none;
+}
+h5{
+    padding: 10px;
 }
