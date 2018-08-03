@@ -22,15 +22,18 @@ const TransactionSchema = new Schema({
         index: true
     },
     date: {
-        type: Number,
+        type: Date,
         index: true,
         required: true
     },
     geoLocation: {
         type: Object
     },
-    user: String,
-    catergory: String,
+    user: {
+        type:String,
+        required:true
+    },
+    category: String,
     Comment: String
 });
 TransactionSchema.index({ date: 1, transaction: 1, balance: 1, type:1 }, { unique: true });
