@@ -5,7 +5,6 @@ import * as frLocale from 'date-fns/locale/fr';
 import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
-import { Input2Component } from '../../component/Input2/input2.component';
 import { } from 'googlemaps';
 declare var google: any;
 @Component({
@@ -34,7 +33,7 @@ export class AddTformComponent implements OnInit {
     locale: enLocale
   };
   type;
-  categoryList=[
+  categoryList = [
     'investment',
     'food',
     'entertainment',
@@ -48,6 +47,7 @@ export class AddTformComponent implements OnInit {
   showMap = false;
   acc;
   overide = false;
+  categorySelected="";
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
@@ -101,6 +101,10 @@ export class AddTformComponent implements OnInit {
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
   }
+  /**
+   *  This method is called when form is submitted.
+   * @param addTrans: ngForm object
+   */
   addTransaction(addTrans) {
     if (addTrans.valid && this.validateForm(addTrans)) {
       // call the service.
@@ -113,9 +117,15 @@ export class AddTformComponent implements OnInit {
         }
       }
       console.log(sendObject);
-      this.close.emit({ close: true });
+      this.close.emit(false); // false value is to close the modal.
     }
   }
+  /**
+   * 
+   * This method is called to validate the form.
+   * 
+   * @param addTrans :ngForm Object.
+   */
   validateForm(addTrans) {
     if (!addTrans.valid)
       return addTrans.valid;
@@ -126,8 +136,10 @@ export class AddTformComponent implements OnInit {
       return false;
     if (!addTrans.value.acc)
       return false;
-    if (addTrans.value.acc.length <= 0)
-      return false;
+    else {
+      if (addTrans.value.acc.length <= 0)
+        return false;
+    }
     if (addTrans.value.overide) {
       if (addTrans.value.balance <= 0)
         return false;
@@ -136,6 +148,8 @@ export class AddTformComponent implements OnInit {
       if (!this.latitude || !this.longitude)
         return false;
     }
+    if (this.categorySelected.length <= 0)
+      return false;
     return true;
   }
 }
