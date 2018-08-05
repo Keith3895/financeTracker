@@ -7,7 +7,9 @@ import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { } from 'googlemaps';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
+import { SnackBarService } from '../../service/snackBar/snack-bar.service';
 declare var google: any;
+
 @Component({
   selector: 'app-add-tform',
   templateUrl: './add-tform.component.html',
@@ -48,13 +50,22 @@ export class AddTformComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private addAccountService: AddAccountService
+    private addAccountService: AddAccountService,
+    private snack: SnackBarService
   ) { }
 
 
   ngOnInit() {
+    /**
+     * the following method is called to retrieve bankAccount number.
+     */
     this.addAccountService.getAccount().subscribe((res: Object[]) => {
       this.bankList = res;
+      if(this.bankList.length<=0){
+        this.snack.error("Didn't  Find any bank accounts to link any transactions");
+        this.close.emit(false);
+        return;
+      }
       res.forEach(element => {
         console.log(element);
         this.bankAccount.push(element['accountNumber']);
@@ -62,11 +73,14 @@ export class AddTformComponent implements OnInit {
       this.showLoader = false;
     });
   }
+  /**
+   * this method is called to initialize the google maps component.
+   */
   locationLogic() {
     if (this.showMap) {
       this.zoom = 4;
-      this.latitude = 39.8282;
-      this.longitude = -98.5795;
+      // this.latitude = 39.8282;
+      // this.longitude = -98.5795;
       this.setCurrentPosition();
       this.mapsAPILoader.load().then(() => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement.nativeElement, {
@@ -135,7 +149,10 @@ export class AddTformComponent implements OnInit {
       }
       console.log(sendObject);
       this.addAccountService.addTransaction(sendObject).subscribe(res => {
+        this.snack.success('Added Transaction successfully');
         this.close.emit(false); // false value is to close the modal.
+      }, error => {
+        this.snack.error(error.error.errorMessage);
       });
     }
   }

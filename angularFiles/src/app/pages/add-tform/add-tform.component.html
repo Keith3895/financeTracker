@@ -13,7 +13,7 @@
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='debit' radioValue='debit'>Debit</app-radio>
             </div>
             <app-input2 [errorToggle]="addTrans.form.controls.Ammount" id='Amount' type="number" name='Amount' ngModel placeholder="Amount"
-                required></app-input2>
+                required error="enter the Transaction Ammount" ></app-input2>
             <app-select style="margin:5px;" [options]='bankAccount' placeholder="Select Account" [(ngModel)]='account' name='account'
                 id='acc'></app-select>
             <ng-datepicker name='date' [(ngModel)]="date" [options]='options'></ng-datepicker>
@@ -33,7 +33,7 @@
             <app-toggle style="margin:5px;" id='overide' placeholder="Overide bank balance" [(ngModel)]='overide' name='overide'>
                 Overide bank balance
             </app-toggle>
-            <app-input2 *ngIf="overide" id='Balance' type="text" name='Balance' ngModel placeholder="Update Current Balance"></app-input2>
+            <app-input2 *ngIf="overide" id='Balance' type="number" name='balance' [(ngModel)]="balance" placeholder="Update Current Balance" [required]="overide"></app-input2>
             <app-toggle style="margin:5px;" id='showMap' placeholder="" [(ngModel)]='showMap' (click)="locationLogic()" name="showMap">
                 Add Location
             </app-toggle>

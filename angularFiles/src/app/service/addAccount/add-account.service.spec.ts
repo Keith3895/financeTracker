@@ -23,7 +23,7 @@ describe('AddAccountService', () => {
     httpTestingController.verify();
   });
   it(
-    'search should return SearchItems',
+    'Shoud mock adding of account.',
     fakeAsync(() => {
       const response = {
         'bankName': 'dkkdk',
