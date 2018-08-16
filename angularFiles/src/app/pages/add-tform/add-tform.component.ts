@@ -3,12 +3,13 @@ import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-da
 import * as enLocale from 'date-fns/locale/en';
 import * as frLocale from 'date-fns/locale/fr';
 import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { } from 'googlemaps';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
 import { SnackBarService } from '../../service/snackBar/snack-bar.service';
 declare var google: any;
+
 
 @Component({
   selector: 'app-add-tform',
@@ -16,12 +17,13 @@ declare var google: any;
   styleUrls: ['./add-tform.component.scss']
 })
 export class AddTformComponent implements OnInit {
+  @ViewChild('addTrans') currentForm: NgForm;
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
 
-  @ViewChild("search")
+ // @ViewChild("search") : any;
   public searchElementRef: ElementRef;
   @Output() close = new EventEmitter();
   showLoader = true;
@@ -67,11 +69,16 @@ export class AddTformComponent implements OnInit {
         return;
       }
       res.forEach(element => {
-        console.log(element);
         this.bankAccount.push(element['accountNumber']);
       });
       this.showLoader = false;
     });
+  }
+  ngAfterViewChecked() {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
+    // console.log(this.addTrans);
+  console.log(this.currentForm);  
   }
   /**
    * this method is called to initialize the google maps component.
@@ -163,6 +170,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans :ngForm Object.
    */
   validateForm(addTrans) {
+    console.log(addTrans);
     if (!addTrans.valid)
       return addTrans.valid;
     if (typeof addTrans.value.type == 'string')
