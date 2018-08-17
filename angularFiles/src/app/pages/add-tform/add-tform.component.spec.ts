@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { AddTformComponent } from './add-tform.component';
 import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgDatepickerModule } from '../../component/ng-datepicker/module/ng-datepicker.module';
-import { MapsAPILoader,AgmCoreModule } from '@agm/core';
+import { MapsAPILoader, AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
 import { SnackBarService } from '../../service/snackBar/snack-bar.service';
@@ -15,7 +15,10 @@ import { ToggleComponent } from '../../component/toggle/toggle.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DebugElement } from '@angular/core';
-
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
 function random(min, max) {
   return Math.floor(Math.random() * (+max - +min)) + +min;
 }
@@ -27,6 +30,9 @@ describe('AddTformComponent', () => {
   let service;
   let de: DebugElement;
   let el: HTMLElement;
+  let httpTestingController: HttpTestingController;
+  const response = [{"bankName": "Syndicate Bank", "accountNumber": "0934232434234", "balance": 423, "overrideBalance": false, "user": "Ramya"}, {"bankName": "dfd", "accountNumber": "343234343343423", "balance": 3423, "overrideBalance": false, "user": "Ramya"}];
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AddTformComponent,
@@ -43,98 +49,159 @@ describe('AddTformComponent', () => {
         NgDatepickerModule,
         AgmCoreModule,
         HttpClientModule,
+        HttpClientTestingModule
       ],
       providers: [AddAccountService, MapsAPILoader, SnackBarService]
     })
       .compileComponents().then(() => {
         fixture = TestBed.createComponent(AddTformComponent);
-        component = fixture.componentInstance;
+
         service = TestBed.get(AddAccountService);
+        httpTestingController = TestBed.get(HttpTestingController);
+        component = fixture.componentInstance;
       });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddTformComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImtlaXRoIiwiX2lkIjoiNWI3NjhhNGEwNGE2YTMwZmUyMzIwYzEzIiwiaWF0IjoxNTM0NDk1NDI3LCJleHAiOjE1MzQ0OTkwMjd9.xb-EfPLj357RJtR9mdL4vHejRWXjc6OcsUfnlzuLnT4');
-    });
-  
+    // fixture = TestBed.createComponent(AddTformComponent);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
+  });
 
-  it('validate type',async(() => {
-    // component.showLoader = false;
+
+  it('validate type', fakeAsync(() => {
     component.type = "dummy Value";
     fixture.detectChanges();
     fixture.whenStable().then(() => {
+      const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
       const test = component.currentForm.form.get('type');
-    expect(service.getAccount()).toBeTruthy();
       expect(test.valid).toBeTruthy();
     });
   }));
 
-  const randomValue = random(0,10000000000000);
+
+  const randomValue = random(0, 10000000000000);
   it('validate Amount', async(() => {
-    expect(service.getAccount()).toBeTruthy();
     component.Amount = randomValue;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
+      const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
       const amount = component.currentForm.form.get('Amount');
       expect(amount.valid).toBeTruthy();
     });
   }));
-  
-  it('validate Account',async(() => {
+
+  it('validate Account', async(() => {
     component.account = "select Value";
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-       const account = component.currentForm.form.get('account');
-       expect(service.getAccount()).toBeTruthy();
-       expect(account.valid).toBeTruthy();
+      const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
+      const account = component.currentForm.form.get('account');
+      expect(account.valid).toBeTruthy();
     });
   }));
 
-  it('validate date',() => {
+  it('validate date', () => {
     component.date = new Date();
     fixture.detectChanges();
+    const req = httpTestingController.expectOne(
+      'http://localhost:4000/account/getAccount'
+    );
+    expect(req.request.method).toEqual('POST');
+    // Respond with this data when called
+    req.flush(response);
     fixture.whenStable().then(() => {
       const date = component.currentForm.form.get('date');
       expect(date.valid).toBeTruthy();
     })
   });
 
-  it('validate overide',async(() => {
+  it('validate overide', async(() => {
     component.overide = false;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
+         const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
       const overide = component.currentForm.form.get('overide');
+      console.log(overide)
       expect(overide.valid).toBeTruthy();
     });
   }));
 
-  it('check for showMap if false',async(() => {
-     component.showMap = false;
-     component.latitude = null;
-     component.longitude = null;
-     component.address = null;
-     fixture.detectChanges();
-     fixture.whenStable().then(() => {
-       const showMap = component.currentForm.form.get('showMap');
-       expect(showMap.value).toBeFalsy();
-       expect(component.latitude).toBeNull();
-       expect(component.longitude).toBeNull();
-       expect(component.address).toBeNull()
-     });
+  it('check for overide balance value if true', async(() => {
+    component.overide = true;
+    component.balance = random(0,9999999);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+         const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
+      const overide = component.currentForm.form.get('overide');
+      const balance = component.currentForm.form.get('balance');
+      expect(overide.valid).toBeTruthy();
+      expect(balance.valid).toBeTruthy();
+    });
   }));
 
-  it('check for showMap if true',async(() => {
-// component.showMap = true;
-    component.latitude = random(-90.0000,90.0000);
-    component.longitude = random(-180.0000,180.0000);
+
+  it('check for showMap if false', async(() => {
+    component.showMap = false;
+    component.latitude = null;
+    component.longitude = null;
+    component.address = null;
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
+      const showMap = component.currentForm.form.get('showMap');
+      expect(showMap.value).toBeFalsy();
+      expect(component.latitude).toBeNull();
+      expect(component.longitude).toBeNull();
+      expect(component.address).toBeNull()
+    });
+  }));
+
+  it('check for showMap if true', async(() => {
+    // component.showMap = true;
+    component.latitude = random(-90.0000, 90.0000);
+    component.longitude = random(-180.0000, 180.0000);
     component.address = "random";
     fixture.detectChanges();
     fixture.whenStable().then(() => {
+      const req = httpTestingController.expectOne(
+        'http://localhost:4000/account/getAccount'
+      );
+      expect(req.request.method).toEqual('POST');
+      // Respond with this data when called
+      req.flush(response);
       const showMap = component.currentForm.form.get('showMap');
-  //    expect(showMap.value).toBeFalsy();
+      //    expect(showMap.value).toBeFalsy();
       expect(component.latitude).toBeDefined();
       expect(component.longitude).toBeDefined();
       expect(component.address).toBeDefined()
@@ -143,5 +210,6 @@ describe('AddTformComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
+    httpTestingController.verify();
   });
 });

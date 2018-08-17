@@ -51,6 +51,7 @@ export class AddTformComponent implements OnInit {
   overide = false;
   categorySelected = "";
   address = "";
+  balance;
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -130,6 +131,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans: ngForm object
    */
   addTransaction(addTrans) {
+    console.log(addTrans);
     if (addTrans.valid && this.validateForm(addTrans)) {
       this.showLoader = true;
       // call the service.
@@ -168,7 +170,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans :ngForm Object.
    */
   validateForm(addTrans) {
-    // console.log(addTrans);
+     console.log(addTrans);
     if (!addTrans.valid)
       return addTrans.valid;
     if (typeof addTrans.value.type == 'string')
