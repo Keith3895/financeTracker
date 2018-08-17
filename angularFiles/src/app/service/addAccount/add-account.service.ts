@@ -14,7 +14,7 @@ export class AddAccountService {
 
   addAccount(details: Object) {
     details['user'] = window.localStorage.getItem('user');
-    let jwtToken = "jwt " + window.localStorage.getItem('token')
+    let jwtToken = "JWT " + window.localStorage.getItem('token')
     let headers = new HttpHeaders({
       'contentType': 'application/json',
       'Authorization': jwtToken
@@ -22,7 +22,7 @@ export class AddAccountService {
     return this.http.put(this.url + '/account/add', details, { headers: headers });
   }
   getAccount() {
-    let jwtToken = "jwt " + window.localStorage.getItem('token')
+    let jwtToken = "JWT " + window.localStorage.getItem('token')
     let headers = new HttpHeaders({
       'contentType': 'application/json',
       'Authorization': jwtToken

@@ -26,7 +26,7 @@ export class AddTformComponent implements OnInit {
  // @ViewChild("search") : any;
   public searchElementRef: ElementRef;
   @Output() close = new EventEmitter();
-  showLoader = true;
+  showLoader = false;
   bankAccount = [];
   bankList;
   date: Date = new Date();
@@ -46,9 +46,11 @@ export class AddTformComponent implements OnInit {
     'shopping'
   ];
   showMap = false;
-  acc;
+  account;
+  Amount;
   overide = false;
   categorySelected = "";
+  address = "";
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -61,6 +63,7 @@ export class AddTformComponent implements OnInit {
     /**
      * the following method is called to retrieve bankAccount number.
      */
+     this.showLoader=true;
     this.addAccountService.getAccount().subscribe((res: Object[]) => {
       this.bankList = res;
       if(this.bankList.length<=0){
@@ -74,12 +77,7 @@ export class AddTformComponent implements OnInit {
       this.showLoader = false;
     });
   }
-  ngAfterViewChecked() {
-    //Called after every check of the component's view. Applies to components only.
-    //Add 'implements AfterViewChecked' to the class.
-    // console.log(this.addTrans);
-  console.log(this.currentForm);  
-  }
+
   /**
    * this method is called to initialize the google maps component.
    */
@@ -170,7 +168,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans :ngForm Object.
    */
   validateForm(addTrans) {
-    console.log(addTrans);
+    // console.log(addTrans);
     if (!addTrans.valid)
       return addTrans.valid;
     if (typeof addTrans.value.type == 'string')
