@@ -13,7 +13,7 @@
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='debit' radioValue='debit'>Debit</app-radio>
             </div>
             <app-input2 [errorToggle]="addTrans.form.controls.Ammount" id='Amount' type="number" name='Amount' [(ngModel)]="Amount" placeholder="Amount"
-                required error="enter the Transaction Ammount" ></app-input2>
+                required error="enter the Transaction Ammount" min="0" ></app-input2>
             <app-select style="margin:5px;" [options]='bankAccount' placeholder="Select Account" [(ngModel)]='account' name='account'
                 id='acc'></app-select>
             <ng-datepicker name='date' [(ngModel)]="date" [options]='options'></ng-datepicker>
