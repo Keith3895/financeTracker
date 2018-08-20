@@ -38,7 +38,7 @@ port = 4000
 mongodb = 'mongodb://localhost/financeAPP'
 ```
 
-## To Build Angular application. [Readme.md](./angularFiles/README.md)
+## To Build Angular application. [Readme of Angular App](./angularFiles/README.md)
 
 #### Development server
 
@@ -49,7 +49,7 @@ mongodb = 'mongodb://localhost/financeAPP'
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## To Make Mobile Application. [Readme.md](./mobileApp/README.md) 
+## To Make Mobile Application. [Readme of Mobile Application](./mobileApp/README.md) 
 
 #### Prepare Cordova project
 To prepare Cordova project run ```cordova prepare```.

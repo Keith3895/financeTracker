@@ -113,7 +113,7 @@ router.put('/addMany', middleware.jwtCheck, transactionHandlers.addMultiTransact
  *         description:  Operation Failed due to internal server error.
  */
 
-router.post('/get', middleware.jwtCheck, transactionHandlers.getTransactions);
+router.post('/getTransactions', middleware.jwtCheck, transactionHandlers.getTransactions);
 
 
 

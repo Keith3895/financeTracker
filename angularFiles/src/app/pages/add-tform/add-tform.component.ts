@@ -21,8 +21,6 @@ export class AddTformComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-
-  // @ViewChild("search") : any;
   public searchElementRef: ElementRef;
   @Output() close = new EventEmitter();
   showLoader = false;
