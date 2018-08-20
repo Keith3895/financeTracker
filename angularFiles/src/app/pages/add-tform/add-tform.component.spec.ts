@@ -1,24 +1,20 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { AddTformComponent } from './add-tform.component';
-import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgDatepickerModule } from '../../component/ng-datepicker/module/ng-datepicker.module';
-import { MapsAPILoader, AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
-import { AddAccountService } from '../../service/addAccount/add-account.service';
-import { SnackBarService } from '../../service/snackBar/snack-bar.service';
-import { BrowserModule, By } from '@angular/platform-browser';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Input2Component } from '../../component/input2/input2.component';
+import { NgDatepickerModule } from '../../component/ng-datepicker/module/ng-datepicker.module';
 import { RadioComponent } from '../../component/radio/radio.component';
 import { SelectComponent } from '../../component/select/select.component';
 import { ToggleComponent } from '../../component/toggle/toggle.component';
-import { APP_BASE_HREF } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { DebugElement } from '@angular/core';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
+import { AddAccountService } from '../../service/addAccount/add-account.service';
+import { SnackBarService } from '../../service/snackBar/snack-bar.service';
+import { SystemService } from '../../service/system/system.service';
+import { AddTformComponent } from './add-tform.component';
 function random(min, max) {
   return Math.floor(Math.random() * (+max - +min)) + +min;
 }
@@ -28,10 +24,11 @@ describe('AddTformComponent', () => {
   let component: AddTformComponent;
   let fixture: ComponentFixture<AddTformComponent>;
   let service;
-  let de: DebugElement;
-  let el: HTMLElement;
   let httpTestingController: HttpTestingController;
-  const response = [{"bankName": "Syndicate Bank", "accountNumber": "0934232434234", "balance": 423, "overrideBalance": false, "user": "Ramya"}, {"bankName": "dfd", "accountNumber": "343234343343423", "balance": 3423, "overrideBalance": false, "user": "Ramya"}];
+  let systeService = new SystemService();
+  let endpoint = systeService.getURL() + "/account/getAccount";
+  console.log(endpoint);
+  const response = [{ "bankName": "Syndicate Bank", "accountNumber": "0934232434234", "balance": 423, "overrideBalance": false, "user": "Ramya" }, { "bankName": "dfd", "accountNumber": "343234343343423", "balance": 3423, "overrideBalance": false, "user": "Ramya" }];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -61,21 +58,11 @@ describe('AddTformComponent', () => {
         component = fixture.componentInstance;
       });
   }));
-
-  beforeEach(() => {
-    // fixture = TestBed.createComponent(AddTformComponent);
-    // component = fixture.componentInstance;
-    // fixture.detectChanges();
-  });
-
-
-  it('validate type', fakeAsync(() => {
-    component.type = "dummy Value";
+  it('validate type : "Credit"', fakeAsync(() => {
+    component.type = "Credit";
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);
@@ -86,13 +73,11 @@ describe('AddTformComponent', () => {
 
 
   const randomValue = random(0, 10000000000000);
-  it('validate Amount', async(() => {
+  it('validate Amount : ' + randomValue, async(() => {
     component.Amount = randomValue;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);
@@ -105,9 +90,7 @@ describe('AddTformComponent', () => {
     component.account = "select Value";
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);
@@ -119,9 +102,7 @@ describe('AddTformComponent', () => {
   it('validate date', () => {
     component.date = new Date();
     fixture.detectChanges();
-    const req = httpTestingController.expectOne(
-      'http://localhost:4000/account/getAccount'
-    );
+    const req = httpTestingController.expectOne(endpoint);
     expect(req.request.method).toEqual('POST');
     // Respond with this data when called
     req.flush(response);
@@ -135,26 +116,21 @@ describe('AddTformComponent', () => {
     component.overide = false;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-         const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);
       const overide = component.currentForm.form.get('overide');
-      console.log(overide)
       expect(overide.valid).toBeTruthy();
     });
   }));
 
   it('check for overide balance value if true', async(() => {
     component.overide = true;
-    component.balance = random(0,9999999);
+    component.balance = random(0, 9999999);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-         const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);
@@ -173,9 +149,7 @@ describe('AddTformComponent', () => {
     component.address = null;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);
@@ -194,9 +168,7 @@ describe('AddTformComponent', () => {
     component.address = "random";
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const req = httpTestingController.expectOne(
-        'http://localhost:4000/account/getAccount'
-      );
+      const req = httpTestingController.expectOne(endpoint);
       expect(req.request.method).toEqual('POST');
       // Respond with this data when called
       req.flush(response);

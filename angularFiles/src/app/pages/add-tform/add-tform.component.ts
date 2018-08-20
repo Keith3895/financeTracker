@@ -1,11 +1,10 @@
 
-import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-datepicker.component';
-import * as enLocale from 'date-fns/locale/en';
-import * as frLocale from 'date-fns/locale/fr';
-import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
+import * as enLocale from 'date-fns/locale/en';
 import { } from 'googlemaps';
+import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-datepicker.component';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
 import { SnackBarService } from '../../service/snackBar/snack-bar.service';
 declare var google: any;
@@ -23,7 +22,7 @@ export class AddTformComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
 
- // @ViewChild("search") : any;
+  // @ViewChild("search") : any;
   public searchElementRef: ElementRef;
   @Output() close = new EventEmitter();
   showLoader = false;
@@ -64,10 +63,10 @@ export class AddTformComponent implements OnInit {
     /**
      * the following method is called to retrieve bankAccount number.
      */
-     this.showLoader=true;
+    this.showLoader = true;
     this.addAccountService.getAccount().subscribe((res: Object[]) => {
       this.bankList = res;
-      if(this.bankList.length<=0){
+      if (this.bankList.length <= 0) {
         this.snack.error("Didn't  Find any bank accounts to link any transactions");
         this.close.emit(false);
         return;
@@ -131,7 +130,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans: ngForm object
    */
   addTransaction(addTrans) {
-    console.log(addTrans);
+    // console.log(addTrans);
     if (addTrans.valid && this.validateForm(addTrans)) {
       this.showLoader = true;
       // call the service.
@@ -170,7 +169,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans :ngForm Object.
    */
   validateForm(addTrans) {
-     console.log(addTrans);
+    //  console.log(addTrans);
     if (!addTrans.valid)
       return addTrans.valid;
     if (typeof addTrans.value.type == 'string')
