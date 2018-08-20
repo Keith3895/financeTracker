@@ -19,6 +19,7 @@ export class AddAccountComponent implements OnInit {
   ngOnInit() {
   }
 
+
   cancel(){
     this.closeDialog.emit(false);   // to close the dialog
   }

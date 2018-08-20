@@ -1,14 +1,14 @@
 
-import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-datepicker.component';
-import * as enLocale from 'date-fns/locale/en';
-import * as frLocale from 'date-fns/locale/fr';
-import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
+import * as enLocale from 'date-fns/locale/en';
 import { } from 'googlemaps';
+import { DatepickerOptions } from '../../component/ng-datepicker/component/ng-datepicker.component';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
 import { SnackBarService } from '../../service/snackBar/snack-bar.service';
 declare var google: any;
+
 
 @Component({
   selector: 'app-add-tform',
@@ -16,15 +16,16 @@ declare var google: any;
   styleUrls: ['./add-tform.component.scss']
 })
 export class AddTformComponent implements OnInit {
+  @ViewChild('addTrans') currentForm: NgForm;
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
 
-  @ViewChild("search")
+  // @ViewChild("search") : any;
   public searchElementRef: ElementRef;
   @Output() close = new EventEmitter();
-  showLoader = true;
+  showLoader = false;
   bankAccount = [];
   bankList;
   date: Date = new Date();
@@ -44,9 +45,12 @@ export class AddTformComponent implements OnInit {
     'shopping'
   ];
   showMap = false;
-  acc;
+  account;
+  Amount;
   overide = false;
   categorySelected = "";
+  address = "";
+  balance;
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -59,20 +63,21 @@ export class AddTformComponent implements OnInit {
     /**
      * the following method is called to retrieve bankAccount number.
      */
+    this.showLoader = true;
     this.addAccountService.getAccount().subscribe((res: Object[]) => {
       this.bankList = res;
-      if(this.bankList.length<=0){
+      if (this.bankList.length <= 0) {
         this.snack.error("Didn't  Find any bank accounts to link any transactions");
         this.close.emit(false);
         return;
       }
       res.forEach(element => {
-        console.log(element);
         this.bankAccount.push(element['accountNumber']);
       });
       this.showLoader = false;
     });
   }
+
   /**
    * this method is called to initialize the google maps component.
    */
@@ -125,6 +130,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans: ngForm object
    */
   addTransaction(addTrans) {
+    // console.log(addTrans);
     if (addTrans.valid && this.validateForm(addTrans)) {
       this.showLoader = true;
       // call the service.
@@ -163,6 +169,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans :ngForm Object.
    */
   validateForm(addTrans) {
+    //  console.log(addTrans);
     if (!addTrans.valid)
       return addTrans.valid;
     if (typeof addTrans.value.type == 'string')

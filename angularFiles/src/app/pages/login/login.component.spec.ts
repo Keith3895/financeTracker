@@ -9,7 +9,9 @@ import { CheckboxComponent } from '../../component/checkbox/checkbox.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { APP_BASE_HREF } from '@angular/common';
+import { DashboardComponent} from '../dashboard/dashboard.component';
 import { HttpClient } from '../../../../node_modules/@types/selenium-webdriver/http';
 const appRoutes: Routes = [
   {
@@ -35,6 +37,7 @@ describe('LoginComponent', () => {
       imports: [
         BrowserModule,
         FlexLayoutModule,
+        RouterTestingModule,
         RouterModule.forRoot(
           appRoutes,
           // { enableTracing: true } // <-- debugging purposes only

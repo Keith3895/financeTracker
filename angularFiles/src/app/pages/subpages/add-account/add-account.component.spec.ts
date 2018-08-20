@@ -69,6 +69,7 @@ describe('AddAccountComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const test = component.ngForm.form.get('bankName');
+      console.log(test);
       expect(test.valid).toBeFalsy();
     });
   });

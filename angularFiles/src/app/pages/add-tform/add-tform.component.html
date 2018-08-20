@@ -6,13 +6,13 @@
         width: 124px;">
     </div>
 
-    <div fxLayout="column" *ngIf='!showLoader'>
+    <div fxLayout="column" [fxHide]='showLoader'>
         <form #addTrans='ngForm' id="addTransaction" (ngSubmit)="addTransaction(addTrans)">
             <div fxLayout='row' style="margin-bottom: -50px">
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='credit' radioValue='credit' required>Credit</app-radio>
                 <app-radio fxFlex='50' name='type' [(ngModel)]='type' id='debit' radioValue='debit'>Debit</app-radio>
             </div>
-            <app-input2 [errorToggle]="addTrans.form.controls.Ammount" id='Amount' type="number" name='Amount' ngModel placeholder="Amount"
+            <app-input2 [errorToggle]="addTrans.form.controls.Ammount" id='Amount' type="number" name='Amount' [(ngModel)]="Amount" placeholder="Amount"
                 required error="enter the Transaction Ammount" ></app-input2>
             <app-select style="margin:5px;" [options]='bankAccount' placeholder="Select Account" [(ngModel)]='account' name='account'
                 id='acc'></app-select>
@@ -56,6 +56,5 @@
                 </div>
             </div>
         </form>
-
     </div>
 </div>
