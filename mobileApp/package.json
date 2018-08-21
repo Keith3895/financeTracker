@@ -32,5 +32,8 @@
         "platforms": [
             "android"
         ]
+    },
+    "devDependencies": {
+        "@angular/cli": "^6.1.4"
     }
 }

@@ -1,10 +1,16 @@
 ul{
     list-style: none;
-    margin: 0px;
+   // margin: 0px;
     padding: 0px;
     width: 100%;
 }
 
 li{
-    padding: 10px;
+    padding: 15px;
+    -webkit-appearance: button;
+    // border: 1px solid lightgrey;
+    text-align: center;
+    background: #9c4dcc;
+    margin-bottom: 10px;
 }
+

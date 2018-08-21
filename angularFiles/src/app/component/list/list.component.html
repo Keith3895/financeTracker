@@ -1,12 +1,22 @@
 <ul>
-  <li fxLayout='row'>
-    <div>
-      
+  <li *ngFor="let item of list | slice:0:5; let i=index" (click)="addFuntionality()">
+    <div fxLayout="column" fxFlex="15" fxLayoutAlign="center center">
+      <img style="height:40px" src='assets/transactionIcons/{{item.icon}}'>
     </div>
-    <div>text</div>
-    <div>action</div>
+    <div fxLayout="column" fxFlex="25" fxLayoutAlign="center center">
+      {{item.Text}}
+    </div>
+    <div fxLayout="column" fxFlex="25" fxLayoutAlign="center center">
+      {{item.Amount}}
+    </div>
+    <div fxLayout="column" fxFlex="25" fxLayoutAlign="center center">
+      {{item.Date | date : 'short'}}
+    </div>
+    <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+      <i class={{item.action}} style="font-size: 1.5em"></i>
+    </div>
   </li>
-  <li fxFlexLayout='row'>
+  <!-- <li fxFlexLayout='row'>
     <div>icon</div>
     <div>text</div>
     <div>action</div>
@@ -15,5 +25,5 @@
     <div>icon</div>
     <div>text</div>
     <div>action</div>
-  </li>
+  </li> -->
 </ul>
