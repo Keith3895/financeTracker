@@ -16,8 +16,7 @@ export class DashboardComponent implements OnInit {
   constructor(public cordovaService: CordovaService) { }
 
   ngOnInit() {
-    this.cordovaService.test();
-    this.addTransaction();
+    // this.cordovaService.test();
   }
 
   closeDialog(event) {

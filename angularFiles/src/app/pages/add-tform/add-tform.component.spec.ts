@@ -178,8 +178,7 @@ describe('AddTformComponent', () => {
       expect(component.longitude).toBeDefined();
       expect(component.address).toBeDefined()
     });
-  }))
-
+  }));
   afterEach(() => {
     TestBed.resetTestingModule();
     httpTestingController.verify();

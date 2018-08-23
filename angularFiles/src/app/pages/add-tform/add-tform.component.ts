@@ -167,7 +167,7 @@ export class AddTformComponent implements OnInit {
    * @param addTrans :ngForm Object.
    */
   validateForm(addTrans) {
-    //  console.log(addTrans);
+     console.log(addTrans);
     if (!addTrans.valid)
       return addTrans.valid;
     if (typeof addTrans.value.type == 'string')
