@@ -20,12 +20,14 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class ModalComponent implements OnInit {
   @Input() closable = true;
   @Input() visible: boolean;
+  @Input() valign;
   @Output() closeDialog: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
   }
 
   ngOnInit() {
+    console.log(this.valign);
   }
 
   close() {

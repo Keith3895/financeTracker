@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
   addAcc;
   addTran;
   constructor(public cordovaService: CordovaService) { }
-
+  smsConfirmVisible = true;
+  smsConfirm = true;
   ngOnInit() {
     // this.cordovaService.test();
   }
