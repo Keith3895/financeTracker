@@ -41,6 +41,7 @@ import { AddAccountComponent } from './pages/subpages/add-account/add-account.co
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { SnackBarService } from '../app/service/snackBar/snack-bar.service';
 import { FabButtonComponent } from './component/fab-button/fab-button.component';
+import { ScanConfirmComponent } from './pages/scan-confirm/scan-confirm.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -80,7 +81,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     GraphsComponent,
     AddAccountComponent,
     SnackBarComponent,
-    FabButtonComponent
+    FabButtonComponent,
+    ScanConfirmComponent
   ],
   imports: [
     BrowserModule,

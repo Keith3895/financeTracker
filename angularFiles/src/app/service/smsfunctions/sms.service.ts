@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
 export class SmsService {
 
   constructor() { }
-  Transaction(obj){
+  Transaction(obj) {
     const str = obj.body;
     const debit = /(debited)|(deducted)|(charged)|(reduced)/i;
-    const credit =/(credited)|(credit)|(added)|(given)/i;
-    if(debit.test(str)){
-      return Object.assign(this.tokenizer(str),{type:'debit',date:obj.date});
-    }else if (credit.test(str)){
-      return Object.assign(this.tokenizer(str),{type:'credit',date:obj.date});
-    }else{
+    const credit = /(credited)|(credit)|(added)|(given)/i;
+    if (debit.test(str)) {
+      return Object.assign(this.tokenizer(str), { type: 'debit', date: obj.date });
+    } else if (credit.test(str)) {
+      return Object.assign(this.tokenizer(str), { type: 'credit', date: obj.date });
+    } else {
       return false;
     }
   }
@@ -26,26 +26,36 @@ export class SmsService {
   getTransactions(str: string) {
     const regex = /(rs.|INR)([0-9]*.[0-9]*)/gi
     const tokens = regex.exec(str);
-    if(tokens)
-    if (parseFloat(tokens[2]) != this.getBalance(str)) {
-      return parseFloat(tokens[2]);
-    }
+    if (tokens)
+      if (parseFloat(tokens[2]) != this.getBalance(str)) {
+        try {
+          return parseFloat(tokens[2]);
+        } catch (e) {
+
+          return 0;
+        }
+      }
   }
   getBalance(str: string) {
     const regex = [/(bal)/i,
-    /(ballance is)/i,
-    /(balance is)/i,
-    /(bal:)/i];
-     const val = /(rs.|INR)([0-9]*.[0-9]*)/gi
-    for(let i=0;i<regex.length;i++){
+      /(ballance is)/i,
+      /(balance is)/i,
+      /(bal:)/i];
+    const val = /(rs.|INR)([0-9]*.[0-9]*)/gi
+    for (let i = 0; i < regex.length; i++) {
       let tokens = regex[i].exec(str);
-      if(tokens){
+      if (tokens) {
         let subStr = str.substr(tokens.index, str.length);
-        return parseFloat(val.exec(subStr)[2]);
+        try {
+          return parseFloat(val.exec(subStr)[2]);
+        } catch (e) {
+
+          return 0;
+        }
       }
-    
+
     }
-     
+
   }
   getAccount(str: string) {
     const regex = [
@@ -57,9 +67,9 @@ export class SmsService {
       const token = regex[i].exec(str);
       if (token) {
         let subStr = str.substr(token.index, str.length);
-        let test =numexp.exec(subStr);
-        if(test)
-        return test[0];
+        let test = numexp.exec(subStr);
+        if (test)
+          return test[0];
       }
     }
   }

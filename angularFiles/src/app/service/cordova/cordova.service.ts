@@ -46,26 +46,37 @@ export class CordovaService {
     });
   }
   readMessages() {
-    const filter = {
-      box: 'inbox',
-    };
-    SMS.listSMS(filter, async (data) => {
-      let templist = [];
-      this.smsList = data;
-      await this.smsList.forEach(el => {
-        let condi = this.smsService.Transaction(el)
-        if (condi)
-          templist.push(condi);
-      });
-      this.http.put(this.ep + '/addMany', templist).subscribe(res => {
-        //popup
-        console.log('sms list sent');
-      },
-      (err) => {
-        alert('error list sms: ' + err);
-      });
-    }, (err) => {
-      console.log('error list sms: ' + err);
+    return new Promise((resolve, reject) => {
+      const filter = {
+        box: 'inbox',
+      };
+      try {
+        SMS.listSMS(filter, async (data) => {
+          let templist = [];
+          this.smsList = data;
+          await this.smsList.forEach(el => {
+            let condi = this.smsService.Transaction(el);
+            if (condi)
+            templist.push(condi);
+          });
+          this.http.put(this.ep + '/addMany', templist).subscribe(res => {
+            //popup
+            console.log('sms list sent');
+            resolve("sms List sent");
+          },
+            (err) => {
+              reject();
+              alert('error list sms: ' + err);
+            });
+        }, (err) => {
+          reject();
+          console.log('error list sms: ' + err);
+        });
+      } catch (e) {
+        reject("catch exception");
+        console.log(e);
+      }
+
     });
   }
   requestPermision(callback) {

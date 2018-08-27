@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   onClose(event){
     this.menuState='in';
   }
-  scanMsgs(){
-    this.cordovaService.readMessages();
-  }
+  // scanMsgs(){
+  //   this.cordovaService.readMessages();
+  // }
 }
