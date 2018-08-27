@@ -54,6 +54,10 @@ function addTransaction(obj) {
         try {
             let newTransaction = new Transaction(obj); // creates a transaction object which matches the data model(validation included).
             Account.findOne({ accountNumber: newTransaction.account }).exec((err, acc) => {
+                if(err){
+                    console.log(err);
+                    return;
+                }
                 condition = false;
                 if (acc && newTransaction.balance ){// compare new balance with current.
                     if(newTransaction.type=='debit')
