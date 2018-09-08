@@ -57,17 +57,14 @@ export class CordovaService {
           await this.smsList.forEach(el => {
             let condi = this.smsService.Transaction(el);
             if (condi)
-            templist.push(condi);
+              templist.push(condi);
           });
-          this.http.put(this.ep + '/addMany', templist).subscribe(res => {
-            //popup
-            console.log('sms list sent');
-            resolve("sms List sent");
-          },
-            (err) => {
-              reject();
-              alert('error list sms: ' + err);
-            });
+          resolve(templist.filter(el => {
+            if (el.account && el.balance && el.date && el.transaction && el.type)
+              return true;
+            else
+              return false;
+          }));
         }, (err) => {
           reject();
           console.log('error list sms: ' + err);
@@ -79,6 +76,19 @@ export class CordovaService {
 
     });
   }
+
+
+
+
+  //   this.http.put(this.ep + '/addMany', templist).subscribe(res => {
+  //   //popup
+  //   console.log('sms list sent');
+  //   resolve("sms List sent");
+  // },
+  //   (err) => {
+  //     reject();
+  //     alert('error list sms: ' + err);
+  //   });
   requestPermision(callback) {
     console.log(cordova);
     const permissions = cordova.plugins.permissions;

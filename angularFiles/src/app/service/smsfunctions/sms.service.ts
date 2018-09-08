@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { SystemService } from '../system/system.service';
+import { AddAccountService } from '../addAccount/add-account.service';
 @Injectable()
 export class SmsService {
-
-  constructor() { }
+  systemService;
+  constructor(private http: HttpClient,
+    private addAccount: AddAccountService) {
+    this.systemService = new SystemService();
+  }
   Transaction(obj) {
     const str = obj.body;
     const debit = /(debited)|(deducted)|(charged)|(reduced)/i;
@@ -23,31 +28,54 @@ export class SmsService {
       account: this.getAccount(str)
     };
   }
-  getTransactions(str: string) {
-    const regex = /(rs.|INR)([0-9]*.[0-9]*)/gi
-    const tokens = regex.exec(str);
-    if (tokens)
-      if (parseFloat(tokens[2]) != this.getBalance(str)) {
-        try {
-          return parseFloat(tokens[2]);
-        } catch (e) {
+  getTransactions(str) {
+    // console.log(/[0-9]*,[0-9]*.[0-9]*/.test(str),":",str);
+    if (/[0-9]*,[0-9]*.[0-9]*/.test(str)) { // method checks if ',' is there in the amount.
+      let regex = /(rs.|INR)\s*([0-9]*,[0-9]*.[0-9]*)/gi
+      let tokens = regex.exec(str);
+      if (tokens)
+        if (parseFloat(tokens[2]) != this.getBalance(str)) {
+          try {
 
-          return 0;
+            return tokens[2];
+          } catch (e) {
+
+            return 0;
+          }
         }
-      }
+    } else {
+      let regex = /(rs.|INR)([0-9]*.[0-9]*)/gi
+      let tokens = regex.exec(str);
+      if (tokens)
+        if (parseFloat(tokens[2]) != this.getBalance(str)) {
+          try {
+
+            return parseFloat(tokens[2]);
+          } catch (e) {
+
+            return 0;
+          }
+        }
+    }
   }
-  getBalance(str: string) {
-    const regex = [/(bal)/i,
-      /(ballance is)/i,
-      /(balance is)/i,
-      /(bal:)/i];
-    const val = /(rs.|INR)([0-9]*.[0-9]*)/gi
+  getBalance(str) {
+    const regex = [/(bal)\s*/i,
+      /(ballance is)\s*/i,
+      /(balance is)\s*/i,
+      /(bal:)\s*/i];
+    const val = [/(rs.|INR)\s*([0-9]*,[0-9]*.[0-9]*)/gi,
+      /(rs.|INR)([0-9]*.[0-9]*)/gi]
     for (let i = 0; i < regex.length; i++) {
       let tokens = regex[i].exec(str);
       if (tokens) {
         let subStr = str.substr(tokens.index, str.length);
         try {
-          return parseFloat(val.exec(subStr)[2]);
+          if (/[0-9]*,[0-9]*.[0-9]*/.test(subStr)) {
+            return val[0].exec(subStr)[2];
+          } else {
+            return val[1].exec(subStr)[2];
+          }
+          // return returnValue;
         } catch (e) {
 
           return 0;
@@ -55,9 +83,8 @@ export class SmsService {
       }
 
     }
-
   }
-  getAccount(str: string) {
+  getAccount(str) {
     const regex = [
       /a\/c/i,
       /ending/i
@@ -72,5 +99,27 @@ export class SmsService {
           return test[0];
       }
     }
+  }
+  findNewAccount(list) {
+    return new Promise((resolve, reject) => {
+      this.addAccount.getAccount().subscribe((res: Array<String>) => {
+        let accEx = [];
+        accEx = res.map(el => {
+          return el['accountNumber'];
+        });
+        let AccScaned = [];
+        list.map(el => {
+          if (!accEx.includes(el.account)) {
+            AccScaned.push(el.account);
+            accEx.push(el.account);
+          }
+        });
+        resolve(AccScaned);
+      },error=>{
+        reject(error);
+      });
+    });
+    // let accEx = [];
+
   }
 }

@@ -30,4 +30,7 @@
       </svg>
     </div>
   </div>
+  <div *ngIf='accountText'>
+    <h4 [innerHTML]="accountText"></h4>
+  </div>
 </app-modal>

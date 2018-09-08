@@ -40,4 +40,12 @@ export class AddAccountService {
     });
     return this.http.put(this.url + '/transaction/add', sendValue, { headers: headers });
   }
+  addBulkTransaction(sendValue){
+    let jwtToken = "jwt " + window.localStorage.getItem('token')
+    let headers = new HttpHeaders({
+      'contentType': 'application/json',
+      'Authorization': jwtToken
+    });
+    return this.http.put(this.url + '/transaction/addMany', sendValue, { headers: headers });
+  }
 }
