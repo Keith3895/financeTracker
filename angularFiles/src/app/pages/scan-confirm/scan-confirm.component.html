@@ -7,7 +7,7 @@
       <button (click)="startScan()">Yes</button>
     </div>
     <div class="Button">
-      <button (click)="modalVisable = false">No</button>
+      <button (click)="modalVisable = false;closeModal()">No</button>
     </div>
   </div>
   <div *ngIf="showSpinner" fxLayout='row' fxLayoutAlign="center">

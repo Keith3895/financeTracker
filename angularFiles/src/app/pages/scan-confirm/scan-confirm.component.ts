@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { CordovaService } from '../../service/cordova/cordova.service';
 import { SmsService } from '../../service/smsfunctions/sms.service';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
@@ -11,12 +11,13 @@ import { AddAccountService } from '../../service/addAccount/add-account.service'
 export class ScanConfirmComponent implements OnInit {
   @Input() smsConfirmVisible;
   @Input() modalVisable = true;
+  @Output() modalState: EventEmitter<any> = new EventEmitter();
   accountText;
   msgList;
   showSpinner = false;
   constructor(public cordovaService: CordovaService,
     private smsService: SmsService,
-    private addAccount:AddAccountService) { }
+    private addAccount: AddAccountService) { }
 
   ngOnInit() {
   }
@@ -36,9 +37,9 @@ export class ScanConfirmComponent implements OnInit {
             this.accountText += `<strong>${el}</strong>, `;
           });
           this.accountText += "Please add these accounts to record the transactions."
-        }else{
-          this.addAccount.addBulkTransaction(this.msgList).subscribe(res=>{
-            that.modalVisable=false;
+        } else {
+          this.addAccount.addBulkTransaction(this.msgList).subscribe(res => {
+            this.closeModal();
           });
         }
       });
@@ -46,5 +47,8 @@ export class ScanConfirmComponent implements OnInit {
       console.log(err);
     });
   }
-
+  closeModal() {
+    this.modalVisable = false;
+    this.modalState.emit(null);
+  }
 }
