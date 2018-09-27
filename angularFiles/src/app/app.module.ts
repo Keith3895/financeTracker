@@ -42,16 +42,22 @@ import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { SnackBarService } from '../app/service/snackBar/snack-bar.service';
 import { FabButtonComponent } from './component/fab-button/fab-button.component';
 import { ScanConfirmComponent } from './pages/scan-confirm/scan-confirm.component';
+import { MainComponent } from './pages/main/main.component';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/main',
     pathMatch: 'full'
   },
   // { path: '**', component: PageNotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [BasicGuard] }
+  {
+    path: 'main', component: MainComponent, canActivate: [BasicGuard], children: [
+      { path: 'dashboard', component: DashboardComponent, canActivate: [BasicGuard] }
+    ]
+  },
+
 ];
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -82,7 +88,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     AddAccountComponent,
     SnackBarComponent,
     FabButtonComponent,
-    ScanConfirmComponent
+    ScanConfirmComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

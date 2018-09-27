@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CordovaService } from '../../service/cordova/cordova.service';
 import { SmsService } from '../../service/smsfunctions/sms.service';
 import { AddAccountService } from '../../service/addAccount/add-account.service';
@@ -37,11 +37,11 @@ export class ScanConfirmComponent implements OnInit {
             this.accountText += `<strong>${el}</strong>, `;
           });
           this.accountText += "Please add these accounts to record the transactions."
-        } else {
-          this.addAccount.addBulkTransaction(this.msgList).subscribe(res => {
-            this.closeModal();
-          });
         }
+        this.addAccount.addBulkTransaction(this.msgList).subscribe(res => {
+          if (NewAccount.length <= 0)
+            this.closeModal();
+        });
       });
     }).catch(err => {
       console.log(err);

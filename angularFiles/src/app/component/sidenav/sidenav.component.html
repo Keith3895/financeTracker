@@ -1,10 +1,10 @@
 <div class="swipe-area" (panleft)="triggerClose($event)" (panright)="triggerOpen($event)"></div>
   
   <ul (click)='triggerClose($event)'>
-    <li routerLink="/dashboard" routerLinkActive="active" *ngIf='loginService.loggedIn()'>
+    <li routerLink="/main/dashboard" routerLinkActive="active" *ngIf='loginService.loggedIn()'>
       <span>Dashboard</span>  
     </li>
-    <li routerLink="/dashboard" routerLinkActive="active" *ngIf='loginService.loggedIn()' (click)="scanMsg()">
+    <li *ngIf='loginService.loggedIn()' (click)="scanMsg()">
       <span>Scan SMS</span>  
     </li>
     <li routerLink="/login" *ngIf='!loginService.loggedIn()' routerLinkActive="active">

@@ -31,6 +31,10 @@ export class AddAccountService {
       username: window.localStorage.getItem('user')
     }, { headers: headers });
   }
+  /**
+   * 
+   * @param sendValue {Object} transaction object
+   */
   addTransaction(sendValue){
     sendValue['user'] = window.localStorage.getItem('user');
     let jwtToken = "jwt " + window.localStorage.getItem('token')
@@ -40,6 +44,10 @@ export class AddAccountService {
     });
     return this.http.put(this.url + '/transaction/add', sendValue, { headers: headers });
   }
+  /**
+   * 
+   * @param sendValue {Array<Object>} list of transaction objects
+   */
   addBulkTransaction(sendValue){
     let jwtToken = "jwt " + window.localStorage.getItem('token')
     let headers = new HttpHeaders({

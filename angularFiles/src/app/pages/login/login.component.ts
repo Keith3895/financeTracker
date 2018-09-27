@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     if (fVal.valid) {
       this.loginService.authenticateUser(fVal.value).subscribe(res => {
         this.loginService.storeUserData(res['token'], res['user']);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/main']);
       }, err => {
         console.log(err);
       });

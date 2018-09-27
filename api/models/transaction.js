@@ -13,8 +13,7 @@ const TransactionSchema = new Schema({
         index: true,
     },
     balance: {
-        type: Number,
-        required: true
+        type: Number
     },
     type: {
         type: String,

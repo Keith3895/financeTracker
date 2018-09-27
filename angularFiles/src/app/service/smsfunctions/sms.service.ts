@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { SystemService } from '../system/system.service';
 import { AddAccountService } from '../addAccount/add-account.service';
 @Injectable()
 export class SmsService {
   systemService;
-  constructor(private http: HttpClient,
+  constructor(
     private addAccount: AddAccountService) {
     this.systemService = new SystemService();
   }
@@ -14,9 +13,9 @@ export class SmsService {
     const debit = /(debited)|(deducted)|(charged)|(reduced)/i;
     const credit = /(credited)|(credit)|(added)|(given)/i;
     if (debit.test(str)) {
-      return Object.assign(this.tokenizer(str), { type: 'debit', date: obj.date });
+      return Object.assign(this.tokenizer(str), { type: 'debit', date: obj.date, user:window.localStorage.getItem('user') });
     } else if (credit.test(str)) {
-      return Object.assign(this.tokenizer(str), { type: 'credit', date: obj.date });
+      return Object.assign(this.tokenizer(str), { type: 'credit', date: obj.date, user:window.localStorage.getItem('user') });
     } else {
       return false;
     }
@@ -29,10 +28,12 @@ export class SmsService {
     };
   }
   getTransactions(str) {
-    // console.log(/[0-9]*,[0-9]*.[0-9]*/.test(str),":",str);
+    console.log(/[0-9]*,[0-9]*.[0-9]*/.test(str),":",str);
     if (/[0-9]*,[0-9]*.[0-9]*/.test(str)) { // method checks if ',' is there in the amount.
-      let regex = /(rs.|INR)\s*([0-9]*,[0-9]*.[0-9]*)/gi
+      let regex = /(rs.|INR)\s*([0-9]*,[0-9]*.[0-9]*)/gi;
       let tokens = regex.exec(str);
+      console.log("str",str);
+      console.log("tokens",tokens);
       if (tokens)
         if (parseFloat(tokens[2]) != this.getBalance(str)) {
           try {
@@ -44,8 +45,9 @@ export class SmsService {
           }
         }
     } else {
-      let regex = /(rs.|INR)([0-9]*.[0-9]*)/gi
+      let regex = /(rs.|INR)([0-9]*.[0-9]*)/gi;
       let tokens = regex.exec(str);
+      console.log("tokens",tokens);
       if (tokens)
         if (parseFloat(tokens[2]) != this.getBalance(str)) {
           try {

@@ -22,15 +22,11 @@ declare var device;
   ]
 })
 export class AppComponent implements OnInit {
-  @Input() modalView: boolean;
+  
   menuState: string = 'in';
-  showIcons: Boolean;
-  flexDirection = 'column';       // to display floating float icon direction
-  iconList = ['fa fa-home', 'fa fa-tachometer', 'fa fa-credit-card', 'fa fa-cog']; // display list of icons in footer
-  alignFabBtn = 'bottomRight';
-  addAcc;
-  addTran;
-  smsConfirmVisible = true;
+  smsConfirmVisible;
+  
+  
   constructor(private router: ActivatedRoute,
     public cordovaService: CordovaService) {
   }
@@ -47,23 +43,8 @@ export class AppComponent implements OnInit {
   onClose(event) {
     this.menuState = 'in';
   }
-
-  closeDialog(event) {
-    this.modalView = event;
-    this.addAcc = this.addTran = false;
-  }
-
-  addAccount() {
-    this.showIcons = false;
-    this.modalView = true;
-    this.addAcc = true;
-  }
-  addTransaction() {
-    this.showIcons = false;
-    this.addTran = true;
-    this.modalView = true;
-  }
   scanMsgs(){
+    //dummy
     this.smsConfirmVisible=true;
   }
   closeScan(){

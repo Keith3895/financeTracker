@@ -1,0 +1,34 @@
+<router-outlet></router-outlet>
+
+<app-fab-button color="red" icon="fa fa-plus fixedIcon" [flexDirection]="flexDirection" [showIcons]="showIcons"
+  [alignBtn]="alignFabBtn">
+  <span class="buttons blue" (click)="addTransaction()">
+    <i class="fas fa-money-bill-wave-alt iconSize"></i>
+  </span>
+  <span class="buttons green" (click)="addAccount()">
+    <i class="fas fa-money-check-alt iconSize"></i>
+  </span>
+</app-fab-button>
+
+
+
+
+
+
+
+<!-- called on phone to trigger sms search -->
+<app-scan-confirm [smsConfirmVisible]="smsConfirmVisible" [modalVisable]="smsConfirmVisible" (modalState)="closeScan()"></app-scan-confirm>
+
+
+
+<app-modal [visible]="modalView" (closeDialog)="closeDialog($event)">
+  <app-add-account *ngIf="addAcc" fxLayoutAlign="center center" (closeDialog)="closeDialog($event)"></app-add-account>
+  <app-add-tform *ngIf="addTran" (close)="closeDialog($event)"></app-add-tform>
+</app-modal>
+
+
+
+<div fxLayout="row" class="footer">
+  <app-tab [iconName]="iconList" fxFlex=100></app-tab>
+</div>
+<app-snack-bar></app-snack-bar>
