@@ -1,4 +1,4 @@
-<div [@dialog] *ngIf="visible" class="dialog">
+<div [@dialog] *ngIf="visible" class="dialog" [ngClass]="{'center':valign=='center'}">
     <ng-content></ng-content>
     <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">X</button>
   </div>

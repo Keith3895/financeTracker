@@ -69,6 +69,7 @@ describe('AddAccountComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const test = component.ngForm.form.get('bankName');
+      console.log(test);
       expect(test.valid).toBeFalsy();
     });
   });
@@ -110,7 +111,7 @@ describe('AddAccountComponent', () => {
       expect(test.valid).toBeFalsy();
     });
   });
-  for (let i = 100000000000; i <= 10000000000000000; i *= 10) {
+  for (let i = 10000; i <= 10000; i *= 10) {
     it('Account Number Check with value<string> ', () => {
       component.accountNumber = '' + random(i, i - 1) + '';
       fixture.detectChanges();
@@ -128,7 +129,7 @@ describe('AddAccountComponent', () => {
       });
     });
   }
-  for (let i = 10000; i <= 100000000; i *= 10) {
+  for (let i = 100000; i <= 100000000; i *= 10) {
     // const randomValue = random(i, i - 1);
     it('Account Number Check with value<string>', () => {
       component.accountNumber = '' + random(i, i - 1) + '';

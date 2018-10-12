@@ -8,8 +8,8 @@
       <app-input2 [(ngModel)]="mobileNumber" type="text" name="mobileNumber" pattern="[0-9]{10}" maxlength="10" placeholder="Reg Mobile Number"
         id="mobileNumber" ngModel required error="mobile Number is required" [errorToggle]="addForm.form.controls.mobileNumber"></app-input2>
      
-      <app-input2 [(ngModel)]="accountNumber" type="text" name="accountNumber" pattern="^[0-9]{11,17}$" placeholder="Account Number"
-        id="accountNumber" ngModel required error="account Number is required" [errorToggle]="addForm.form.controls.accountNumber"></app-input2>
+      <app-input2 [(ngModel)]="accountNumber" type="text" name="accountNumber" pattern="^[0-9]{4}$" placeholder="Account Number"
+        id="accountNumber" ngModel required error="last 4 characters" [errorToggle]="addForm.form.controls.accountNumber"></app-input2>
      
       <app-input2 [(ngModel)]="balance" type="number" name="balance" pattern="\d*" placeholder="Balance" id="balance" ngModel required
         error="balance is required" [errorToggle]="addForm.form.controls.balance"></app-input2>

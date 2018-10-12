@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const noop = () => {
@@ -24,20 +24,15 @@ export class Input2Component implements ControlValueAccessor {
     @Input() type: any;
     @Input() errorToggle;
     @Input() id;
-    @Input() maxlength;
-    @Input() pattern;
+    @ViewChild('input') nativeElement: ElementRef;
+    @Output() el: ElementRef;
     @Output() keyups: EventEmitter<any> = new EventEmitter();
-    //   @Input() length : Number;
-    showError;
+    constructor() { }
     //The internal data model
     private innerValue: any = '';
-
-    //Placeholders for the callbacks which are later provided
-    //by the Control Value Accessor
+    showError;
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
-
-
     //get accessor
     get value(): any {
         return this.innerValue;
@@ -57,11 +52,12 @@ export class Input2Component implements ControlValueAccessor {
     }
     onKeyup(event) {
         this.keyups.emit(event);
-        if (this.errorToggle.status === 'INVALID' || this.errorToggle.value === '') {
-            this.showError = true;
-        } else {
-            this.showError = false;
-        }
+        if(this.errorToggle)
+            if (this.errorToggle.status === 'INVALID' || this.errorToggle.value === '') {
+                this.showError = true;
+            } else {
+                this.showError = false;
+            }
     }
     //From ControlValueAccessor interface
     writeValue(value: any) {

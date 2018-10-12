@@ -1,12 +1,12 @@
 <div fxLayout="column" style="position: relative;" class="main">
   <div>
-      <div class="inputWraper" (click)='active=true'>
+      <div class="inputWraper" (click)='active=!active'>
           <input [(ngModel)]="value" [placeholder]='placeholder' type="text" (blur)="onBlur()" [required]='required' [id]="id" readonly>
           <i class="fas fa-chevron-down"></i>
         </div>
   </div>
   <div>
-      <ul [ngClass]="{'active':active}">
+      <ul [ngClass]="{'active':active}" >
           <li *ngFor="let option of options" (click)="selected(option)">{{option}}</li>
         </ul>
   </div>

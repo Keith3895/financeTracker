@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SystemService } from '../system/system.service';
 import { SmsService } from '../smsfunctions/sms.service';
-import { HttpClient } from '@angular/common/http';
+import { AddAccountService } from '../addAccount/add-account.service';
 // declare const window: any;
 declare const cordova: any;
 declare const SMS: any;
@@ -12,28 +12,29 @@ export class CordovaService {
   smsList = [];
   ep;
   constructor(public smsService: SmsService,
-    public http: HttpClient) {
+    public addAccount: AddAccountService) {
     this.systemService = new SystemService();
     this.ep = this.systemService.getURL() + '/transaction';
-    document.addEventListener('onSMSArrive', (e) => {
-
-      var sms = e['data'];
-      this.smsList.push(sms);
-      let transactionObject = this.smsService.Transaction(sms);
-      if (typeof transactionObject == 'object') {
-        cordova.plugins.backgroundMode.disableWebViewOptimizations();
-        cordova.plugins.locationServices.geolocation.getCurrentPosition((position) => {
-          this.http.put(this.ep + '/addMany', Object.assign(transactionObject, { geoLocation: position.coords })).subscribe(res => {
-            console.log('sms sent');
-          });
-        }, this.onError, { enableHighAccuracy: true });
-      }
-    });
+    document.addEventListener('onSMSArrive', this.backgroundSMSRecieved);
   }
 
   onError(error) {
     alert('code: ' + error.code + '\n' +
       'message: ' + error.message + '\n');
+  }
+  backgroundSMSRecieved(e) {
+
+    var sms = e['data'];
+    this.smsList.push(sms);
+    let transactionObject = this.smsService.Transaction(sms);
+    if (typeof transactionObject == 'object') {
+      cordova.plugins.backgroundMode.disableWebViewOptimizations();
+      cordova.plugins.locationServices.geolocation.getCurrentPosition((position) => {
+        this.addAccount.addTransaction(Object.assign(transactionObject, { geoLocation: position.coords })).subscribe(res => {
+          console.log('new sms recieved and parsed.');
+        });
+      }, this.onError, { enableHighAccuracy: true });
+    }
   }
   runBackground() {
     cordova.plugins.backgroundMode.enable();
@@ -46,28 +47,37 @@ export class CordovaService {
     });
   }
   readMessages() {
-    const filter = {
-      box: 'inbox',
-    };
-    SMS.listSMS(filter, async (data) => {
-      let templist = [];
-      this.smsList = data;
-      await this.smsList.forEach(el => {
-        let condi = this.smsService.Transaction(el)
-        if (condi)
-          templist.push(condi);
-      });
-      this.http.put(this.ep + '/addMany', templist).subscribe(res => {
-        //popup
-        console.log('sms list sent');
-      },
-      (err) => {
-        alert('error list sms: ' + err);
-      });
-    }, (err) => {
-      console.log('error list sms: ' + err);
+    return new Promise((resolve, reject) => {
+      const filter = {
+        box: 'inbox',
+      };
+      try {
+        SMS.listSMS(filter, async (data) => {
+          let templist = [];
+          this.smsList = data;
+          await this.smsList.forEach(el => {
+            let condi = this.smsService.Transaction(el);
+            if (condi)
+              templist.push(condi);
+          });
+          resolve(templist.filter(el => {
+            if (el.account && el.balance && el.date && el.transaction && el.type)
+              return true;
+            else
+              return false;
+          }));
+        }, (err) => {
+          reject();
+          console.log('error list sms: ' + err);
+        });
+      } catch (e) {
+        reject("catch exception");
+        console.log(e);
+      }
+
     });
   }
+
   requestPermision(callback) {
     console.log(cordova);
     const permissions = cordova.plugins.permissions;
@@ -80,12 +90,5 @@ export class CordovaService {
             }, null);
           }, null);
       }, null);
-  }
-  test() {
-    // this.requestPermision((st) => {
-    //   SMS.startWatch((status) => {
-    //   }, null);
-    //   cordova.plugins.backgroundMode.disableWebViewOptimizations();
-    // });
   }
 }

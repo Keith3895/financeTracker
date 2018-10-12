@@ -5,7 +5,7 @@ const async = require('async');
 exports.addTransaction = (req, res) => {
     addTransaction(req.body).then((response) => {
         return res.status(response.status).json(response.json);
-    }).error((err) => {
+    }).catch((err) => {
         return res.status(err.status).json(err.send);
     });
 };
@@ -25,11 +25,15 @@ exports.getTransactions = (req, res) => {
 
 exports.addMultiTransactions = async (req, res) => {
     let transactionArray = req.body;
+
+
     await transactionArray.sort((a, b) => {
         return a.date - b.date;
     });
     transactionArray.forEach(element => {
+
         addTransaction(element).then((response) => {
+            console.log(response);
             return response;
         }).catch((err) => {
             return err;
@@ -46,7 +50,7 @@ exports.deleteTransaction = (req, res) => {
 
 /**
  * This function is to add individual transacton objects.
- * @param obj : this is the transaction object
+ * @param {Object} obj : this is the transaction object
  *  returns a promise.
  */
 function addTransaction(obj) {
@@ -54,28 +58,38 @@ function addTransaction(obj) {
         try {
             let newTransaction = new Transaction(obj); // creates a transaction object which matches the data model(validation included).
             Account.findOne({ accountNumber: newTransaction.account }).exec((err, acc) => {
-                condition = false;
-                if (acc && newTransaction.balance)// compare new balance with current.
-                    condition = acc.balance > 0 ? newTransaction.balance == (acc.balance - newTransaction.transaction) : true;
-                if (condition) {
-                    acc.balance = newTransaction.balance;
-                    acc.save( (err, data) => {
-                        if (err)
-                            return reject(err);
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                /**
+                 * query mongo for the a transaction. **De Dup mechanism**. 
+                 */
+                Transaction.find({
+                    account: newTransaction.account,
+                    balance: newTransaction.balance,
+                    user: newTransaction.user
+                }).exec((err, DeDupTransaction) => {
+                    if (err)
+                        console.log(err);
+                    if (DeDupTransaction.length <= 0) {
+                        console.log("came here!",newTransaction);
                         newTransaction.save((err, transaction) => {
                             if (err) {
-                                return reject({status: 500,send: {message: err}});
+                                return reject({ status: 500, send: { message: err } });
                             } else {
-                                return resolve({status: 200,json: transaction});
+                                console.log("came here!");
+                                return resolve({ status: 200, json: transaction });
                             }
                         });
-                    });
-                } else {
-                    return reject({status: 409,send: {message: 'error in adding data'}});
-                }
+                    } else {
+                        return reject({ status: 409, send: { message: 'error in adding data' } });
+                    }
+                });
+
             });
         } catch (e) {
-            return reject({status: 500,send: {message: err}});
+            return reject({ status: 500, send: { message: err } });
         }
     });
 }

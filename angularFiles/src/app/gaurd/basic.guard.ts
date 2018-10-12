@@ -10,7 +10,7 @@ export class BasicGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       if(!this.loginservice.loggedIn())
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
     return this.loginservice.loggedIn();
   }
 }

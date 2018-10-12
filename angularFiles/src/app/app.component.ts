@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CordovaService } from './service/cordova/cordova.service';
@@ -22,25 +22,32 @@ declare var device;
   ]
 })
 export class AppComponent implements OnInit {
+  
   menuState: string = 'in';
+  smsConfirmVisible;
+  
   
   constructor(private router: ActivatedRoute,
-  public cordovaService: CordovaService) {
+    public cordovaService: CordovaService) {
   }
   ngOnInit() {
-    document.addEventListener("deviceready", ()=>{
-      this.cordovaService.requestPermision((status)=>{
+    document.addEventListener("deviceready", () => {
+      this.cordovaService.requestPermision((status) => {
         this.cordovaService.runBackground();
       });
-    } , false);
+    }, false);
   }
-  onOpen(event){
-    this.menuState='out';
+  onOpen(event) {
+    this.menuState = 'out';
   }
-  onClose(event){
-    this.menuState='in';
+  onClose(event) {
+    this.menuState = 'in';
   }
   scanMsgs(){
-    this.cordovaService.readMessages();
+    //dummy
+    this.smsConfirmVisible=true;
+  }
+  closeScan(){
+    this.smsConfirmVisible=false;
   }
 }

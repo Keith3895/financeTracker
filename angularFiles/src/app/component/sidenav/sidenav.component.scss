@@ -20,23 +20,28 @@ ul {
     padding-top: 50px;
     list-style: none;
 }
-ul li{
+
+ul li {
     text-align: center;
 }
-ul li.active{
+
+ul li.active {
     background: #2d377d;
 }
-ul li:hover{
+
+ul li:hover {
     background: #2d377d;
     cursor: pointer;
 }
-li a{
+
+li a {
     color: inherit;
     text-decoration: inherit;
 }
+
 .swipe-area {
     position: absolute;
-   // width: 50px;
+    width: 50px;
     left: 250px;
     top: 60px;
     height: 100%;

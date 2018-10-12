@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { AgmCoreModule } from '@agm/core';
 // components import 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
@@ -41,16 +41,23 @@ import { AddAccountComponent } from './pages/subpages/add-account/add-account.co
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { SnackBarService } from '../app/service/snackBar/snack-bar.service';
 import { FabButtonComponent } from './component/fab-button/fab-button.component';
+import { ScanConfirmComponent } from './pages/scan-confirm/scan-confirm.component';
+import { MainComponent } from './pages/main/main.component';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/main',
     pathMatch: 'full'
   },
   // { path: '**', component: PageNotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [BasicGuard] }
+  {
+    path: 'main', component: MainComponent, canActivate: [BasicGuard], children: [
+      { path: 'dashboard', component: DashboardComponent, canActivate: [BasicGuard] }
+    ]
+  },
+
 ];
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -80,7 +87,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     GraphsComponent,
     AddAccountComponent,
     SnackBarComponent,
-    FabButtonComponent
+    FabButtonComponent,
+    ScanConfirmComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +101,10 @@ export class MyHammerConfig extends HammerGestureConfig {
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
     ),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAGuj_bN2XCr5GRFCcReiT1698SU4X2A7Y",
+      libraries: ["places"]
+    }),
     FormsModule,
     HttpClientModule
   ],
